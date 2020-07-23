@@ -1,0 +1,34 @@
+<div class="dialog-members">
+    <mat-form-field class="mat-input-full-width" appearance="legacy">
+        <input matInput placeholder="Tìm bạn bè để cùng trò chuyện" cdkFocusInitial>
+        <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <mat-selection-list color="primary">
+        <mat-list-item *ngFor="let friend of friends">
+            <img matListAvatar [src]="friend.UserInfo.Avatar" alt="Ảnh">
+            <p matLine>{{friend.UserInfo.getFullName}}</p>
+            <button mat-icon-button color="accent" [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+                <button mat-menu-item>
+                    <mat-icon>account_box</mat-icon>
+                    <span>Trang cá nhân</span>
+                </button>
+                <button mat-menu-item>
+                    <mat-icon>delete</mat-icon>
+                    <span>Xóa khỏi cuộc trò chuyện</span>
+                </button>
+            </mat-menu>
+        </mat-list-item>
+        <ng-container *ngIf="isWaiting">
+            <div class="skeleton"></div>
+            <div class="skeleton"></div>
+            <div class="skeleton"></div>
+        </ng-container>
+    </mat-selection-list>
+    <div mat-dialog-actions>
+        <button mat-button (click)="onNoClick()">Thôi</button>
+        <button mat-button color="primary">Xác nhận</button>
+    </div>
+</div>

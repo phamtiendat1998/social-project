@@ -1,0 +1,122 @@
+.chat-box {
+    display: inline-block;
+    box-shadow: var(--box-shadow-1);
+    width: 335px;
+    margin-left: 10px;
+    position: relative;
+
+    &__title {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        background-color: var(--color-primary-600);
+        color: var(--color-primary-contrast-600);
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        position: relative;
+        box-shadow: var(--box-shadow-1);
+
+        p {
+            margin: 0;
+        }
+    }
+
+    &__avatar {
+        width: 40px;
+        height: 40px;
+        overflow: hidden;
+        margin-right: 10px;
+        position: relative;
+
+        .online {
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background-color: #22ec22;
+            border-radius: 50%;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    }
+
+    &__button {
+        display: flex;
+        position: absolute;
+        right: 0;
+
+        button {
+            color: var(--color-primary-contrast-600);
+        }
+    }
+
+    &__name {
+        font-weight: 500;
+    }
+
+    &__tab-chat {
+        background-color: var(--color-background-primary);
+        height: 400px;
+        overflow-y: auto;
+
+        .spinner {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+    }
+
+    &__text {
+        display: flex;
+        padding: 10px;
+
+        p {
+            margin: 0;
+            max-width: 70%;
+            padding: 0 10px;
+            border-radius: 5px;
+        }
+
+        &--own {
+            justify-content: flex-end;
+
+            p {
+                background-color: var(--color-primary-600);
+                color: var(--color-primary-contrast-600);
+            }
+        }
+
+        &--user {
+            justify-content: flex-start;
+
+            &>div {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                background-image: url('../../../../../assets/images/duy.jpg');
+                background-size: cover;
+                background-position: center;
+                margin-right: 10px;
+            }
+
+            p {
+                background-color: var(--color-background-third);
+                color: var(--color-background-third-contrast);
+
+            }
+        }
+    }
+
+    &__input {
+        background-color: var(--color-background-primary);
+        padding: 0 10px;
+    }
+}

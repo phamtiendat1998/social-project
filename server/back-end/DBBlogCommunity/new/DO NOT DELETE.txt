@@ -1,0 +1,16 @@
+CREATE PROC List_Image_In_Post  @IdUserParams NVARCHAR(128), @StatusParams TINYINT
+AS
+
+Declare @IdUser nvarchar (128)
+set @IdUser = @IdUserParams
+
+Declare @Status nvarchar (128)
+set @Status = @StatusParams
+
+BEGIN
+
+select * from IMAGEPOST as b
+where b.IdPost IN
+(select a.IdPost from NEWFEEDPOST as a where a.IdUser = @IdUser AND a.Status = @StatusParams)
+
+END

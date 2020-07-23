@@ -1,0 +1,75 @@
+.song-item-music {
+    background-color: var(--color-background-primary);
+    color: var(--color-background-contrast-primary);
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+    margin-bottom: 2px;
+    padding-right: 8px;
+    height: 110px;
+
+    &>div {
+        display: flex;
+        align-items: center;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    h6 {
+        margin-bottom: 0;
+        margin-right: 10px;
+    }
+
+    &__button {
+        &>* {
+            margin-left: 10px;
+        }
+
+        p {
+            color: var(--color-opacity-primary);
+        }
+    }
+
+    &__image {
+        width: 50px;
+        height: 50px;
+        position: relative;
+        border-radius: 50%;
+        overflow: hidden;
+
+        &.no-cover {
+            background-color: var(--color-background-third);
+        }
+    }
+
+    &__dish {
+        width: 15px;
+        height: 15px;
+        border-radius: 50px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: var(--color-background-primary);
+    }
+
+    &__info {
+        padding-left: 15px;
+
+        p {
+            margin: 0;
+        }
+
+        p:first-child {
+            font-weight: 500;
+            color: var(--color-background-primary-contrast);
+        }
+
+        small {
+            color: var(--color-opacity-primary);
+        }
+    }
+}

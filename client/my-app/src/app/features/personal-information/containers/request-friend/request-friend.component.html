@@ -1,0 +1,20 @@
+<div class="row request-friend" *ngIf="(requestFriends$ | async) as requestFriends; else skeleton">
+    <ng-container *ngIf="requestFriends.length>0;else noUser">
+        <div class="col-6" *ngFor="let requestFriend of requestFriends">
+            <app-friend-field [user]="requestFriend" option="requestFriend" [userId]="userId"></app-friend-field>
+        </div>
+    </ng-container>
+    <ng-template #noUser>
+        <p>Không có lời mời kết bạn nào.</p>
+    </ng-template>
+</div>
+<ng-template #skeleton>
+    <div class="row">
+        <div class="col-6">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+        <div class="col-6">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+    </div>
+</ng-template>

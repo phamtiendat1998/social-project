@@ -1,0 +1,65 @@
+ .reply-comment-post {
+     margin-bottom: 10px;
+     display: grid;
+     grid-template-columns: 50px auto;
+
+     &__avatar {
+         background-position: center center;
+         background-size: cover;
+         width: 40px;
+         height: 40px;
+         border-radius: 50%;
+         margin-right: 10px;
+
+         img {
+             border-radius: 50%;
+         }
+     }
+
+     &__cmt {
+         padding: 5px 10px;
+         border-radius: 5px;
+         background-color: var(--color-background-third);
+         position: relative;
+
+         &:hover {
+             .reply-comment-post__menu {
+                 opacity: 1;
+             }
+         }
+
+         h6 {
+             color: var(--color-primary-600);
+         }
+
+     }
+
+     &__feature {
+         color: var(--color-opacity-primary);
+         font-weight: 500;
+     }
+
+     &__menu {
+         position: absolute;
+         top: 0;
+         right: 0;
+         opacity: 0;
+         transition: all 0.3s;
+
+         &[aria-expanded="true"] {
+             opacity: 1;
+         }
+     }
+
+     a {
+         font-weight: 500;
+         color: var(--color-primary-600);
+         text-decoration: none;
+         margin-right: 5px;
+     }
+
+     p {
+         margin: 0;
+     }
+
+ }

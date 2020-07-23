@@ -1,0 +1,44 @@
+.mat-expansion-panel {
+    border-radius: 5px;
+    margin-bottom: 25px;
+    position: relative;
+
+    mat-progress-bar {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+    }
+
+    mat-panel-description {
+        align-items: center;
+    }
+
+    p {
+        margin: 0;
+        color: var(--color-opacity-primary);
+
+        mat-icon {
+            width: 40px;
+            font-size: 40px;
+            height: 40px;
+            color: var(--color-primary-500);
+        }
+    }
+
+    a {
+        text-decoration: none;
+        font-weight: bold;
+        color: var(--color-background-primary-contrast);
+    }
+}
+
+.form-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+        margin: 5px;
+    }
+}

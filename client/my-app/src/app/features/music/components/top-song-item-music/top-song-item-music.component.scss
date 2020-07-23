@@ -1,0 +1,115 @@
+.top-song-item-music {
+    height: 110px;
+    background-color: inherit;
+    color: var(--color-background-contrast-primary);
+    display: flex;
+    justify-content: space-between;
+    border-top: solid 1.5px rgba(0, 0, 0, 0.09);
+
+    &--no-border {
+        border: none;
+        background-color: var(--color-background-primary);
+        border-radius: 5px;
+        margin-bottom: 2px;
+        padding: 30px;
+        padding-right: 8px;
+    }
+
+    &__number {
+        width: 30px;
+        height: 53px;
+        background-color: var(--color-top-music-1);
+        mask: url('../../../../../assets/svg/icon_tag.svg');
+        mask-repeat: no-repeat;
+        display: flex;
+        justify-content: center;
+        padding-top: 7px;
+
+        &--top-1 {
+            background-color: var(--color-top-music-1);
+            color: var(--color-top-music-1-contrast);
+        }
+
+        &--top-2 {
+            background-color: var(--color-top-music-2);
+            color: var(--color-top-music-2-contrast);
+
+        }
+
+        &--top-3 {
+            background-color: var(--color-top-music-3);
+            color: var(--color-top-music-3-contrast);
+
+        }
+
+        &--top-4 {
+            background-color: var(--color-top-music-4);
+            color: var(--color-top-music-4-contrast);
+        }
+    }
+
+    &>div {
+        display: flex;
+        align-items: center;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    h6 {
+        margin-bottom: 0;
+    }
+
+    &__image {
+        width: 50px;
+        height: 50px;
+        position: relative;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-left: 15px;
+
+        &.no-cover {
+            background-color: var(--color-background-third);
+        }
+    }
+
+    &__dish {
+        width: 15px;
+        height: 15px;
+        border-radius: 50px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: var(--color-background-primary);
+    }
+
+    &__info {
+        margin-left: 10px;
+
+        p {
+            color: var(--color-background-primary-contrast);
+        }
+
+        p:first-child {
+            font-weight: 500;
+        }
+
+        small {
+            color: var(--color-opacity-primary);
+        }
+    }
+
+    &__button {
+        &--no-border {
+            &>* {
+                margin-left: 10px;
+            }
+        }
+
+        p {
+            color: var(--color-opacity-primary);
+        }
+    }
+}

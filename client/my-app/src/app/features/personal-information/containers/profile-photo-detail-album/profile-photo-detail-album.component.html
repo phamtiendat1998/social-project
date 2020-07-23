@@ -1,0 +1,51 @@
+<div class="profile-photo-detail-album">
+    <div class="profile-photo-detail-album__title">
+        <h6>Đây là tên album</h6>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt et molestias nobis dolore quae. Sed fuga
+            nisi qui voluptates accusamus quod dignissimos excepturi aut magni perferendis officiis temporibus ad illo
+            sit at facere praesentium velit, suscipit reprehenderit magnam autem est similique rerum repellendus!
+            Repudiandae, excepturi exercitationem? Quia nisi veritatis harum.</p>
+
+        <div class="profile-photo-detail-album__description">
+            <div>
+                <p>98 ảnh</p>
+            </div>
+            <div>
+                <button mat-mini-fab color="primary">
+                    <mat-icon>public</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="profile-photo-detail-album__photo" *ngIf="photos.length!==0; else skeleton">
+        <div class="profile-photo-detail-album__item" *ngFor="let photo of photos">
+            <img [src]="photo.Source" alt="Ảnh" />
+            <div class="photo-info">
+                <div>
+                    <button mat-button>
+                        <mat-icon>thumb_up</mat-icon>
+                        <small>{{photo.MediaInfo.QuantityLike | quantity}}</small>
+                    </button>
+                    <button mat-button>
+                        <mat-icon>chat_bubble</mat-icon>
+                        <small>{{photo.MediaInfo.QuantityComment | quantity}}</small>
+                    </button>
+                    <button mat-button>
+                        <mat-icon>remove_red_eye</mat-icon>
+                        <small>{{photo.MediaInfo.QuantityShare | quantity}}</small>
+                    </button>
+                </div>
+                <div>
+                    <p>{{photo.MediaInfo.getTime}}</p>
+                    <h6>{{photo.MediaInfo.Content | content: 15}}</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template #skeleton>
+        <div class="profile-photo-detail-album__photo">
+            <div class="profile-photo-detail-album__item skeleton"></div>
+            <div class="profile-photo-detail-album__item skeleton"></div>
+        </div>
+    </ng-template>
+</div>

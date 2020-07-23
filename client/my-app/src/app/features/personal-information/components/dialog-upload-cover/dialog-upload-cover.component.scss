@@ -1,0 +1,114 @@
+h5 {
+    text-align: center;
+    color: var(--color-primary-500);
+    margin: 20px 0;
+}
+
+.pick-image {
+    background-color: var(--color-background-primary);
+
+    .dropzone {
+        width: 100%;
+        background-color: var(--color-background-secondary);
+        margin-bottom: 40px;
+        padding: 100px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &__icon {
+            color: var(--color-primary-500);
+
+            mat-icon {
+                transform: scale(1.5);
+            }
+        }
+
+        p {
+            pointer-events: none;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        &.fileover {
+            animation: fileover 0.5s ease-in-out;
+            animation-iteration-count: infinite;
+        }
+    }
+
+    .add-input {
+        display: none;
+    }
+
+    .album {
+        padding: 10px 20px;
+
+        &__title {
+            color: var(--color-background-primary-contrast);
+            margin-bottom: 10px;
+            margin-top: 40px;
+        }
+
+        &__item {
+            width: 140px;
+            height: 140px;
+            border-radius: 5px;
+            background-size: cover;
+            background-position: center center;
+            cursor: pointer;
+        }
+    }
+}
+
+.edit-image {
+    &__cropper {
+        height: 0;
+
+        &.active {
+            height: 600px;
+            margin-bottom: 20px;
+        }
+    }
+
+    &__cropper,
+    &__feature {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__content {
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        margin-bottom: 10px;
+    }
+
+    button {
+        margin: 20px 5px;
+    }
+
+    image-cropper {
+        padding: 0;
+    }
+}
+
+@keyframes fileover {
+    0% {
+        transform: translateY(0px);
+    }
+
+    25% {
+        transform: translateY(-2px);
+    }
+
+    50% {
+        transform: translateY(2px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+
+}

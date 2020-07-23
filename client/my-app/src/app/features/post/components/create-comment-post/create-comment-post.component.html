@@ -1,0 +1,15 @@
+<div class="create-comment-post">
+    <div class="skeleton">
+        <img [src]="userAvatar" alt="avatar" *ngIf="userAvatar$ | async as userAvatar; else noAvatar">
+        <ng-template #noAvatar>
+            <img src="../../../../../assets/images/ava.png" alt="">
+        </ng-template>
+    </div>
+    <mat-form-field class="mat-input-full-width" appearance="fill">
+        <mat-label *ngIf="commentlv1">Bình luận tại đây.</mat-label>
+        <mat-label *ngIf="commentlv2">Trả lời {{userName}}</mat-label>
+        <textarea matInput rows="1" cdkTextareaAutosize [(ngModel)]="content" (keydown.enter)="onEnter()"
+            (keydown.esc)="onEsc()" [disabled]="loading"></textarea>
+        <mat-hint>Nhấn esc để thoát, enter để bình luận</mat-hint>
+    </mat-form-field>
+</div>

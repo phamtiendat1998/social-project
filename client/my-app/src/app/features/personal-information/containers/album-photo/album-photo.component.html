@@ -1,0 +1,35 @@
+<a [routerLink]="['/home/personal/user/photo/detail']" >
+    <div class="album-photo row" *ngIf="photoAlbums.length!==0;else skeleton">
+        <div class="col-6" *ngFor="let photoAlbum of photoAlbums">
+            <div class="album-photo__item" [ngStyle]="{'background-image': 'url('+photoAlbum.AlbumCover+')'}">
+                <h5>{{photoAlbum.AlbumName}}</h5>
+                <p>{{photoAlbum.QuantityPhoto}} ảnh</p>
+                <button mat-icon-button class="menu" [matMenuTriggerFor]="menu"
+                    aria-label="Example icon-button with a menu">
+                    <mat-icon>more_horiz</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <ng-template matMenuContent>
+                        <button mat-menu-item (click)="onClickOpenDialogDeleteAlbum()">
+                            <mat-icon>delete</mat-icon>
+                            <span>Xóa album</span>
+                        </button>
+                    </ng-template>
+                </mat-menu>
+                <button mat-icon-button class="privacy">
+                    <mat-icon>public</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+</a>
+<ng-template #skeleton>
+    <div class="album-photo row">
+        <div class="col-6">
+            <div class="album-photo__item skeleton"></div>
+        </div>
+        <div class="col-6">
+            <div class="album-photo__item skeleton"></div>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,24 @@
+<div class="dialog-add-friend-to-chat">
+    <mat-form-field class="mat-input-full-width" appearance="legacy">
+        <input matInput placeholder="Tìm bạn bè để trò chuyện" cdkFocusInitial>
+        <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <mat-selection-list color="primary">
+        <mat-list-option *ngFor="let friend of friends">
+            <img matListAvatar [src]="friend.UserInfo.Avatar" alt="Ảnh">
+            <p matLine>{{friend.UserInfo.getFullName}}</p>
+        </mat-list-option>
+        <ng-container *ngIf="isWaiting">
+            <div class="skeleton"></div>
+            <div class="skeleton"></div>
+            <div class="skeleton"></div>
+            <div class="skeleton"></div>
+            <div class="skeleton"></div>
+        </ng-container>
+
+    </mat-selection-list>
+    <div mat-dialog-actions>
+        <button mat-button (click)="onNoClick()">Thôi</button>
+        <button mat-button color="primary">Bắt đầu trò chuyện</button>
+    </div>
+</div>

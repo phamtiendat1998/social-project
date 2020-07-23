@@ -1,0 +1,23 @@
+<div class="row profile-study-about" *ngIf="studies$ | async as studies; else skeleton">
+    <ng-container *ngIf="studies.length>0;else noInfo">
+        <div class="col-4" *ngFor="let study of studies">
+            <app-about-field [aboutField]="study"></app-about-field>
+        </div>
+    </ng-container>
+    <ng-template #noInfo>
+        <p>Không có thông tin học vấn nào.</p>
+    </ng-template>
+</div>
+<ng-template #skeleton>
+    <div class="row profile-study-about">
+        <div class="col-4">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+        <div class="col-4">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+        <div class="col-4">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+    </div>
+</ng-template>

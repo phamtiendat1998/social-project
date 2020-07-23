@@ -1,0 +1,23 @@
+<div class="row profile-work-about" *ngIf="works$ | async as works; else skeleton">
+    <ng-container *ngIf="works.length>0;else noInfo">
+        <div class="col-4" *ngFor="let work of works">
+            <app-about-field [aboutField]="work"></app-about-field>
+        </div>
+    </ng-container>
+    <ng-template #noInfo>
+        <p>Không có thông tin làm việc nào.</p>
+    </ng-template>
+</div>
+<ng-template #skeleton>
+    <div class="row profile-work-about">
+        <div class="col-4">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+        <div class="col-4">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+        <div class="col-4">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,18 @@
+<div class="top-song-music">
+    <div class="top-song-music__title">
+        <mat-icon>bar_chart</mat-icon>
+        <h6>Top bài hát thịnh hành</h6>
+    </div>
+    <div class="top-song-music__item">
+        <ng-container *ngIf="loaded$ | async; else skeleton">
+            <app-top-song-item-music *ngFor="let song of topSong$ | async;index as i" [song]="song" [index]="i">
+            </app-top-song-item-music>
+        </ng-container>
+        <ng-template #skeleton>
+            <app-skeleton-song-music></app-skeleton-song-music>
+            <app-skeleton-song-music></app-skeleton-song-music>
+            <app-skeleton-song-music></app-skeleton-song-music>
+            <app-skeleton-song-music></app-skeleton-song-music>
+        </ng-template>
+    </div>
+</div>

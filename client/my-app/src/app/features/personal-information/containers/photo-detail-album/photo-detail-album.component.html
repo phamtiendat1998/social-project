@@ -1,0 +1,83 @@
+<div class="photo-detail-album">
+    <div class="photo-detail-album__title">
+        <h6>Đây là tên album</h6>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt et molestias nobis dolore quae. Sed fuga
+            nisi qui voluptates accusamus quod dignissimos excepturi aut magni perferendis officiis temporibus ad illo
+            sit at facere praesentium velit, suscipit reprehenderit magnam autem est similique rerum repellendus!
+            Repudiandae, excepturi exercitationem? Quia nisi veritatis harum.</p>
+
+        <div class="photo-detail-album__description">
+            <div>
+                <p>98 ảnh</p>
+            </div>
+            <div>
+                <button mat-mini-fab color="primary">
+                    <mat-icon>public</mat-icon>
+                </button>
+            </div>
+        </div>
+        <button mat-icon-button class="photo-detail-album__menu" [matMenuTriggerFor]="menu"
+            aria-label="Example icon-button with a menu">
+            <mat-icon>more_horiz</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <ng-template matMenuContent>
+                <button mat-menu-item (click)="onClickOpenDialogUploadPhoto()">
+                    <mat-icon>add_photo_alternate</mat-icon>
+                    <span>Thêm ảnh</span>
+                </button>
+                <button mat-menu-item (click)="onClickOpenDialogEditAlbum()">
+                    <mat-icon>edit</mat-icon>
+                    <span>Chỉnh sửa album</span>
+                </button>
+                <button mat-menu-item (click)="onClickOpenDialogDeleteAlbum()">
+                    <mat-icon>delete</mat-icon>
+                    <span>Xóa album</span>
+                </button>
+
+            </ng-template>
+        </mat-menu>
+    </div>
+    <div class="photo-detail-album__photo" *ngIf="photos.length!==0; else skeleton">
+        <div class="photo-detail-album__item" *ngFor="let photo of photos">
+            <img [src]="photo.Source" alt="Ảnh" />
+            <div class="photo-info">
+                <div>
+                    <button mat-button>
+                        <mat-icon>thumb_up</mat-icon>
+                        <small>{{photo.MediaInfo.QuantityLike | quantity}}</small>
+                    </button>
+                    <button mat-button>
+                        <mat-icon>chat_bubble</mat-icon>
+                        <small>{{photo.MediaInfo.QuantityComment | quantity}}</small>
+                    </button>
+                    <button mat-button>
+                        <mat-icon>remove_red_eye</mat-icon>
+                        <small>{{photo.MediaInfo.QuantityShare | quantity}}</small>
+                    </button>
+                    <button mat-button [matMenuTriggerFor]="menu">
+                        <mat-icon>more_horiz</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="onClickOpenDialogDeletePhoto()">
+                            <mat-icon>delete</mat-icon>
+                            <span>Xóa ảnh</span>
+                        </button>
+                    </mat-menu>
+                </div>
+                <div>
+                    <p>{{photo.MediaInfo.getTime}}</p>
+                    <h6>{{photo.MediaInfo.Content | content: 15}}</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template #skeleton>
+        <div class="photo-detail-album__photo">
+            <div class="photo-detail-album__item skeleton"></div>
+            <div class="photo-detail-album__item skeleton"></div>
+            <div class="photo-detail-album__item skeleton"></div>
+            <div class="photo-detail-album__item skeleton"></div>
+        </div>
+    </ng-template>
+</div>

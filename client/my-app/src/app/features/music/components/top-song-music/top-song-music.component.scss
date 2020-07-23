@@ -1,0 +1,24 @@
+.top-song-music {
+    margin-top: 90px;
+    border-radius: 5px;
+    background-color: var(--color-background-primary);
+
+    &__title {
+        height: 84px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        mat-icon {
+            margin-right: 10px;
+        }
+
+        h6 {
+            font-weight: 500;
+        }
+    }
+
+    &__item {
+        padding: 0 15px;
+    }
+}

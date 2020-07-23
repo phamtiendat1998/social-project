@@ -1,0 +1,29 @@
+<div class="top-album-item-music">
+    <div class="top-album-item-music__image" [routerLink]="['/home/music/detail', album.id]">
+        <img src="../../../../../assets/images/music-wallpaper.jpg" alt=""
+            *ngIf="album.cover === null;else noCoverTemp">
+        <ng-template #noCoverTemp>
+            <img [src]="album.cover" alt="" appLazyLoadImage>
+        </ng-template>
+    </div>
+    <div class="top-album-item-music__content">
+        <div class="top-album-item-music__text">
+            <p>{{album.name | content: 7}}</p>
+            <p><small>{{album.quantitySong}} bài hát</small></p>
+        </div>
+        <div>
+            <button mat-icon-button matTooltip="Nghe" matTooltipPosition="above" (click)="onPlayAlbum()">
+                <mat-icon>play_arrow</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="Thêm vào playlist" matTooltipPosition="above"
+                (click)="addAlbumIntoPlaylist()" *ngIf="(isAdded$ | async) === false;else addedTemp">
+                <mat-icon>playlist_add</mat-icon>
+            </button>
+            <ng-template #addedTemp>
+                <button mat-icon-button matTooltip="Đã thêm vào playlist" matTooltipPosition="above">
+                    <mat-icon>playlist_add_check</mat-icon>
+                </button>
+            </ng-template>
+        </div>
+    </div>
+</div>

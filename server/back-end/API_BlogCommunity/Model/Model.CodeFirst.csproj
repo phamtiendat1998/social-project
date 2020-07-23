@@ -1,0 +1,204 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D9B47C07-508C-464F-8DF5-F58C1C42224E}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Model</RootNamespace>
+    <AssemblyName>Model</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\ApiPaging.cs" />
+    <Compile Include="DataContext\AccountContext.cs" />
+    <Compile Include="DataContext\AlbumImageContext.cs" />
+    <Compile Include="DataContext\AlbumMusicContext.cs" />
+    <Compile Include="DataContext\AlbumVideoContext.cs" />
+    <Compile Include="DataContext\CategoryNewFeedContext.cs" />
+    <Compile Include="DataContext\DataContextCoreBase.cs" />
+    <Compile Include="DataContext\ImagesContext.cs" />
+    <Compile Include="DataContext\LikePostContext.cs" />
+    <Compile Include="DataContext\MediaContext.cs" />
+    <Compile Include="DataContext\NewFeedPostContext.cs" />
+    <Compile Include="DataContext\NotificationContext.cs" />
+    <Compile Include="DataContext\UserAddressContext.cs" />
+    <Compile Include="DataContext\UserContactContext.cs" />
+    <Compile Include="DataContext\UserContext.cs" />
+    <Compile Include="DataContext\UserInformationContext.cs" />
+    <Compile Include="DataContext\UserIntroduceContext.cs" />
+    <Compile Include="DataContext\UserRelationshipContext.cs" />
+    <Compile Include="DataContext\UserStoriesContext.cs" />
+    <Compile Include="DataContext\UserTokenContext.cs" />
+    <Compile Include="GenericReponsitory\GenericReponsitory.cs" />
+    <Compile Include="GenericReponsitory\UnitOfWork.cs" />
+    <Compile Include="Interface\IGenericRepository.cs" />
+    <Compile Include="Interface\IUnitOfWork.cs" />
+    <Compile Include="Model_CodeFirst\ALBUMIMAGE.cs" />
+    <Compile Include="Model_CodeFirst\ALBUMMUSIC.cs" />
+    <Compile Include="Model_CodeFirst\ALBUMVIDEO.cs" />
+    <Compile Include="Model_CodeFirst\BlogCommunityContext.cs" />
+    <Compile Include="Model_CodeFirst\CATEGORY.cs" />
+    <Compile Include="Model_CodeFirst\COMMENT.cs" />
+    <Compile Include="Model_CodeFirst\FOLLOWS.cs" />
+    <Compile Include="Model_CodeFirst\FRIEND.cs" />
+    <Compile Include="Model_CodeFirst\IMAGE.cs" />
+    <Compile Include="Model_CodeFirst\IMAGEPOST.cs" />
+    <Compile Include="Model_CodeFirst\INTROSTUDY.cs" />
+    <Compile Include="Model_CodeFirst\INTROWORKING.cs" />
+    <Compile Include="Model_CodeFirst\LIKECOMMENT.cs" />
+    <Compile Include="Model_CodeFirst\LIKEPOST.cs" />
+    <Compile Include="Model_CodeFirst\LIKEREPLYCOMMENT.cs" />
+    <Compile Include="Model_CodeFirst\MUSIC.cs" />
+    <Compile Include="Model_CodeFirst\MUSICLISTEN.cs" />
+    <Compile Include="Model_CodeFirst\NEWFEEDPOST.cs" />
+    <Compile Include="Model_CodeFirst\NOTIFYSETTING.cs" />
+    <Compile Include="Model_CodeFirst\NOTIFYTYPE.cs" />
+    <Compile Include="Model_CodeFirst\REPLYCOMMENT.cs" />
+    <Compile Include="Model_CodeFirst\REQUESTFRIEND.cs" />
+    <Compile Include="Model_CodeFirst\STATUSSOCIAL.cs" />
+    <Compile Include="Model_CodeFirst\STORYSEEN.cs" />
+    <Compile Include="Model_CodeFirst\sysdiagram.cs" />
+    <Compile Include="Model_CodeFirst\USERACCOUNT.cs" />
+    <Compile Include="Model_CodeFirst\USERADDRESS.cs" />
+    <Compile Include="Model_CodeFirst\USERCONTACT.cs" />
+    <Compile Include="Model_CodeFirst\USERHASFOLLOW.cs" />
+    <Compile Include="Model_CodeFirst\USERHASNOTIFY.cs" />
+    <Compile Include="Model_CodeFirst\USERINFO.cs" />
+    <Compile Include="Model_CodeFirst\USERINTRO.cs" />
+    <Compile Include="Model_CodeFirst\USERMEDIA.cs" />
+    <Compile Include="Model_CodeFirst\USERRELATIONSHIP.cs" />
+    <Compile Include="Model_CodeFirst\USERSEXCLUDE.cs" />
+    <Compile Include="Model_CodeFirst\USERSTORIES.cs" />
+    <Compile Include="Model_CodeFirst\USERTOKEN.cs" />
+    <Compile Include="Model_CodeFirst\VIDEO.cs" />
+    <Compile Include="Model_CodeFirst\VIDEOVIEW.cs" />
+    <Compile Include="Model_CodeFirst\WRAPPERSTORIES.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Helper\Helper.csproj">
+      <Project>{7666a9ec-026b-44ef-bd87-373570a25dfb}</Project>
+      <Name>Helper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50186</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50186/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

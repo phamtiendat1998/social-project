@@ -1,0 +1,35 @@
+<div class="album-video row" *ngIf="videoAlbums.length!==0;else skeleton">
+    <div class="col-6" *ngFor="let videoAlbum of videoAlbums">
+        <div class="album-video__item" [ngStyle]="{'background-image': 'url('+videoAlbum.AlbumCover+')'}">
+            <a [routerLink]="['/home/personal/user/video/detail']">
+                <h5>{{videoAlbum.AlbumName}}</h5>
+                <p>{{videoAlbum.QuantityPhoto}} ảnh</p>
+            </a>
+            <button mat-icon-button class="menu" [matMenuTriggerFor]="menu"
+                aria-label="Example icon-button with a menu">
+                <mat-icon>more_horiz</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <ng-template matMenuContent>
+                    <button mat-menu-item (click)="onClickOpenDialogDeleteAlbum()">
+                        <mat-icon>delete</mat-icon>
+                        <span>Xóa album</span>
+                    </button>
+                </ng-template>
+            </mat-menu>
+            <button mat-icon-button class="privacy">
+                <mat-icon>public</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>
+<ng-template #skeleton>
+    <div class="album-video row">
+        <div class="col-6">
+            <div class="album-video__item skeleton"></div>
+        </div>
+        <div class="col-6">
+            <div class="album-video__item skeleton"></div>
+        </div>
+    </div>
+</ng-template>

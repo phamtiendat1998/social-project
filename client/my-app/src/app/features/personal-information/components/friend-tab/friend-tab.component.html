@@ -1,0 +1,32 @@
+<div class="friends">
+    <h6 class="mb-3">Bạn bè</h6>
+    <ng-container *ngIf="friends$ | async as friends; else skeleton">
+        <ng-container *ngIf="friends.length !== 0;else noUser">
+            <div class="friends__item" *ngFor="let friend of friends">
+                <div>
+                    <div class="friends__avt">
+                        <img appLazyLoadImage [src]="friend.avatar" alt="" *ngIf="friend.avatar; else noAva">
+                        <ng-template #noAva>
+                            <img src="../../../../../assets/images/ava.png" alt="">
+                        </ng-template>
+                    </div>
+                    <a [routerLink]="['/home/personal/profile',friend.userId]" target="_blank">{{friend.fullName}}</a>
+                </div>
+                <div>
+                    <button mat-icon-button>
+                        <mat-icon>person</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </ng-container>
+        <ng-template #noUser>
+            <p>Không có bạn bè nào.</p>
+        </ng-template>
+    </ng-container>
+    <ng-template #skeleton>
+        <div class="friends__item skeleton"></div>
+        <div class="friends__item skeleton"></div>
+        <div class="friends__item skeleton"></div>
+        <div class="friends__item skeleton"></div>
+    </ng-template>
+</div>

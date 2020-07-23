@@ -1,0 +1,35 @@
+<div class="dialog-upload-album-video">
+    <mat-form-field class="mat-input-full-width">
+        <mat-label>Têm ablum</mat-label>
+        <input matInput>
+    </mat-form-field>
+    <mat-form-field class="mat-input-full-width">
+        <mat-label>Mô tả album</mat-label>
+        <textarea matInput rows="2" cdkTextareaAutosize></textarea>
+    </mat-form-field>
+    <div class="file">
+        <div class="file__container">
+            <div class="file__item" *ngFor="let file of previewFiles; index as i">
+                <img *ngIf="file.format==='image'" [src]="file.src" alt="">
+                <video *ngIf="file.format==='video'" [src]="file.src" controls></video>
+                <button mat-icon-button (click)="deleteFilePreview(i)">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div class="file__add" appDragAndDropImg (fileDropped)="previewFile($event)">
+            <button mat-stroked-button color="primary" (click)="fileInput.click()">
+                <mat-icon>publish</mat-icon>
+            </button>
+            <span>Hoặc kéo thả video vào đây</span>
+        </div>
+        <input #fileInput multiple type="file" class="file__input" (change)="onChangePictureInput($event)">
+    </div>
+    <div class="feature">
+        <mat-slide-toggle color="primary">Công khai</mat-slide-toggle>
+        <div>
+            <button mat-button color="warn" (click)="onNoClick()">Hủy</button>
+            <button mat-button color="primary" cdkFocusInitial>Xong</button>
+        </div>
+    </div>
+</div>

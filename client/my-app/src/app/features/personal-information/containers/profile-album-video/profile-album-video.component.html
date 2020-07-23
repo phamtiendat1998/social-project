@@ -1,0 +1,23 @@
+<div class="profile-album-video row" *ngIf="videoAlbums.length!==0;else skeleton">
+    <div class="col-6" *ngFor="let videoAlbum of videoAlbums">
+        <div class="profile-album-video__item" [ngStyle]="{'background-image': 'url('+videoAlbum.AlbumCover+')'}">
+            <a [routerLink]="['/home/personal/profile/video/detail']">
+                <h5>{{videoAlbum.AlbumName}}</h5>
+                <p>{{videoAlbum.QuantityPhoto}} ảnh</p>
+            </a>
+            <button mat-icon-button class="privacy">
+                <mat-icon>public</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>
+<ng-template #skeleton>
+    <div class="profile-album-video row">
+        <div class="col-6">
+            <div class="profile-album-video__item skeleton"></div>
+        </div>
+        <div class="col-6">
+            <div class="profile-album-video__item skeleton"></div>
+        </div>
+    </div>
+</ng-template>

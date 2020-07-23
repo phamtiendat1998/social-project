@@ -1,0 +1,101 @@
+<div class="row field">
+    <ng-container *ngIf="lives; else skeleton">
+        <div class="col-4" *ngFor="let live of lives">
+            <app-live-field [live]="live" (delete)="onRemoveLive($event)"></app-live-field>
+        </div>
+        <div class="col-4">
+            <mat-expansion-panel class="mat-about-field" [(expanded)]="isExpanded">
+                <mat-progress-bar mode="indeterminate" color="accent" *ngIf="loadingAdd"></mat-progress-bar>
+                <mat-expansion-panel-header collapsedHeight="85px" expandedHeight="85px">
+                    <mat-panel-title>
+                        <p>
+                            <mat-icon>add</mat-icon>
+                        </p>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        <div>
+                            <p>Thêm thông tin</p>
+                        </div>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <ng-template matExpansionPanelContent>
+                    <form [formGroup]="liveForm">
+                        <div>
+                            <mat-form-field class="mat-input-full-width" appearance="legacy">
+                                <mat-label>Địa chỉ</mat-label>
+                                <input matInput formControlName="address">
+                                <mat-error *ngIf="liveForm.controls.address.errors?.required">Không được bỏ trống
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field class="mat-input-full-width" appearance="legacy">
+                                <mat-label>Thành phố</mat-label>
+                                <input matInput formControlName="city">
+                                <mat-error *ngIf="liveForm.controls.city.errors?.required">Không được bỏ trống
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field class="mat-input-full-width" appearance="legacy">
+                                <mat-label>Tỉnh</mat-label>
+                                <input matInput formControlName="province">
+                                <mat-error *ngIf="liveForm.controls.province.errors?.required">Không được bỏ trống
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field class="mat-input-full-width" appearance="legacy">
+                                <mat-label>Đất nước</mat-label>
+                                <input matInput formControlName="country">
+                                <mat-error *ngIf="liveForm.controls.country.errors?.required">Không được bỏ trống
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Từ: </mat-label>
+                                <input matInput formControlName="from">
+                                <mat-error *ngIf="liveForm.controls.from.errors?.required">Không được bỏ trống
+                                </mat-error>
+                                <mat-error *ngIf="liveForm.controls.from.errors?.min">Vui lòng nhập đúng năm
+                                </mat-error>
+                                <mat-error *ngIf="liveForm.controls.from.errors?.max">Vui lòng nhập đúng năm
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Đến: </mat-label>
+                                <input matInput formControlName="to">
+                                <mat-hint>Nếu hiện tại đang sinh sống thì để trống</mat-hint>
+                                <mat-error *ngIf="liveForm.controls.to.errors?.min">Vui lòng nhập đúng năm</mat-error>
+                                <mat-error *ngIf="liveForm.controls.to.errors?.max">Vui lòng nhập đúng năm</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div style="margin: 20px 0">
+                            <mat-slide-toggle color="primary" formControlName="public">Công khai</mat-slide-toggle>
+                        </div>
+                    </form>
+                    <mat-action-row>
+                        <button mat-button color="warn" (click)="onClickCancelForm()"
+                            [disabled]="loadingAdd">Hủy</button>
+                        <button mat-button color="primary" (click)="onAddLive()"
+                            [disabled]="loadingAdd || liveForm.invalid">{{textAddBtn}}</button>
+                    </mat-action-row>
+                </ng-template>
+            </mat-expansion-panel>
+        </div>
+    </ng-container>
+    <ng-template #skeleton>
+        <div class="col-4">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+        <div class="col-4">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+        <div class="col-4">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+    </ng-template>
+</div>

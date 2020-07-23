@@ -1,0 +1,79 @@
+<div class="row work-about">
+    <ng-container *ngIf="works; else skeleton">
+        <div class="col-4" *ngFor="let work of works">
+            <app-work-field [work]="work" (delete)="onRemoveWork($event)"></app-work-field>
+        </div>
+        <div class="col-4">
+            <mat-expansion-panel class="mat-about-field" [(expanded)]="isExpanded">
+                <mat-progress-bar mode="indeterminate" color="accent" *ngIf="loadingAdd"></mat-progress-bar>
+                <mat-expansion-panel-header collapsedHeight="85px" expandedHeight="85px">
+                    <mat-panel-title>
+                        <p>
+                            <mat-icon>add</mat-icon>
+                        </p>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        <div>
+                            <p>Thêm thông tin</p>
+                        </div>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <ng-template matExpansionPanelContent>
+                    <form [formGroup]="workForm">
+                        <div>
+                            <mat-form-field class="mat-input-full-width" appearance="legacy">
+                                <mat-label>Làm việc tại</mat-label>
+                                <input matInput formControlName="place">
+                                <mat-error *ngIf="workForm.controls.place.errors?.required">Không được bỏ trống
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field class="mat-input-full-width" appearance="legacy">
+                                <mat-label>Từ: </mat-label>
+                                <input matInput formControlName="from" type="number">
+                                <mat-error *ngIf="workForm.controls.from.errors?.required">Không được bỏ trống
+                                </mat-error>
+                                <mat-error *ngIf="workForm.controls.from.errors?.min">Vui lòng nhập đúng năm
+                                </mat-error>
+                                <mat-error *ngIf="workForm.controls.from.errors?.max">Vui lòng nhập đúng năm
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field class="mat-input-full-width" appearance="legacy">
+                                <mat-label>Đến: </mat-label>
+                                <input matInput formControlName="to" type="number">
+                                <mat-hint>Nếu hiện tại đang làm việc thì để trống</mat-hint>
+                                <mat-error *ngIf="workForm.controls.to.errors?.min">Vui lòng nhập đúng năm
+                                </mat-error>
+                                <mat-error *ngIf="workForm.controls.to.errors?.max">Vui lòng nhập đúng năm
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div style="margin: 20px 0">
+                            <mat-slide-toggle color="primary" formControlName="public">Công khai</mat-slide-toggle>
+                        </div>
+                    </form>
+                    <mat-action-row>
+                        <button mat-button color="warn" (click)="onClickCancelForm()"
+                            [disabled]="loadingAdd">Hủy</button>
+                        <button mat-button color="primary" (click)="onAddWork()"
+                            [disabled]="loadingAdd">{{textAddBtn}}</button>
+                    </mat-action-row>
+                </ng-template>
+            </mat-expansion-panel>
+        </div>
+    </ng-container>
+    <ng-template #skeleton>
+        <div class="col-4">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+        <div class="col-4">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+        <div class="col-4">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+    </ng-template>
+</div>

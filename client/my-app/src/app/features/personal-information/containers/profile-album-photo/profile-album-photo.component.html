@@ -1,0 +1,23 @@
+<div class="profile-album-photo row" *ngIf="photoAlbums.length!==0;else skeleton">
+    <div class="col-6" *ngFor="let photoAlbum of photoAlbums">
+        <div class="profile-album-photo__item" [ngStyle]="{'background-image': 'url('+photoAlbum.AlbumCover+')'}">
+            <a [routerLink]="['/home/personal/profile/photo/detail']">
+                <h5>{{photoAlbum.AlbumName}}</h5>
+                <p>{{photoAlbum.QuantityPhoto}} ảnh</p>
+            </a>
+            <button mat-icon-button class="privacy">
+                <mat-icon>public</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>
+<ng-template #skeleton>
+    <div class="profile-album-photo row">
+        <div class="col-6">
+            <div class="profile-album-photo__item skeleton"></div>
+        </div>
+        <div class="col-6">
+            <div class="profile-album-photo__item skeleton"></div>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,50 @@
+.player-song-music {
+    &__feature {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h5 {
+            padding: 30px 0;
+            margin: 0;
+        }
+    }
+
+    &__search {
+        width: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-bottom: 1px solid var(--color-opacity-primary);
+
+        input {
+            width: inherit;
+            padding: 10px;
+            border: none;
+            background-color: transparent;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        mat-icon {
+            color: var(--color-opacity-primary);
+        }
+    }
+
+    &__button {
+        margin-bottom: 30px;
+
+        button {
+            border-radius: 5px;
+            box-shadow: var(--box-shadow-button);
+            background-color: var(--color-background-primary);
+            margin-right: 10px;
+
+            mat-icon {
+                color: var(--color-primary-500);
+            }
+        }
+    }
+}

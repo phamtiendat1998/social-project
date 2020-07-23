@@ -1,0 +1,61 @@
+<div class="post-container container" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
+    (scrolled)="onScroll()">
+    <div class="row">
+        <div class="col-12">
+            <app-story-tab></app-story-tab>
+        </div>
+        <div class="col-12">
+            <app-create-post [ownOption]="true"></app-create-post>
+        </div>
+        <div class="col-7" *ngIf="posts$ | async as posts">
+            <app-post *ngFor="let post of posts" [post]="post"></app-post>
+            <app-skeleton-post *ngIf="loadingPosts"></app-skeleton-post>
+        </div>
+        <div class="col-5">
+            <div class="moment">
+                <div class="moment__title">
+                    <mat-icon>trending_up</mat-icon>
+                    <h6>Top 10 khoảnh khắc đẹp nhất</h6>
+                </div>
+                <div class="moment__item">
+                    <img src="../../../../../assets/images/music-wallpaper.jpg" alt="">
+                    <div class="info">
+                        <div>
+                            <div class="avt"></div>
+                            <div class="name">
+                                <h6>Bùi Sĩ Nguyên</h6>
+                                <div class="count">
+                                    <mat-icon>visibility</mat-icon>
+                                    <small>
+                                        <p>99.9k</p>
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="rank">1</div>
+                    </div>
+                </div>
+                <div class="moment__item">
+                    <img src="../../../../../assets/images/music-wallpaper.jpg" alt="">
+                    <div class="info">
+                        <div>
+                            <div class="avt"></div>
+                            <div class="name">
+                                <h6>Bùi Sĩ Nguyên</h6>
+                                <div class="count">
+                                    <mat-icon>visibility</mat-icon>
+                                    <small>
+                                        <p>99.9k</p>
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="rank">1</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

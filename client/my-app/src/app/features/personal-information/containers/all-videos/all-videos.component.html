@@ -1,0 +1,32 @@
+<div class="all-videos" *ngIf="videos.length!==0; else skeleton">
+    <div class="all-videos__item" *ngFor="let video of videos">
+        <img [src]="video.Thumnail" alt="Video" />
+        <div class="time">{{video.MediaInfo.Time}}</div>
+        <div class="video-info">
+            <div>
+                <button mat-button>
+                    <mat-icon>thumb_up</mat-icon>
+                    <small>{{video.MediaInfo.QuantityLike | quantity}}</small>
+                </button>
+                <button mat-button>
+                    <mat-icon>chat_bubble</mat-icon>
+                    <small>{{video.MediaInfo.QuantityComment | quantity}}</small>
+                </button>
+                <button mat-button>
+                    <mat-icon>remove_red_eye</mat-icon>
+                    <small>{{video.MediaInfo.QuantityShare | quantity}}</small>
+                </button>
+            </div>
+            <div>
+                <p>{{video.MediaInfo.getTime}}</p>
+                <h6>{{video.MediaInfo.Content | content: 15}}</h6>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #skeleton>
+    <div class="all-videos">
+        <div class="all-videos__item skeleton"></div>
+        <div class="all-videos__item skeleton"></div>
+    </div>
+</ng-template>

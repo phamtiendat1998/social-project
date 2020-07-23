@@ -1,0 +1,57 @@
+<div class="dialog-create-post">
+    <mat-progress-bar mode="indeterminate" color="accent" *ngIf="uploading"></mat-progress-bar>
+    <form [formGroup]="createPostForm">
+        <div class="status">
+            <div class="status__content">
+                <div class="status__avt">
+                    <img [src]="userInfo.avatar" alt="avatar" *ngIf="userInfo.avatar; else noAvatar">
+                    <ng-template #noAvatar>
+                        <img src="../../../../../assets/images/ava.png" alt="">
+                    </ng-template>
+                </div>
+                <p>{{userInfo.fullName}}</p>
+                <button mat-icon-button (click)="onClickCloseDialog()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+            <mat-form-field class="mat-input-full-width" floatLabel="never">
+                <mat-label>Bạn đang nghĩ gì ...</mat-label>
+                <textarea formControlName="content" matInput cdkTextareaAutosize rows="5" cdkFocusInitial></textarea>
+            </mat-form-field>
+        </div>
+        <div class="file" *ngIf="isAddFile">
+            <div class="file__container scroll-bar-custom">
+                <div class="file__item" *ngFor="let file of previewFiles; index as i">
+                    <img *ngIf="file.format==='image'" [src]="file.src" alt="">
+                    <video *ngIf="file.format==='video'" [src]="file.src" controls></video>
+                    <button mat-icon-button (click)="deleteFilePreview(i)" [disabled]="uploading">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="file__add" appDragAndDropImg (fileDropped)="previewFile($event)"
+                [ngClass]="{'disable': uploading}">
+                <button mat-stroked-button color="primary" (click)="fileInput.click()">
+                    <mat-icon>publish</mat-icon>
+                </button>
+                <span>Hoặc kéo thả ảnh/video vào đây</span>
+            </div>
+            <input #fileInput multiple type="file" class="file__input" (change)="onChangePictureInput($event)">
+        </div>
+        <div class="feature">
+            <div>
+                <button mat-icon-button class="feature__item feature__item--photo" [ngClass]="{'active': isAddFile }"
+                    [disabled]="uploading" (click)="onClickToggleAddPhotos()">
+                    <mat-icon>add_photo_alternate</mat-icon>
+                </button>
+                <mat-slide-toggle color="primary" formControlName="privacy">Công khai</mat-slide-toggle>
+            </div>
+            <button mat-raised-button color='primary' [disabled]="uploading" (click)="onSubmitCreatePostForm()">
+                <span *ngIf="data===null;else edit">Chia sẻ</span>
+                <ng-template #edit>
+                    <span>{{textMainBtn}}</span>
+                </ng-template>
+            </button>
+        </div>
+    </form>
+</div>

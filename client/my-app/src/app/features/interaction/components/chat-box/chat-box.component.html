@@ -1,0 +1,56 @@
+<div class="chat-box">
+    <div class="chat-box__title">
+        <div class="chat-box__avatar">
+            <img [src]="chatUser.UserInfo.Avatar" alt="">
+            <div class="online"></div>
+        </div>
+        <div class="chat-box__name">
+            <p>{{chatUser.UserInfo.getFullName}}</p>
+        </div>
+        <div class="chat-box__button">
+            <button mat-icon-button (click)="onHide()">
+                <mat-icon>remove</mat-icon>
+            </button>
+            <button mat-icon-button (click)="onClose()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </div>
+    <div class="chat-box__tab-chat scroll-bar-custom">
+        <div class="spinner" *ngIf="!isDataLoaded;else chatText">
+            <mat-spinner diameter="40"></mat-spinner>
+        </div>
+        <ng-template #chatText>
+            <div class="chat-box__text chat-box__text--own">
+                <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum vel et eligendi aperiam perferendis
+                    enim
+                    nam nisi adipisci, odio culpa!
+                </p>
+            </div>
+            <div class="chat-box__text chat-box__text--user">
+                <div></div>
+                <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum vel et eligendi aperiam perferendis
+                    enim
+                    nam nisi adipisci, odio culpa!
+                </p>
+            </div>
+            <div class="chat-box__text chat-box__text--own">
+                <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum vel et eligendi aperiam perferendis
+                    enim
+                    nam nisi adipisci, odio culpa!
+                </p>
+            </div>
+        </ng-template>
+    </div>
+    <div class="chat-box__input">
+        <form class="example-form">
+            <mat-form-field class="mat-input-full-width" floatLabel="never">
+                <input matInput placeholder="Aa">
+            </mat-form-field>
+        </form>
+    </div>
+    <div class="chat-box__feature"></div>
+</div>

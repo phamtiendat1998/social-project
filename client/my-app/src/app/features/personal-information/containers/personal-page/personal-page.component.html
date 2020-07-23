@@ -1,0 +1,43 @@
+<div class="personal-page container">
+    <div class="tab">
+        <div class="tab__cover skeleton">
+            <img [src]="cover" alt="cover" *ngIf="cover; else noCover">
+            <ng-template #noCover>
+                <img src="../../../../../assets/images/cover.png" alt="">
+            </ng-template>
+            <button class="tab__upload-cover" mat-mini-fab color="primary" (click)="openDialogUploadCover()">
+                <mat-icon>publish</mat-icon>
+            </button>
+        </div>
+        <div class="tab__avatar skeleton">
+            <img alt="avatar" *ngIf="(userInfo$ | async)?.avatar; else noAvatar" [src]="(userInfo$ | async).avatar">
+            <ng-template #noAvatar>
+                <img src="../../../../../assets/images/ava.png" alt="">
+            </ng-template>
+            <button class="tab__upload-avatar" mat-mini-fab color="primary" (click)="openDialogUploadAvatar()">
+                <mat-icon>camera_alt</mat-icon>
+            </button>
+        </div>
+        <h4 class="tab__name">{{(userInfo$ | async)?.fullName}}</h4>
+        <div class="tab__link">
+            <button mat-button class="tab__item" [routerLink]="['/home/personal/user/timeline']"
+                routerLinkActive="active">
+                <p>Dòng thời gian</p>
+            </button>
+            <button mat-button class="tab__item" [routerLink]="['/home/personal/user/about']" routerLinkActive="active">
+                <p>Giới thiệu</p>
+            </button>
+            <button mat-button class="tab__item" [routerLink]="['/home/personal/user/friend']"
+                routerLinkActive="active">
+                <p>Bạn bè</p>
+            </button>
+            <button mat-button class="tab__item" [routerLink]="['/home/personal/user/photo']" routerLinkActive="active">
+                <p>Ảnh</p>
+            </button>
+            <button mat-button class="tab__item" [routerLink]="['/home/personal/user/video']" routerLinkActive="active">
+                <p>Video</p>
+            </button>
+        </div>
+    </div>
+    <router-outlet></router-outlet>
+</div>

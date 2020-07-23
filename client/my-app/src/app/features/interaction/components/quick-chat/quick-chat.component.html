@@ -1,0 +1,19 @@
+<div class="chat-box">
+    <button class="chat-box__item" *ngFor="let user of chatUsers"
+        [ngClass]="{'active': user.UserInfo.UserId === openingChatUserId}" (click)="openChatBox(user)">
+        <div>
+            <img [src]="user.UserInfo.Avatar" alt="">
+        </div>
+        <button class="close-btn" mat-mini-fab (click)="closeChatBox(user.UserInfo.UserId)">
+            <mat-icon>close</mat-icon>
+        </button>
+    </button>
+    <button matRipple class="chat-box__item chat-box__item--empty">
+        <button mat-icon-button (click)="onClickOpenDialogSearchUser()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </button>
+    <div class="chat-box__box">
+        <ng-template #hostViewChatBox></ng-template>
+    </div>
+</div>

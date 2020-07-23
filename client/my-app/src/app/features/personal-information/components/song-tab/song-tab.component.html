@@ -1,0 +1,31 @@
+<div class="songs">
+    <h6 class="mb-3">Nhạc yêu thích</h6>
+    <ng-container *ngIf="songs.length!==0; else skeleton">
+        <div class="songs__item" *ngFor="let song of songs">
+            <div class="left">
+                <div class="avt" [ngStyle]="{'background-image': 'url('+ song.Image +')'}"></div>
+                <div class="name">
+                    <p>{{song.Name}}</p>
+                    <p><small>{{song.Singer}}</small></p>
+                </div>
+            </div>
+            <div class="right">
+                <div class="time">
+                    <p><small>{{song.Time}}</small></p>
+                </div>
+                <button mat-icon-button class="mx-1">
+                    <mat-icon>play_arrow</mat-icon>
+                </button>
+                <button mat-icon-button>
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+    </ng-container>
+    <ng-template #skeleton>
+        <div class="songs__item skeleton"></div>
+        <div class="songs__item skeleton"></div>
+        <div class="songs__item skeleton"></div>
+        <div class="songs__item skeleton"></div>
+    </ng-template>
+</div>

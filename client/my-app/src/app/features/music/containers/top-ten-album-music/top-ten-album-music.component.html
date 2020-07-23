@@ -1,0 +1,14 @@
+<div class="top-ten-song-music">
+    <h5>Top 10 album</h5>
+    <div class="top-ten-song-music__list">
+        <ng-container *ngIf="loaded$| async; else skeleton">
+            <app-top-album-item-music *ngFor="let album of topAlbums$ | async" [album]="album">
+            </app-top-album-item-music>
+        </ng-container>
+        <ng-template #skeleton>
+            <app-skeleton-album-music></app-skeleton-album-music>
+            <app-skeleton-album-music></app-skeleton-album-music>
+            <app-skeleton-album-music></app-skeleton-album-music>
+        </ng-template>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+.theme-setting {
+    &>div {
+        margin-bottom: 20px;
+    }
+
+    .theme {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+
+        &--light {
+            background-color: var(--color-background-third);
+        }
+
+        &--dark {
+            background-color: black;
+        }
+    }
+
+    .color {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+
+        &--default {
+            background-color: #3C5A99;
+        }
+
+        &--purple {
+            background-color: #9c27b0;
+        }
+    }
+}
+
+label {
+    margin-right: 20px;
+}
+
+.mat-radio-button~.mat-radio-button {
+    margin-left: 20px;
+}

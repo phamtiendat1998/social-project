@@ -1,0 +1,142 @@
+<div class="dialog-post-view" *ngIf="post$ | async as post">
+    <div class="dialog-post-view__media">
+        <img *ngIf="post.medias[mediaIndex].type === 'image';else video" [src]="post.medias[mediaIndex].url" alt="Ảnh">
+        <ng-template #video>
+            <video controls autoplay>
+                <source [src]="post.medias[mediaIndex].url" type="video/mp4">
+            </video>
+        </ng-template>
+        <button mat-fab color="accent" class="dialog-post-view__control dialog-post-view__control--btn-left"
+            *ngIf="mediaIndex!==0 && post.medias.length>1" (click)="onClickPrevMedia()">
+            <mat-icon>navigate_before</mat-icon>
+        </button>
+        <h5 class="dialog-post-view__control dialog-post-view__control--index" *ngIf="post.medias.length>1">
+            0{{mediaIndex+1}} / 0{{post.medias.length}}
+        </h5>
+        <button mat-fab color="accent" class="dialog-post-view__control dialog-post-view__control--btn-right"
+            *ngIf="post.medias.length>1 && mediaIndex+1!==post.medias.length" (click)="onClickNextMedia()">
+            <mat-icon>navigate_next</mat-icon>
+        </button>
+    </div>
+    <div class="dialog-post-view__post scroll-bar-custom">
+        <div class="dialog-post-view__menu">
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_horiz</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+                    <mat-icon>visibility_off</mat-icon>
+                    <span>Ẩn</span>
+                </button><button mat-menu-item>
+                    <mat-icon>bookmark</mat-icon>
+                    <span>Lưu</span>
+                </button>
+                <button mat-menu-item>
+                    <mat-icon>report_problem</mat-icon>
+                    <span>Báo cáo</span>
+                </button>
+            </mat-menu>
+            <button mat-icon-button cdkFocusInitial (click)="onClickCloseDialog()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+        <div class="dialog-post-view__creator">
+            <div class="dialog-post-view__avatar">
+                <img appLazyLoadImage [src]="post.userInfo.avatar" alt="avatar"
+                    *ngIf="post.userInfo.avatar; else noAva">
+                <ng-template #noAva>
+                    <img src="../../../../../assets/images/ava.png" alt="">
+                </ng-template>
+            </div>
+            <div class="dialog-post-view__name">
+                <div class="name">
+                    <a [routerLink]="['/home/personal/profile',post.userInfo.userId]">
+                        {{post.userInfo.fullName}}
+                    </a>
+                </div>
+                <div class="time">
+                    <p>
+                        <small>{{post.time}}</small>
+                    </p>
+                    <mat-icon *ngIf="post.privacy === 'public';else private">public</mat-icon>
+                    <ng-template #private>
+                        <mat-icon>lock</mat-icon>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+        <div class="dialog-post-view__content">
+            <p>{{post.content}}</p>
+        </div>
+        <div class="dialog-post-view__interactive-box">
+            <div class="dialog-post-view__feature">
+                <button mat-icon-button *ngIf="!(quantityInteractivePost$ | async)?.liked;else dislikeTemp"
+                    (click)="onClickLikePost()">
+                    <mat-icon>thumb_up</mat-icon>
+                </button>
+                <ng-template #dislikeTemp>
+                    <button class="active" mat-icon-button (click)="onClickDislikePost()">
+                        <mat-icon>thumb_up</mat-icon>
+                    </button>
+                </ng-template>
+                <h6 class="post__quantity-like" (click)="onClickOpenDialogLikedUser()"
+                    *ngIf="(quantityInteractivePost$ | async)?.quantityLike> 0;else noLikedUserTemp">
+                    <small>{{(quantityInteractivePost$ | async)?.quantityLike | quantity}}</small>
+                </h6>
+                <ng-template #noLikedUserTemp>
+                    <h6 class="post__quantity-like">
+                        <small>{{(quantityInteractivePost$ | async)?.quantityLike | quantity}}</small>
+                    </h6>
+                </ng-template>
+            </div>
+            <div class="dialog-post-view__feature">
+                <button mat-icon-button [ngClass]="{'active': isOpenComment}"
+                    *ngIf="(quantityInteractivePost$ | async)?.quantityComment> 0;else noCommentTemp"
+                    (click)="onClickOpenComment()">
+                    <mat-icon>comment</mat-icon>
+                </button>
+                <ng-template #noCommentTemp>
+                    <button mat-icon-button>
+                        <mat-icon>comment</mat-icon>
+                    </button>
+                </ng-template>
+                <h6><small>{{(quantityInteractivePost$ | async)?.quantityComment | quantity}}</small></h6>
+            </div>
+            <div class="dialog-post-view__feature">
+                <button mat-icon-button [matMenuTriggerFor]="menuShare">
+                    <mat-icon>share</mat-icon>
+                </button>
+                <mat-menu #menuShare="matMenu">
+                    <ng-template matMenuContent>
+                        <button mat-menu-item>
+                            <mat-icon color="primary">create</mat-icon>
+                            <span>Chia sẻ ngay</span>
+                        </button>
+                        <button mat-menu-item>
+                            <mat-icon color="primary">delete_forever</mat-icon>
+                            <span>Viết bài</span>
+                        </button>
+                    </ng-template>
+                </mat-menu>
+                <h6><small>{{(quantityInteractivePost$ | async)?.quantityShare | quantity}}</small></h6>
+            </div>
+        </div>
+        <div class="dialog-post-view__input" *ngIf="isOpenComment">
+            <app-create-comment-post [postId]="post.id" [commentlv1]="true"></app-create-comment-post>
+        </div>
+        <div class="dialog-post-view__comment" *ngIf="isOpenComment">
+            <ng-container *ngIf="!loadingComment;else skeletonPostComment">
+                <app-post-comment *ngFor="let commentId of commentIds$ | async" [commentId]="commentId">
+                </app-post-comment>
+            </ng-container>
+            <ng-template #skeletonPostComment>
+                <app-skeleton-post-comment></app-skeleton-post-comment>
+                <app-skeleton-post-comment></app-skeleton-post-comment>
+            </ng-template>
+        </div>
+        <div class="dialog-post-view__more" *ngIf="isOpenComment && headerComments?.NextPage"
+            (click)="onClickGetMoreComment()">
+            <p>Xem thêm bình luận</p>
+        </div>
+    </div>
+</div>

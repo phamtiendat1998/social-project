@@ -1,0 +1,529 @@
+.sign {
+    width: 100%;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    top: 0;
+    z-index: 40;
+
+    &__item {
+        background-color: white;
+        width: 150px;
+        height: 50px;
+        box-shadow: var(--box-shadow-1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #3C5A99;
+        font-weight: bold;
+
+        &--left {
+            border-bottom-right-radius: 100vh;
+            padding-right: 25px;
+
+            @media screen and (min-width: 992px) and (max-width:1200px) {
+                padding-right: 15px;
+            }
+        }
+
+        &--right {
+            border-bottom-left-radius: 100vh;
+            padding-left: 25px;
+            cursor: pointer;
+
+            @media screen and (min-width: 992px) and (max-width:1200px) {
+                padding-left: 15px;
+            }
+        }
+
+        @media screen and (min-width: 992px) and (max-width:1200px) {
+            width: 95px;
+            height: 30px;
+        }
+    }
+}
+
+.form {
+    width: 100%;
+    position: fixed;
+    top: -100vh;
+    z-index: 30;
+    height: 100vh;
+    background-color: white;
+    overflow: hidden;
+
+    &__bg {
+        position: absolute;
+        bottom: -5px;
+
+        svg {
+            width: 100%;
+        }
+    }
+
+    &__svg {
+        &--cloud-1 {
+            position: absolute;
+            top: 5%;
+            left: 10%;
+            animation: cloud 20s infinite ease-in-out;
+        }
+
+        &--cloud-2 {
+            position: absolute;
+            top: 20%;
+            left: 15%;
+            animation: cloud 20s infinite 2s ease-in-out;
+        }
+
+        &--cloud-3 {
+            position: absolute;
+            top: 5%;
+            right: 10%;
+            animation: cloud 20s infinite 1s ease-in-out;
+        }
+
+        &--cloud-4 {
+            position: absolute;
+            top: 20%;
+            right: 15%;
+            animation: cloud 20s infinite 3s ease-in-out;
+        }
+    }
+
+    &__form {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        border-radius: 10px;
+        width: 500px;
+        box-shadow: var(--box-shadow-2);
+    }
+}
+
+.welcome {
+
+    &__text {
+        margin-top: 130px;
+        text-align: center;
+
+        h6 {
+            color: #3C5A99;
+        }
+
+        h1 {
+            color: #3C5A99;
+            font-weight: bold;
+        }
+
+        button {
+            border-radius: 50vh;
+            padding-left: 30px;
+            padding-right: 30px;
+
+            @media screen and (min-width: 992px) and (max-width:1200px) {
+                padding-left: 18.75px;
+                padding-right: 18.75px;
+            }
+        }
+
+        @media screen and (min-width: 992px) and (max-width:1200px) {
+            margin-top: 81.25px;
+        }
+    }
+
+    &__view {
+        position: relative;
+        margin-top: 400px;
+        width: 100%;
+
+        @media screen and (min-width: 992px) and (max-width:1200px) {
+            margin-top: 215.5px;
+        }
+    }
+
+    &__bg {
+        &--view {
+            width: 100%;
+            z-index: 10;
+        }
+
+        &--people {
+            position: absolute;
+            top: -27%;
+            left: 34%;
+            z-index: 20;
+
+            svg {
+                width: 500px;
+
+                #flower {
+                    animation: swinging 2s infinite ease-in;
+                    transform-origin: bottom;
+                    transform-box: fill-box;
+                }
+
+                #icon-social-1 {
+                    animation: icon-social 2s infinite ease-in;
+                }
+
+                #icon-social-2 {
+                    animation: icon-social 2s infinite ease-in 0.5s;
+                }
+
+                #icon-social-3 {
+                    animation: icon-social 2s infinite ease-in 1s;
+                }
+
+                @keyframes icon-social {
+                    0% {
+                        transform: translateY(0);
+                    }
+
+                    50% {
+                        transform: translateY(20px);
+                    }
+
+                    100% {
+                        transform: translateY(0);
+                    }
+                }
+
+                @media screen and (min-width: 992px) and (max-width:1200px) {
+                    width: 312.5px;
+                }
+            }
+        }
+
+        &--sun {
+            position: absolute;
+            z-index: 20;
+            bottom: 5%;
+            left: 9%;
+
+            svg {
+                width: 160px;
+                animation: sun 5s infinite 1s ease-in-out;
+
+                @media screen and (min-width: 992px) and (max-width:1200px) {
+                    width: 100px;
+                }
+            }
+        }
+
+        &--fly {
+            position: absolute;
+            z-index: 25;
+            bottom: -5%;
+            right: 9%;
+
+            svg {
+                width: 242px;
+                animation: fly 5s infinite ease-in-out;
+
+                @media screen and (min-width: 992px) and (max-width:1200px) {
+                    width: 151px;
+                }
+            }
+        }
+
+        &--clound-1 {
+            position: absolute;
+            z-index: 20;
+            bottom: -3%;
+            left: 10%;
+
+            svg {
+                width: 200px;
+                animation: cloud 10s infinite ease-in-out;
+
+                @media screen and (min-width: 992px) and (max-width:1200px) {
+                    width: 125px;
+                }
+            }
+        }
+
+        &--clound-2 {
+            position: absolute;
+            z-index: 20;
+            bottom: 0%;
+            left: 40%;
+
+            svg {
+                width: 150px;
+                animation: cloud 15s infinite 2s ease-in-out;
+
+                @media screen and (min-width: 992px) and (max-width:1200px) {
+                    width: 94px;
+                }
+            }
+        }
+
+        &--clound-3 {
+            position: absolute;
+            z-index: 20;
+            bottom: -5%;
+            left: 70%;
+
+            svg {
+                width: 200px;
+                animation: cloud 20s infinite ease-in-out;
+
+                @media screen and (min-width: 992px) and (max-width:1200px) {
+                    width: 125px;
+                }
+            }
+        }
+    }
+}
+
+.intro {
+    padding-top: 300px;
+
+    &__item {
+        position: relative;
+        width: 100%;
+        height: 800px;
+
+    }
+
+    &__bg,
+    &__des {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h4 {
+            font-weight: bold;
+            color: #3C5A99;
+        }
+
+        button {
+            border-radius: 50vh;
+        }
+    }
+
+    &__text {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+
+        &--left {
+            align-items: flex-start;
+        }
+
+        &--right {
+            align-items: flex-end;
+        }
+    }
+
+    &__picture {
+        padding: 0 100px;
+    }
+}
+
+.footer {
+    margin-top: 150px;
+    position: relative;
+    color: white;
+    height: 1950px;
+
+    &__bg {
+        height: 100%;
+
+        svg {
+            width: 100%;
+        }
+    }
+
+    &__content {
+        position: absolute;
+        bottom: 50px;
+        width: 100%;
+    }
+
+    &__title {
+        padding-top: 265px;
+
+        p {
+            margin-top: 20px;
+        }
+    }
+
+    &__sub {
+        margin-top: 140px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__item {
+        max-width: 265px;
+
+        .item__title {
+            display: flex;
+            align-items: center;
+
+            mat-icon {
+                transform: scale(1.3);
+                margin-right: 10px;
+            }
+        }
+
+        .item__sub {
+            margin-top: 5px;
+
+            p {
+                line-height: 1.5;
+            }
+        }
+    }
+
+    &__box {
+        margin: auto;
+        margin-top: 75px;
+        width: 540px;
+        height: 125px;
+        border-radius: 10px;
+        border: 1px white solid;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        h5 {
+            margin-bottom: 10px;
+        }
+
+        button {
+            border-radius: 50vh;
+            padding-left: 40px;
+            padding-right: 40px;
+            color: #2F2E41;
+        }
+    }
+
+    &__link {
+        margin: auto;
+        margin-top: 80px;
+        width: 73%;
+        display: grid;
+        grid-template-columns: auto auto auto auto auto;
+        grid-column-gap: 30px;
+
+        &>div {
+            padding: 0 20px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+    }
+}
+
+@keyframes swinging {
+    0% {
+        transform: rotateZ(0);
+    }
+
+    25% {
+        transform: rotateZ(5deg);
+    }
+
+    50% {
+        transform: rotateZ(-5deg);
+    }
+
+    100% {
+        transform: rotateZ(0);
+    }
+}
+
+@keyframes sun {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(50px);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes animal-1 {
+    0% {
+        transform: rotateZ(0);
+    }
+
+    25% {
+        transform: rotateZ(5deg);
+    }
+
+    50% {
+        transform: rotateZ(-5deg);
+    }
+
+    100% {
+        transform: rotateZ(0);
+    }
+}
+
+@keyframes animal-2 {
+    0% {
+        transform: rotateZ(0);
+    }
+
+    25% {
+        transform: rotateZ(-10deg);
+    }
+
+    50% {
+        transform: rotateZ(10deg);
+    }
+
+    100% {
+        transform: rotateZ(0);
+    }
+}
+
+@keyframes fly {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(50px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes cloud {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateX(90%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}

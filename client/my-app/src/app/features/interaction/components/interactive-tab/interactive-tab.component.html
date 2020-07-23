@@ -1,0 +1,17 @@
+<div class="interactive">
+    <button mat-icon-button class="interactive__btn new" [ngClass]="{'active': isRequestOpened}"
+        (click)="onClickToggleRequest()">
+        <mat-icon>group</mat-icon>
+    </button>
+    <button mat-icon-button class="interactive__btn new" [ngClass]="{'active': isMessOpened}"
+        (click)="onClickToggleMess()">
+        <mat-icon>message</mat-icon>
+    </button>
+    <button mat-icon-button class="interactive__btn new" [ngClass]="{'active': isNotiOpened}"
+        (click)="onClickToggleNoti()">
+        <mat-icon>notification_important</mat-icon>
+    </button>
+    <div class="interactive__box">
+        <ng-template #hostViewBox></ng-template>
+    </div>
+</div>

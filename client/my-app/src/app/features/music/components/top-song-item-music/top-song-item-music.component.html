@@ -1,0 +1,37 @@
+<div class="top-song-item-music" [ngClass]="{'top-song-item-music--no-border': noBorder}">
+    <div>
+        <div class="top-song-item-music__number"
+            [ngClass]="{'top-song-item-music__number--top-1': index==0,'top-song-item-music__number--top-2': index==1,'top-song-item-music__number--top-3': index==2,'top-song-item-music__number--top-4': index>2}">
+            <h6>{{index+1}}</h6>
+        </div>
+        <div class="top-song-item-music__image">
+            <img appLazyLoadImage [src]="song.cover" alt="cover" *ngIf="song.cover !== null;else noImageTemp">
+            <ng-template #noImageTemp>
+                <img appLazyLoadImage src="../../../../../assets/images/music-wallpaper.jpg" alt="cover">
+            </ng-template>
+            <div class="top-song-item-music__dish"></div>
+        </div>
+        <div class="top-song-item-music__info">
+            <p *ngIf="noBorder;else nameTemp">{{song.name}}</p>
+            <ng-template #nameTemp>
+                <p>{{song.name | content: 15}}</p>
+            </ng-template>
+            <p><small>{{song.userInfo.fullName}}</small></p>
+        </div>
+    </div>
+    <div class="top-song-item-music__button" [ngClass]="{'top-song-item-music__button--no-border': noBorder}">
+        <p><small *ngIf="noBorder">{{song.time}}</small></p>
+        <button mat-icon-button color="accent" matTooltip="Nghe" matTooltipPosition="above" (click)="onPlaySong()">
+            <mat-icon>play_arrow</mat-icon>
+        </button>
+        <button mat-icon-button color="accent" matTooltip="Thêm vào danh sách phát" matTooltipPosition="above"
+            (click)="onAddSong()" *ngIf="(isAdded$ | async) === false;else addedTemp">
+            <mat-icon>playlist_add</mat-icon>
+        </button>
+        <ng-template #addedTemp>
+            <button mat-icon-button color="accent" matTooltip="Đã thêm vào danh sách phát" matTooltipPosition="above">
+                <mat-icon>playlist_add_check</mat-icon>
+            </button>
+        </ng-template>
+    </div>
+</div>

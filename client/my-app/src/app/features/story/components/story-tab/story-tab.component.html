@@ -1,0 +1,68 @@
+<div class="story-tab">
+    <div class="story-tab__list" *ngIf="!loading;else skeleton">
+        <div class="story-tab__item story-tab__item--add" (click)="onClickOpenDialogCreateStory()">
+            <div [@fadeIn]>
+                <img appLazyLoadImage [src]="userAvatar$ | async" alt=""
+                    *ngIf="(userAvatar$ | async) !==null; else noAvatar">
+                <ng-template #noAvatar>
+                    <img src="../../../../../assets/images/ava.png" alt="">
+                </ng-template>
+            </div>
+            <mat-icon>add</mat-icon>
+        </div>
+        <ng-container *ngIf="(userStory$ | async).length>0 as userStory">
+            <div class="story-tab__item story-tab__item--own" [@fadeIn] (click)="onClickOpenDialogStoryView()"
+                *ngIf="(userStory$ | async).length!==0">
+                <img appLazyLoadImage [src]="(userStory$ | async)[0].backGround" alt="">
+                <div>
+                    <img appLazyLoadImage [src]="userAvatar$ | async" alt=""
+                        *ngIf="(userAvatar$ | async) !==null; else noAvatar">
+                    <ng-template #noAvatar>
+                        <img src="../../../../../assets/images/ava.png" alt="">
+                    </ng-template>
+                </div>
+            </div>
+        </ng-container>
+        <div class="story-tab__item story-tab__item--user" [@fadeIn] *ngFor="let friendStory of friendStories$ | async"
+            (click)="onClickOpenDialogStoryView(friendStory.userInfo.userId)">
+            <img appLazyLoadImage [src]="friendStory.firstStory" alt="">
+            <div>
+                <img appLazyLoadImage [src]="friendStory.userInfo.avatar" alt=""
+                    *ngIf="friendStory.userInfo.avatar !==null; else noAvatar">
+                <ng-template #noAvatar>
+                    <img src="../../../../../assets/images/ava.png" alt="">
+                </ng-template>
+            </div>
+        </div>
+        <div class="story-tab__item story-tab__item--none" [@fadeIn] *ngFor="let noStorie of noStories$ | async">
+        </div>
+    </div>
+    <ng-template #skeleton>
+        <div class="story-tab__list">
+            <div class="story-tab__item story-tab__item--add">
+                <div class="skeleton"></div>
+            </div>
+            <div class="story-tab__item skeleton">
+                <div class="skeleton"></div>
+            </div>
+            <div class="story-tab__item skeleton">
+                <div class="skeleton"></div>
+            </div>
+            <div class="story-tab__item skeleton">
+                <div class="skeleton"></div>
+            </div>
+            <div class="story-tab__item skeleton">
+                <div class="skeleton"></div>
+            </div>
+            <div class="story-tab__item skeleton">
+                <div class="skeleton"></div>
+            </div>
+            <div class="story-tab__item skeleton">
+                <div class="skeleton"></div>
+            </div>
+            <div class="story-tab__item skeleton">
+                <div class="skeleton"></div>
+            </div>
+        </div>
+    </ng-template>
+</div>

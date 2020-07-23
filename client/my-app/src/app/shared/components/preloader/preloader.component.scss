@@ -1,0 +1,132 @@
+main {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+
+    svg {
+        &>path {
+            &:nth-child(1) {
+                stroke-dasharray: 371.21636962890625;
+                stroke-dashoffset: 371.21636962890625;
+                animation: animatedPath1 6s linear forwards 0.3s;
+            }
+
+            &:nth-child(2) {
+                stroke-dasharray: 337.0628662109375;
+                stroke-dashoffset: 337.0628662109375;
+                animation: animatedPath2 6s linear forwards 0.6s;
+            }
+
+            &:nth-child(3) {
+                stroke-dasharray: 325.7951965332031;
+                stroke-dashoffset: 325.7951965332031;
+                animation: animatedPath3 6s linear forwards 0.9s;
+            }
+
+            &:nth-child(4) {
+                stroke-dasharray: 240.81285095214844;
+                stroke-dashoffset: 240.81285095214844;
+                animation: animatedPath4 6s linear forwards 1.2s;
+            }
+
+            &:nth-child(5) {
+                stroke-dasharray: 387.98333740234375;
+                stroke-dashoffset: 387.98333740234375;
+                animation: animatedPath5 6s linear forwards 1.5s;
+            }
+
+            &:nth-child(6) {
+                stroke-dasharray: 235.38397216796875;
+                stroke-dashoffset: 235.38397216796875;
+                animation: animatedPath6 6s linear forwards 1.8s;
+            }
+        }
+
+        @keyframes animatedPath1 {
+            40% {
+                stroke-dashoffset: 0;
+            }
+
+            60% {
+                stroke-dashoffset: 0;
+            }
+
+            100% {
+                stroke-dashoffset: 371.21636962890625;
+            }
+        }
+
+        @keyframes animatedPath2 {
+            40% {
+                stroke-dashoffset: 0;
+            }
+
+            60% {
+                stroke-dashoffset: 0;
+            }
+
+            100% {
+                stroke-dashoffset: 337.0628662109375;
+            }
+        }
+
+        @keyframes animatedPath3 {
+            40% {
+                stroke-dashoffset: 0;
+            }
+
+            60% {
+                stroke-dashoffset: 0;
+            }
+
+            100% {
+                stroke-dashoffset: 325.7951965332031;
+            }
+        }
+
+        @keyframes animatedPath4 {
+            40% {
+                stroke-dashoffset: 0;
+            }
+
+            60% {
+                stroke-dashoffset: 0;
+            }
+
+            100% {
+                stroke-dashoffset: 240.81285095214844;
+            }
+        }
+
+        @keyframes animatedPath5 {
+            40% {
+                stroke-dashoffset: 0;
+            }
+
+            60% {
+                stroke-dashoffset: 0;
+            }
+
+            100% {
+                stroke-dashoffset: 387.98333740234375;
+            }
+        }
+
+        @keyframes animatedPath6 {
+            40% {
+                stroke-dashoffset: 0;
+            }
+
+            60% {
+                stroke-dashoffset: 0;
+            }
+
+            100% {
+                stroke-dashoffset: 235.38397216796875;
+            }
+        }
+    }
+}

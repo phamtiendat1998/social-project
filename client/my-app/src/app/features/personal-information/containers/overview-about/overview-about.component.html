@@ -1,0 +1,23 @@
+<div class="row overview-about" *ngIf="overViewAbouts$ | async as overViewAbouts; else skeleton">
+    <ng-container *ngIf="overViewAbouts.length>0;else noInfo">
+        <div class="col-4" *ngFor="let overViewAbout of overViewAbouts">
+            <app-about-field [aboutField]="overViewAbout"></app-about-field>
+        </div>
+    </ng-container>
+    <ng-template #noInfo>
+        <p>Không có thông nào.</p>
+    </ng-template>
+</div>
+<ng-template #skeleton>
+    <div class="row">
+        <div class="col-4">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+        <div class="col-4">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+        <div class="col-4">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+    </div>
+</ng-template>

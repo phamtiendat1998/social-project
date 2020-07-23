@@ -1,0 +1,26 @@
+<div class="dialog-liked-user-post">
+    <ng-container *ngIf="likedUsers$ | async as likedUsers;else skeleton">
+        <div class="dialog-liked-user-post__item" *ngFor="let likedUser of likedUsers">
+            <div>
+                <img appLazyLoadImage [src]="likedUser.avatar" alt="" *ngIf="likedUser.avatar !==null; else noAvatar">
+                <ng-template #noAvatar>
+                    <img src="../../../../../assets/images/ava.png" alt="">
+                </ng-template>
+                <h6>{{likedUser.fullName}}</h6>
+            </div>
+            <button mat-icon-button color="accent">
+                <mat-icon>thumb_up</mat-icon>
+            </button>
+        </div>
+    </ng-container>
+    <ng-template #skeleton>
+        <div class="dialog-liked-user-post__item skeleton">
+        </div>
+        <div class="dialog-liked-user-post__item skeleton">
+        </div>
+        <div class="dialog-liked-user-post__item skeleton">
+        </div>
+        <div class="dialog-liked-user-post__item skeleton">
+        </div>
+    </ng-template>
+</div>

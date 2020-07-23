@@ -1,0 +1,40 @@
+<mat-expansion-panel [(expanded)]="isExpanded" class="mat-about-field">
+    <mat-expansion-panel-header collapsedHeight="85px" expandedHeight="70px">
+        <mat-panel-title>
+            <p>
+                <mat-icon>local_phone</mat-icon>
+            </p>
+        </mat-panel-title>
+        <mat-panel-description>
+            <div *ngIf="phone.number;else noPhoneNumber">
+                <p>Liên hệ <a>{{phone.number}}</a></p>
+            </div>
+            <ng-template #noPhoneNumber>
+                <div>
+                    <p>Chưa có số điện thoại</p>
+                </div>
+            </ng-template>
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <form [formGroup]="phoneForm">
+        <div>
+            <mat-form-field class="mat-input-full-width" appearance="legacy">
+                <mat-label>Liên hệ</mat-label>
+                <input matInput formControlName="number">
+                <mat-error *ngIf="phoneForm.controls.number.errors?.required">Không được bỏ trống</mat-error>
+            </mat-form-field>
+        </div>
+        <p><small>*Thông tin này luôn được công khai</small></p>
+    </form>
+    <div class="form-button">
+        <button mat-mini-fab color="primary" aria-label="Edit" (click)="onClickEnableForm()" *ngIf="!isEnableForm">
+            <mat-icon>create</mat-icon>
+        </button>
+        <button mat-mini-fab color="primary" aria-label="Edit" (click)="onClickSaveForm()" *ngIf="isEnableForm">
+            <mat-icon>check</mat-icon>
+        </button>
+        <button mat-mini-fab color="warn" aria-label="Cancel" (click)="onClickCancelForm()" *ngIf="isEnableForm">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+</mat-expansion-panel>

@@ -1,0 +1,129 @@
+<div class="friend-field">
+    <div class="avt">
+        <img appLazyLoadImage [src]="user.avatar" alt="" *ngIf="user.avatar; else noAvatar">
+        <ng-template #noAvatar>
+            <img src="../../../../../assets/images/ava.png" alt="">
+        </ng-template>
+    </div>
+    <div class="name">
+        <a [routerLink]="[user.link,user.userId]">{{user.fullName}}</a>
+        <p><small></small></p>
+    </div>
+    <ng-container *ngIf="ownUser$ | async;else noOwnUser">
+        <button mat-flat-button color="primary">
+            Bản thân
+        </button>
+    </ng-container>
+    <ng-template #noOwnUser>
+        <button mat-icon-button color="accent" [matMenuTriggerFor]="menu" aria-label="Menu"
+            *ngIf="option=='mutualFriend' ; else blockButton">
+            <mat-icon color="primary">how_to_reg</mat-icon>
+        </button>
+        <ng-template #blockButton>
+            <button mat-icon-button color="accent" [matMenuTriggerFor]="menu" aria-label="Menu"
+                *ngIf="option=='blocked';else commonButton">
+                <mat-icon>block</mat-icon>
+            </button>
+            <ng-template #commonButton>
+                <button mat-icon-button color="accent" [matMenuTriggerFor]="menu" aria-label="Menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+            </ng-template>
+        </ng-template>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item [routerLink]="[user.link,user.userId]">
+                <mat-icon>assignment_ind</mat-icon>
+                <span>Trang cá nhân</span>
+            </button>
+            <button mat-menu-item *ngIf="option!='blocked'">
+                <mat-icon>message</mat-icon>
+                <span>Gửi tin nhắn</span>
+            </button>
+            <!-- Remove block -->
+            <ng-container *ngIf="!removeBlock;else removedBlock">
+                <button mat-menu-item *ngIf="option==='blocked'" (click)="onRemoveBlock()">
+                    <mat-icon>group</mat-icon>
+                    <span>Bỏ chặn</span>
+                </button>
+            </ng-container>
+            <!-- Accept/Deny Friend -->
+            <ng-template #removedBlock>
+                <button mat-menu-item *ngIf="option==='blocked'">
+                    <mat-icon>group</mat-icon>
+                    <span>Đã bỏ chặn</span>
+                </button>
+            </ng-template>
+            <ng-container *ngIf="!acceptRequestFriend || !denyRequestFriend; else doneRequestFriend">
+                <button mat-menu-item *ngIf="option==='requestFriend'" (click)="onAcceptRequest()">
+                    <mat-icon>done_all</mat-icon>
+                    <span>Đồng ý</span>
+                </button>
+                <button mat-menu-item *ngIf="option==='requestFriend'" (click)="onDenyRequest()">
+                    <mat-icon>close</mat-icon>
+                    <span>Từ chối</span>
+                </button>
+            </ng-container>
+            <ng-template #doneRequestFriend>
+                <ng-container *ngIf="acceptRequestFriend">
+                    <button mat-menu-item *ngIf="option==='requestFriend'">
+                        <mat-icon>done_all</mat-icon>
+                        <span>Đã đồng ý kết bạn</span>
+                    </button>
+                </ng-container>
+                <ng-container *ngIf="acceptRequestFriend">` `
+                    <button mat-menu-item *ngIf="option==='requestFriend'">
+                        <mat-icon>close</mat-icon>
+                        <span>Đã từ chối kết bạn</span>
+                    </button>
+                </ng-container>
+            </ng-template>
+            <!-- Sent request friend -->
+            <ng-container *ngIf="!sentRequestFriend; else sendRequestFriend">
+                <button mat-menu-item *ngIf="option==='suggestFriend' || option==='allFriendProfile'"
+                    (click)="onSentRequest()">
+                    <mat-icon>group_add</mat-icon>
+                    <span>Gửi lời mời kết bạn</span>
+                </button>
+            </ng-container>
+            <ng-template #sendRequestFriend>
+                <button mat-menu-item *ngIf="option==='suggestFriend' || option==='allFriendProfile'">
+                    <mat-icon>group_add</mat-icon>
+                    <span>Đã gửi lời mời kết bạn</span>
+                </button>
+            </ng-template>
+
+            <button mat-menu-item *ngIf="option==='allFriendPersonal'">
+                <mat-icon>contacts</mat-icon>
+                <span>Liên hệ thường xuyên</span>
+            </button>
+            
+            <!-- Remove friend -->
+            <ng-container *ngIf="!removeFriend;else removedFriend">
+                <button mat-menu-item *ngIf="option==='allFriendPersonal' || option==='mutualFriend'"
+                    (click)="onRemoveFriend()">
+                    <mat-icon>person_add_disabled</mat-icon>
+                    <span>Hủy bạn bè</span>
+                </button>
+            </ng-container>
+            <ng-template #removedFriend>
+                <button mat-menu-item *ngIf="option==='allFriendPersonal' || option==='mutualFriend'">
+                    <mat-icon>person_add_disabled</mat-icon>
+                    <span>Đã hủy kết bạn</span>
+                </button>
+            </ng-template>
+            <!-- Block -->
+            <ng-container *ngIf="!blockFriend; else blockedFriend">
+                <button mat-menu-item *ngIf="option!=='blocked' && option!=='allFriendPersonal'" (click)="onBlock()">
+                    <mat-icon>block</mat-icon>
+                    <span>Chặn</span>
+                </button>
+            </ng-container>
+            <ng-template #blockedFriend>
+                <button mat-menu-item *ngIf="option!=='blocked' && option!=='allFriendPersonal'">
+                    <mat-icon>remove_circle_outline</mat-icon>
+                    <span>Đã chặn</span>
+                </button>
+            </ng-template>
+        </mat-menu>
+    </ng-template>
+</div>

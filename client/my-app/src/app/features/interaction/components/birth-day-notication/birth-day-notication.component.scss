@@ -1,0 +1,31 @@
+.birth-day-notication {
+    margin-bottom: 40px;
+
+    &__title {
+        margin-bottom: 25px;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 25px;
+        cursor: pointer;
+        button{
+            box-shadow: none;
+        }
+
+        span {
+            transition: all 0.3s;
+        }
+
+        &:hover {
+            span {
+                color: var(--color-primary-500);
+            }
+        }
+
+        button {
+            margin-right: 10px;
+        }
+    }
+}

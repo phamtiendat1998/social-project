@@ -1,0 +1,23 @@
+<div class="row profile-live-about" *ngIf="lives$ | async as lives; else skeleton">
+    <ng-container *ngIf="lives.length>0;else noInfo">
+        <div class="col-4" *ngFor="let live of lives">
+            <app-about-field [aboutField]="live"></app-about-field>
+        </div>
+    </ng-container>
+    <ng-template #noInfo>
+        <p>Không có thông tin sinh sống nào.</p>
+    </ng-template>
+</div>
+<ng-template #skeleton>
+    <div class="row">
+        <div class="col-4">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+        <div class="col-4">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+        <div class="col-4">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+    </div>
+</ng-template>

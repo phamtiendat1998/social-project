@@ -1,0 +1,11 @@
+.dialog-delete-story {
+    padding: 40px;
+    position: relative;
+
+    mat-progress-bar {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+    }
+}

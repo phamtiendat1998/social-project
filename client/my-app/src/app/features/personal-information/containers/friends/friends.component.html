@@ -1,0 +1,15 @@
+<div class="friends">
+    <button mat-button [routerLink]="['/home/personal/user/friend/all']" routerLinkActive="active">Tất cả bạn bè
+        <small *ngIf="quantityFriend$ | async as quantityFriend">({{quantityFriend}})</small></button>
+    <button mat-button [routerLink]="['/home/personal/user/friend/request']" routerLinkActive="active">Lời mời kết bạn
+        <small *ngIf="quantityRequest$ | async as quantityRequest">({{quantityRequest}})</small></button>
+    <button mat-button [routerLink]="['/home/personal/user/friend/suggest']" routerLinkActive="active">Đề xuất bạn
+        bè</button>
+    <button mat-button [routerLink]="['/home/personal/user/friend/blocked']" routerLinkActive="active">Chặn
+        <small *ngIf="quantityBlock$ | async as quantityBlock">({{quantityBlock}})</small></button>
+    <mat-form-field appearance="legacy">
+        <input matInput placeholder="Tìm kiếm">
+        <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+</div>
+<router-outlet></router-outlet>

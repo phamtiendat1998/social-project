@@ -1,0 +1,37 @@
+.interactive-numbers-tab {
+    background-color: var(--color-background-primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    border-radius: 5px;
+    margin-bottom: 25px;
+    height: 80px;
+
+    h6 {
+        font-weight: bold;
+        color: var(--color-primary-500);
+    }
+
+    h6,
+    p {
+        margin: 0;
+        text-align: center;
+    }
+
+    &__item {
+        .skeleton {
+            height: 20px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+
+            &:first-child {
+                width: 50px;
+            }
+
+            &:last-child {
+                width: 30px;
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+<mat-expansion-panel [hideToggle]="true" class="mat-about-field mat-expansion-no-body">
+    <mat-expansion-panel-header collapsedHeight="85px" expandedHeight="85px">
+        <mat-panel-title>
+            <p>
+                <mat-icon>{{icon}}</mat-icon>
+            </p>
+        </mat-panel-title>
+        <mat-panel-description>
+            <div>
+                <p>{{textType}} <a>{{aboutField.detail}}</a></p>
+                <small *ngIf="aboutField.time !== undefined">{{aboutField.time.from}} -
+                    {{aboutField.time.to == null ? 'hiện tại' : aboutField.time.to}}</small>
+            </div>
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+</mat-expansion-panel>

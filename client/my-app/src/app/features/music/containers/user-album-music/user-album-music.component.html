@@ -1,0 +1,25 @@
+<div class="user-album-music">
+    <div class="user-album-music__feature">
+        <h5>Album của bạn</h5>
+        <div class="user-album-music__search">
+            <mat-icon>search</mat-icon>
+            <input placeholder="Tìm kiếm album">
+        </div>
+    </div>
+    <button mat-icon-button color="primary" (click)="openDialogUploadAlbum()" matTooltip="Upload album mới"
+        matTooltipPosition="right">
+        <mat-icon>add</mat-icon>
+    </button>
+    <div class="user-album-music__list">
+        <ng-container *ngIf="(albums$ | async).length > 0;else skeleton">
+            <app-album-item-music *ngFor="let album of albums$ | async" [isOwn]="true" [album]="album">
+            </app-album-item-music>
+        </ng-container>
+        <ng-template #skeleton>
+            <app-skeleton-album-music></app-skeleton-album-music>
+            <app-skeleton-album-music></app-skeleton-album-music>
+            <app-skeleton-album-music></app-skeleton-album-music>
+            <app-skeleton-album-music></app-skeleton-album-music>
+        </ng-template>
+    </div>
+</div>

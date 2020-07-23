@@ -1,0 +1,13 @@
+.update-comment-post {
+    margin-bottom: 10px;
+
+    &>div {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+
+        img {
+            border-radius: 50%;
+        }
+    }
+}

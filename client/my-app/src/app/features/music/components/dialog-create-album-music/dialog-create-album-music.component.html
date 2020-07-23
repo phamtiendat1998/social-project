@@ -1,0 +1,31 @@
+<div class="dialog-create-album-music">
+    <mat-progress-bar mode="indeterminate" color="accent" *ngIf="loading"></mat-progress-bar>
+    <div class="dialog-create-album-music__cover">
+        <img src="../../../../../assets/images/no-image-song.png" alt="" *ngIf="cover === null;else uploadedCoverTemp">
+        <ng-template #uploadedCoverTemp>
+            <img appLazyLoadImage [src]="cover" alt="">
+        </ng-template>
+        <button mat-mini-fab color="primary" (click)="coverInput.click()">
+            <mat-icon>add_photo_alternate</mat-icon>
+        </button>
+        <input #coverInput type="file" class="dialog-create-album-music__input dialog-create-album-music__input--cover"
+            (change)="onChangeAlbumCoverInput($event)">
+    </div>
+    <div class="dialog-create-album-music__form">
+        <form [formGroup]="createAlbumForm">
+            <mat-form-field class="mat-input-full-width">
+                <mat-label>Tên album</mat-label>
+                <input formControlName="name" matInput>
+                <mat-error *ngIf="createAlbumForm.controls.name.errors?.required">Không được bỏ trống
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="mat-input-full-width">
+                <mat-label>Mô tả</mat-label>
+                <input formControlName="describe" matInput>
+            </mat-form-field>
+        </form>
+        <button mat-button color="warn" [disabled]="loading" (click)="onNoClick()">Hủy</button>
+        <button mat-button color="primary" [disabled]="createAlbumForm.invalid || loading"
+            (click)="onMainButton()">{{textMainBtn}}</button>
+    </div>
+</div>

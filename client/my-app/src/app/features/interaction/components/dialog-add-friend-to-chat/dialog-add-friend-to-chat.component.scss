@@ -1,0 +1,17 @@
+.dialog-add-friend-to-chat {
+    padding: 20px;
+
+    &>div {
+        margin-top: 20px;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    mat-selection-list {
+        .skeleton {
+            height: 50px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+    }
+}

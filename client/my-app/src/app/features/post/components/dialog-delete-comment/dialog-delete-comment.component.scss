@@ -1,0 +1,11 @@
+.dialog-delete-comment {
+    padding: 40px;
+    position: relative;
+
+    mat-progress-bar {
+        position: absolute;
+        width: 100%;
+        top: 0;
+    }
+
+}

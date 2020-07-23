@@ -1,0 +1,98 @@
+.profile {
+    padding-bottom: 10vh;
+
+    .tab {
+        height: 365px;
+        position: relative;
+        background-color: var(--color-background-primary);
+        margin-bottom: 25px;
+
+        &__cover {
+            height: 320px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            box-shadow: var(--box-shadow-1);
+            position: relative;
+        }
+
+        &__upload-cover {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            right: 0;
+            bottom: 20px;
+            transform: translateX(-50%);
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        &__avatar {
+            position: absolute;
+            height: 165px;
+            width: 165px;
+            border-radius: 50%;
+            bottom: 15px;
+            left: 35px;
+            cursor: pointer;
+            box-shadow: var(--box-shadow-1);
+            img{
+                border-radius: 50%;
+            }
+        }
+
+        &__upload-avatar {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            left: 50%;
+            bottom: -15px;
+            transform: translateX(-50%);
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        &__name {
+            width: fit-content;
+            color: white;
+            position: absolute;
+            left: 220px;
+            bottom: 30px;
+            transform: translateY(-50%);
+        }
+
+        &__link {
+            position: absolute;
+            padding-left: 200px;
+            height: 45px;
+            width: 100%;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-right: 20px;
+        }
+
+        &__item {
+            height: 100%;
+            border-radius: unset;
+
+            &:focus {
+                outline: none;
+            }
+
+            p {
+                line-height: 45px;
+                margin-bottom: 0;
+                color: var(--color-opacity-primary);
+            }
+
+            &.active {
+                p {
+                    color: var(--color-background-primary-contrast);
+                }
+
+                border-bottom: 2.5px solid var(--color-primary-500);
+            }
+        }
+    }
+}

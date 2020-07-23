@@ -1,0 +1,45 @@
+.friend-field {
+    height: 85px;
+    width: 100%;
+    background-color: var(--color-background-primary);
+    border-radius: 5px;
+    display: flex;
+    padding: 0 20px;
+    align-items: center;
+    margin-bottom: 25px;
+    cursor: pointer;
+    position: relative;
+
+    .avt {
+        height: 60px;
+        width: 60px;
+        background-size: cover;
+
+        img {
+            border-radius: 50%;
+        }
+    }
+
+    .name {
+        margin-left: 30px;
+        color: var(--color-opacity-primary);
+
+        a {
+            text-decoration: none;
+            font-weight: 500;
+            color: var(--color-background-primary-contrast);
+        }
+
+        h6,
+        p {
+            margin: 0;
+        }
+    }
+
+    button {
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+    }
+}

@@ -1,0 +1,36 @@
+<div class="dialog-upload-avatar">
+    <mat-progress-bar mode="indeterminate" color="accent" *ngIf="uploading"></mat-progress-bar>
+    <h5>Cập nhật ảnh đại diện</h5>
+    <div class="pick-image" *ngIf="!turnOnEditor">
+        <div class="dropzone" appDragAndDropImg (fileDropped)="onFileDropped($event)">
+            <p class="dropzone__icon">
+                <mat-icon>publish</mat-icon>
+            </p>
+            <p>Kéo thả ảnh vào đây</p>
+            <p>hoặc</p>
+            <button mat-button color="primary" (click)="addInput.click()">Tải ảnh lên</button>
+        </div>
+        <input #addInput class="add-input" type="file" (change)="fileChangeListener($event)">
+    </div>
+    <div class="edit-image">
+        <div class="edit-image__cropper" [ngClass]="{'active': turnOnEditor}">
+            <image-cropper [imageChangedEvent]="imageChangedEvent" [imageBase64]="droppedImage"
+                [maintainAspectRatio]="true" [aspectRatio]="1 / 1" format="png" (imageCropped)="imageCropped($event)"
+                (imageLoaded)="imageLoaded()" (loadImageFailed)="loadImageFailed()" [disabled]="uploading">
+            </image-cropper>
+        </div>
+        <div class="edit-image__content" *ngIf="turnOnEditor">
+            <mat-icon>public</mat-icon>
+            <span class="ml-2">Hình ảnh đại diện của bạn sẽ được công khai</span>
+        </div>
+        <div class="edit-image__content" *ngIf="turnOnEditor">
+            <mat-icon>crop_original</mat-icon>
+            <span class="ml-2">Bạn có thể chỉnh sửa hình ảnh sao cho đẹp nhất</span>
+        </div>
+        <div class="edit-image__feature" *ngIf="turnOnEditor">
+            <button mat-raised-button color="primary" (click)="uploadAvatarConnectApi()"
+                [disabled]="uploading">{{textUploadBtn}}</button>
+            <button mat-raised-button color="warn" (click)="cancelEditor()" [disabled]="uploading">Hủy</button>
+        </div>
+    </div>
+</div>

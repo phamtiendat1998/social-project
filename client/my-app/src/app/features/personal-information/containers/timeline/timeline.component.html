@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-7" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
+        (scrolled)="onScroll()">
+        <app-create-post [ownOption]="true"></app-create-post>
+        <app-post *ngFor="let post of posts$ | async" [post]="post"></app-post>
+        <app-skeleton-post *ngIf="loadingPosts"></app-skeleton-post>
+    </div>
+    <div class="col-5">
+        <app-interactive-numbers-tab [userId]="userId"></app-interactive-numbers-tab>
+        <app-about-tab [userId]="userId"></app-about-tab>
+        <app-picture-tab></app-picture-tab>
+        <app-song-tab [songs]="songs"></app-song-tab>
+        <app-friend-tab></app-friend-tab>
+    </div>
+</div>

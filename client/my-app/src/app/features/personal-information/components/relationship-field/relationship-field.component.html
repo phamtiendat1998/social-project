@@ -1,0 +1,47 @@
+<mat-expansion-panel [(expanded)]="isExpanded" class="mat-about-field">
+    <mat-expansion-panel-header collapsedHeight="85px" expandedHeight="70px">
+        <mat-panel-title>
+            <p>
+                <mat-icon>favorite</mat-icon>
+            </p>
+        </mat-panel-title>
+        <mat-panel-description>
+            <div>
+                <p>Đang {{text}} <a href={{relation.link}} target="_blank">{{relation.with}}</a></p>
+                <small></small>
+            </div>
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <form [formGroup]="relationForm">
+        <div>
+            <mat-form-field class="mat-input-full-width" appearance="legacy">
+                <mat-label>Tình trạng</mat-label>
+                <mat-select formControlName="rela">
+                    <mat-option value="date">Hẹn hò với</mat-option>
+                    <mat-option value="open">Mối quan hệ mở</mat-option>
+                    <mat-option value="single">Độc thân</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div *ngIf="relationForm.controls.rela.value==='date'">
+            <mat-form-field class="mat-input-full-width" appearance="legacy">
+                <mat-label>Với</mat-label>
+                <input matInput formControlName="with">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-slide-toggle color="primary" formControlName="public">Công khai</mat-slide-toggle>
+        </div>
+    </form>
+    <div class="form-button">
+        <button mat-mini-fab color="primary" aria-label="Edit" (click)="onClickEnableForm()" *ngIf="!isEnableForm">
+            <mat-icon>create</mat-icon>
+        </button>
+        <button mat-mini-fab color="primary" aria-label="Edit" (click)="onClickSaveForm()" *ngIf="isEnableForm">
+            <mat-icon>check</mat-icon>
+        </button>
+        <button mat-mini-fab color="warn" aria-label="Cancel" (click)="onClickCancelForm()" *ngIf="isEnableForm">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+</mat-expansion-panel>

@@ -1,0 +1,7 @@
+<form [formGroup]="parts" class="birthday-input-container">
+    <input class="birthday-input-element" #day formControlName="dd" maxLength="2" size="2" (input)="_handleInput()">
+    <span class="birthday-input-spacer">&frasl;</span>
+    <input class="birthday-input-element" #month formControlName="mm" maxLength="2" size="2" (input)="_handleInput()">
+    <span class="birthday-input-spacer">&frasl;</span>
+    <input class="birthday-input-element" #year formControlName="yyyy" maxLength="4" size="4" (input)="_handleInput()">
+</form>

@@ -1,0 +1,309 @@
+<div class="search container">
+    <div class="search__filter">
+        <div class="search__input ">
+            <mat-icon>search</mat-icon>
+            <input #search class="mat-input-full-width" placeholder="Nhập từ khóa để tìm kiếm..."
+                (keyup.enter)="onPressEnter()">
+        </div>
+    </div>
+    <mat-tab-group *ngIf="isSearch==true && search.value !== ''" animationDuration="0ms">
+        <mat-tab label="Tất cả">
+            <div class="search__all">
+                <div class="left">
+                    <div class="left__item">
+                        <img src="../../../../../assets/images/intro-landing-page-2.jpeg" alt="">
+                        <div class="content">
+                            <div class="creator">
+                                <div class="creator__avt"></div>
+                                <div class="creator__info">
+                                    <div class="name">
+                                        <a href="">
+                                            <p>Phạm Đạt</p>
+                                        </a>
+                                        <p>đã chia sẻ bài viết này</p>
+                                    </div>
+                                    <div class="privacy">
+                                        <p>3 ngày trước</p>
+                                        <mat-icon>public</mat-icon>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="text">
+                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est mollitia dolore
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="left__item">
+                        <img src="../../../../../assets/images/intro-landing-page-2.jpeg" alt="">
+                        <div class="content">
+                            <div class="creator">
+                                <div class="creator__avt"></div>
+                                <div class="creator__info">
+                                    <div class="name">
+                                        <a href="">
+                                            <p>Phạm Đạt</p>
+                                        </a>
+                                        <p>đã chia sẻ bài viết này</p>
+                                    </div>
+                                    <div class="privacy">
+                                        <p>3 ngày trước</p>
+                                        <mat-icon>public</mat-icon>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="text">
+                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est mollitia dolore
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="left__item">
+                        <img src="../../../../../assets/images/intro-landing-page-2.jpeg" alt="">
+                        <div class="content">
+                            <div class="creator">
+                                <div class="creator__avt"></div>
+                                <div class="creator__info">
+                                    <div class="name">
+                                        <a href="">
+                                            <p>Phạm Đạt</p>
+                                        </a>
+                                        <p>đã chia sẻ bài viết này</p>
+                                    </div>
+                                    <div class="privacy">
+                                        <p>3 ngày trước</p>
+                                        <mat-icon>public</mat-icon>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="text">
+                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est mollitia dolore
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="title">
+                        <mat-icon>history</mat-icon>
+                        <h6>Tìm kiếm gần đây</h6>
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                            <mat-icon>more_horiz</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item>
+                                <mat-icon color="primary">delete_sweep</mat-icon>
+                                <span>Xóa lịch sử</span>
+                            </button>
+                        </mat-menu>
+                    </div>
+                    <div>
+                        <a href="">
+                            <div class="item">
+                                <mat-icon><small>call_made</small></mat-icon>
+                                <p>Covid-19</p>
+                            </div>
+                        </a>
+                        <a href="">
+                            <div class="item">
+                                <mat-icon><small>call_made</small></mat-icon>
+                                <p>Bùi Sĩ Nguyên</p>
+                            </div>
+                        </a>
+                        <a href="">
+                            <div class="item">
+                                <mat-icon><small>call_made</small></mat-icon>
+                                <p>Mạng xã hội</p>
+                            </div>
+                        </a>
+                        <a href="">
+                            <div class="item">
+                                <mat-icon><small>call_made</small></mat-icon>
+                                <p>Hip hop</p>
+                            </div>
+                        </a>
+                        <a href="">
+                            <div class="item">
+                                <mat-icon><small>call_made</small></mat-icon>
+                                <p>Bóng rổ</p>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Bài viết">
+            <ng-template matTabContent>
+                <div class="row">
+                    <div class="col-6" *ngIf="isDataLoaded; else skeletonOdd">
+                        <app-post *ngFor="let post of oddPosts" [post]="post"></app-post>
+                    </div>
+                    <div class="col-6" *ngIf="isDataLoaded; else skeletonEven">
+                        <app-post *ngFor="let post of evenPosts" [post]="post"></app-post>
+                    </div>
+                    <ng-template #skeletonOdd>
+                        <div class="col-6">
+                            <app-skeleton-post></app-skeleton-post>
+                        </div>
+                    </ng-template>
+                    <ng-template #skeletonEven>
+                        <div class="col-6">
+                            <app-skeleton-post></app-skeleton-post>
+                        </div>
+                    </ng-template>
+                </div>
+            </ng-template>
+        </mat-tab>
+        <mat-tab label="Ảnh">
+            <div class="photos" *ngIf="photos.length!==0; else skeleton">
+                <div class="photos__item" *ngFor="let photo of photos">
+                    <img [src]="photo.Source" alt="Ảnh" />
+                    <div class="photo-info">
+                        <div>
+                            <button mat-button>
+                                <mat-icon>thumb_up</mat-icon>
+                                <small>{{photo.MediaInfo.QuantityLike | quantity}}</small>
+                            </button>
+                            <button mat-button>
+                                <mat-icon>chat_bubble</mat-icon>
+                                <small>{{photo.MediaInfo.QuantityComment | quantity}}</small>
+                            </button>
+                            <button mat-button>
+                                <mat-icon>remove_red_eye</mat-icon>
+                                <small>{{photo.MediaInfo.QuantityShare | quantity}}</small>
+                            </button>
+                            <button mat-button [matMenuTriggerFor]="menu">
+                                <mat-icon>more_horiz</mat-icon>
+                            </button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item>
+                                    <mat-icon>delete</mat-icon>
+                                    <span>Xóa ảnh</span>
+                                </button>
+                            </mat-menu>
+                        </div>
+                        <div>
+                            <p>{{photo.MediaInfo.getTime}}</p>
+                            <h6>{{photo.MediaInfo.Content | content: 15}}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ng-template #skeleton>
+                <div class="photos">
+                    <div class="photos__item skeleton"></div>
+                    <div class="photos__item skeleton"></div>
+                    <div class="photos__item skeleton"></div>
+                    <div class="photos__item skeleton"></div>
+                </div>
+            </ng-template>
+        </mat-tab>
+        <mat-tab label="Video">
+            <div class="videos" *ngIf="videos.length!==0; else skeleton">
+                <div class="videos__item" *ngFor="let video of videos">
+                    <img [src]="video.Thumnail" alt="Video" />
+                    <div class="time">{{video.MediaInfo.Time}}</div>
+                    <div class="video-info">
+                        <div>
+                            <button mat-button>
+                                <mat-icon>thumb_up</mat-icon>
+                                <small>{{video.MediaInfo.QuantityLike | quantity}}</small>
+                            </button>
+                            <button mat-button>
+                                <mat-icon>chat_bubble</mat-icon>
+                                <small>{{video.MediaInfo.QuantityComment | quantity}}</small>
+                            </button>
+                            <button mat-button>
+                                <mat-icon>remove_red_eye</mat-icon>
+                                <small>{{video.MediaInfo.QuantityShare | quantity}}</small>
+                            </button>
+                        </div>
+                        <div>
+                            <p>{{video.MediaInfo.getTime}}</p>
+                            <h6>{{video.MediaInfo.Content | content: 15}}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ng-template #skeleton>
+                <div class="videos">
+                    <div class="videos__item skeleton"></div>
+                    <div class="videos__item skeleton"></div>
+                </div>
+            </ng-template>
+        </mat-tab>
+        <mat-tab label="Mọi người">
+            <div class="search__people">
+                <div class="item" *ngFor="let searchFriend of searchFriends">
+                    <app-friend-field option="suggestFriend" [user]="searchFriend">
+                    </app-friend-field>
+                </div>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+    <div class="search__trending" *ngIf="search.value == ''">
+        <h5>#Top Trending</h5>
+        <div class="search__tag">
+            <p>#Corona</p>
+        </div>
+        <div class="search__tag">
+            <p>#CoronaVirus</p>
+        </div>
+        <div class="search__tag">
+            <p>#Vietnam</p>
+        </div>
+        <div class="search__tag">
+            <p>#Covid-19</p>
+        </div>
+        <div class="search__tag">
+            <p>#Front-end</p>
+        </div>
+        <div class="search__tag">
+            <p>#Back-end</p>
+        </div>
+        <div class="search__tag">
+            <p>#TheLastDance</p>
+        </div>
+        <div class="search__tag">
+            <p>#BuiSiNguyen</p>
+        </div>
+        <div class="search__tag">
+            <p>#TopTrending</p>
+        </div>
+        <div class="search__tag">
+            <p>#DcmDoiDiHocLauVcl</p>
+        </div>
+        <div class="search__tag">
+            <p>#Okela</p>
+        </div>
+        <div class="search__tag">
+            <p>#Tim</p>
+        </div>
+
+    </div>
+    <div class="search__history" *ngIf="search.value == ''">
+        <div class="searching">
+            <h5>Tìm kiếm gần đây</h5>
+            <mat-icon>search</mat-icon>
+        </div>
+        <button mat-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_horiz</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item>Xóa tất cả</button>
+        </mat-menu>
+        <div class="item">
+            <div class="text">
+                <mat-icon>call_made</mat-icon>
+                <p>Covid-19</p>
+            </div>
+            <button mat-icon-button class="delete">
+                <mat-icon>clear</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,93 @@
+.request-box {
+    height: 450px;
+    width: 460px;
+    background-color: var(--color-primary-600);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: var(--color-primary-contrast-600);
+    box-shadow: var(--box-shadow-1);
+    padding: 0 10px;
+
+    &__title {
+        padding: 10px 0 10px 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        p {
+            margin: 0;
+        }
+    }
+
+    &__see-all {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding: 10px 0;
+        width: 100%;
+        border-top: 0.5px solid var(--color-opacity-primary);
+        text-align: center;
+        background-color: var(--color-primary-600);
+
+        a {
+            color: var(--color-primary-contrast-600);
+            font-weight: 500;
+            text-decoration: none;
+        }
+    }
+
+    &__item {
+        height: 65px;
+        padding: 10px 10px;
+        margin-bottom: 10px;
+        padding-right: 0;
+        display: grid;
+        grid-template-columns: 50px auto;
+        cursor: pointer;
+        transition: all 0.2s linear;
+        border-radius: 5px;
+
+        &:hover {
+            background-color: rgb(227, 241, 250, 0.2); // var(--color-mat-hover) opacity 0.2
+            color: var(--color-primary-contrast-500);
+        }
+
+        .avt {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-image: url('./../../../../../assets/images/intro-landing-page-3.jpg');
+            background-size: cover;
+            position: relative;
+        }
+
+        .content {
+            padding-left: 20px;
+
+            a {
+                text-decoration: none;
+            }
+
+            button {
+                font-weight: normal;
+                width: fit-content;
+                height: fit-content;
+
+                &:hover {
+                    background-color: rgb(227, 241, 250, 0.5); // var(--color-mat-hover) opacity 0.5
+                }
+            }
+
+            p,
+            a {
+                color: var(--color-primary-contrast-500);
+                margin-bottom: 0;
+            }
+        }
+
+        .feature {
+            text-align: right;
+        }
+    }
+
+}

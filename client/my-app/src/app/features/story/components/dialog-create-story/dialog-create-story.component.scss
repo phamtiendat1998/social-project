@@ -1,0 +1,57 @@
+.dialog-create-story {
+    height: 100%;
+    position: relative;
+
+    mat-progress-bar {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+    }
+
+    .title {
+        padding: 20px 0;
+        text-align: center;
+    }
+
+    .file {
+        &__input {
+            display: none;
+        }
+
+        &__add {
+            height: 160px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--color-background-third);
+
+            &.disable {
+                opacity: 0.5;
+                pointer-events: none;
+            }
+
+            button {
+                margin-bottom: 10px;
+            }
+
+            span {
+                font-weight: 500;
+            }
+        }
+    }
+
+    .feature {
+        display: flex;
+        justify-content: flex-end;
+        padding: 20px;
+    }
+
+    .share {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 19px 20px;
+    }
+}

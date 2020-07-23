@@ -1,0 +1,35 @@
+.top-album-item-music {
+    width: 100%;
+    background-color: var(--color-background-primary);
+    padding-bottom: 5px;
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+
+    &__image {
+        width: 100%;
+        height: 192px;
+        cursor: pointer;
+        box-shadow: var(--box-shadow-2);
+    }
+
+    &__content {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px;
+        color: var(--color-opacity-primary);
+    }
+
+    &__text {
+
+        p {
+            margin: 0;
+            font-weight: 500;
+            color: var(--color-background-primary-contrast);
+        }
+
+        small {
+            color: var(--color-opacity-primary);
+        }
+    }
+}

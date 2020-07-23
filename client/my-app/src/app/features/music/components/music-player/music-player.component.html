@@ -1,0 +1,45 @@
+<div class="mucsic-player">
+    <div class="remote">
+        <button mat-icon-button (click)="prevSong()">
+            <mat-icon>skip_previous</mat-icon>
+        </button>
+        <button mat-icon-button (click)="togglePlayPlayer()" [ngClass]="{'active': playerPlayed}">
+            <mat-icon *ngIf="playerPlayed; else playerPlayedTemp">pause</mat-icon>
+            <ng-template #playerPlayedTemp>
+                <mat-icon>play_arrow</mat-icon>
+            </ng-template>
+        </button>
+        <button mat-icon-button (click)="nextSong()">
+            <mat-icon>skip_next</mat-icon>
+        </button>
+        <button mat-icon-button (click)="resetPlayPlayerNoNewSong()">
+            <mat-icon>stop</mat-icon>
+        </button>
+        <button mat-icon-button (click)="toggleMute()">
+            <mat-icon *ngIf="player.muted; else mutedTemp">volume_off</mat-icon>
+            <ng-template #mutedTemp>
+                <mat-icon>volume_up</mat-icon>
+            </ng-template>
+        </button>
+        <button mat-icon-button [ngClass]="{'active': isActivePlayList}" (click)="onClickToggleActivePlayList()">
+            <mat-icon>queue_music</mat-icon>
+        </button>
+    </div>
+    <div class="player">
+        <div class="player__infosong">
+            <ng-container *ngIf="playerBinded;else nullPlayerTemp">
+                <h6>{{nameSongPlayer}}</h6>
+                <p *ngIf="userNameSongPlayer"><small>{{userNameSongPlayer}}</small></p>
+            </ng-container>
+            <ng-template #nullPlayerTemp>
+                <h6>Không có bài hát để phát</h6>
+            </ng-template>
+        </div>
+        <div class="player__slider ml-4">
+            <mat-slider color="accent" min="0" [max]="player.duration" step="1" [(ngModel)]="player.currentTime"
+                [disabled]="!playerBinded">
+            </mat-slider>
+        </div>
+    </div>
+    <ng-template #hostViewPlayList></ng-template>
+</div>

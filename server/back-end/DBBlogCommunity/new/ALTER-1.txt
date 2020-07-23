@@ -1,0 +1,73 @@
+ALTER TABLE USERADDRESS
+ADD LiveFrom char(4), LiveTo char(4)
+GO
+
+ALTER TABLE USERINTRO
+DROP COLUMN WorkingAt, WorkedAt, Studying, LearnedAt
+GO
+
+
+CREATE TABLE INTROWORKING
+(
+	IdWorking NVARCHAR(128) PRIMARY KEY,
+	IdUserIntro NVARCHAR(128),
+	WorkingAt NVARCHAR(500),
+	WorkFrom CHAR(4),
+	WorkTo CHAR(4),
+	IDStatusSocial tinyint
+
+	CONSTRAINT FK_USERINTRO_IdUserIntro_INTROWORKING
+	FOREIGN KEY (IdUserIntro)
+	REFERENCES dbo.USERINTRO(IdUserIntro),
+	
+	CONSTRAINT FK_STATUSSOCIAL_IdStatusSocial_INTROWORKING
+	FOREIGN KEY (IDStatusSocial)
+	REFERENCES dbo.STATUSSOCIAL(IdStatusSocial)
+
+)
+
+GO
+
+CREATE TABLE INTROSTUDY
+(
+	IdStudy NVARCHAR(128) PRIMARY KEY,
+	IdUserIntro NVARCHAR(128),
+	Studying NVARCHAR(500),
+	StudyFrom CHAR(4),
+	StudyTo CHAR(4),
+	IDStatusSocial tinyint
+
+	CONSTRAINT FK_USERINTRO_IdUserIntro_INTROSTUDY
+	FOREIGN KEY (IdUserIntro)
+	REFERENCES dbo.USERINTRO(IdUserIntro),
+
+	CONSTRAINT FK_STATUSSOCIAL_IdStatusSocial_INTROSTUDY
+	FOREIGN KEY (IDStatusSocial)
+	REFERENCES dbo.STATUSSOCIAL(IdStatusSocial)
+)
+
+GO
+
+/--------------------------------------------------------------------------------
+
+alter table USERSTORIES
+ADD TypeContent TINYINT
+/--------------------------------------------------------------------
+
+
+CREATE PROCEDURE Get_Story_Of_User @idUser nvarchar(128)
+AS
+SELECT * FROM USERSTORIES
+WHERE IdUser = @idUser AND  DATEDIFF(MI,CreatedTS,GETUTCDATE()) < 1440
+
+/--------------------------------------------------------------------
+CREATE PROCEDURE Get_Story_Of_Friends @idUserParams nvarchar(128)
+AS
+Declare @IdUser nvarchar (128)
+set @IdUser = @idUserParams
+
+select stories.*, acc.* from USERSTORIES as stories, USERINFO as acc
+where stories.IdUser = acc.IdUser AND  stories.IdUser IN (select IdUserFriend from FRIENDS as f where f.IdUser = @IdUser)
+AND DATEDIFF(MI,stories.CreatedTS,GETUTCDATE()) < 1440 
+
+

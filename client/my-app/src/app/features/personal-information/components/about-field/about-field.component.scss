@@ -1,0 +1,25 @@
+.mat-expansion-panel {
+    border-radius: 5px;
+    margin-bottom: 25px;
+
+    mat-panel-description {
+        align-items: center;
+    }
+
+    p {
+        margin: 0;
+        color: var(--color-opacity-primary);
+        mat-icon {
+            width: 40px;
+            font-size: 40px;
+            height: 40px;
+            color: var(--color-primary-500);
+        }
+    }
+
+    a {
+        text-decoration: none;
+        font-weight: 500;
+        color: var(--color-background-primary-contrast);
+    }
+}

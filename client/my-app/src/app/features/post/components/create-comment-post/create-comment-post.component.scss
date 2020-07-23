@@ -1,0 +1,16 @@
+.create-comment-post {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 50px auto;
+    margin-bottom: 10px;
+
+    &>div {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+
+        img {
+            border-radius: 50%;
+        }
+    }
+}

@@ -1,0 +1,48 @@
+<div class="dialog-story-view">
+    <div class="dialog-story-view__list scroll-bar-custom">
+        <ng-container *ngIf="(userStory$ | async).length>0">
+            <h6>Tin của bạn</h6>
+            <div class="dialog-story-view__item" [ngClass]="{'active': hasStoryUserId === null}"
+                (click)="onSelectStory()">
+                <div class="skeleton">
+                    <img appLazyLoadImage [src]="(userInfo$ | async)?.avatar" alt=""
+                        *ngIf="(userInfo$ | async)?.avatar !==null; else noAvatar">
+                    <ng-template #noAvatar>
+                        <img src="../../../../../assets/images/ava.png" alt="">
+                    </ng-template>
+                </div>
+                <div>
+                    <p>{{(userInfo$ | async)?.fullName}}</p>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="(friendStories$ | async)?.length > 0">
+            <h6 class="dialog-story-view__title" [ngClass]="{'no-space': (userStory$ | async).length==0}">Tin bạn bè
+            </h6>
+            <div class="dialog-story-view__item" *ngFor="let story of friendStories$ | async"
+                (click)="onSelectStory(story.userInfo.userId)"
+                [ngClass]="{'active': story.userInfo.userId === hasStoryUserId}">
+                <div class="skeleton">
+                    <img appLazyLoadImage [src]="story.userInfo.avatar" alt=""
+                        *ngIf="story.userInfo.avatar !==null; else noAvatar">
+                    <ng-template #noAvatar>
+                        <img src="../../../../../assets/images/ava.png" alt="">
+                    </ng-template>
+                </div>
+                <div>
+                    <p>{{story.userInfo.fullName}}</p>
+                    <p><small>{{story.newStorytime}}</small></p>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+    <div class="dialog-story-view__view">
+        <app-story-view [stories]="stories" [loading]="loading" [owned]="hasStoryUserId === null">
+        </app-story-view>
+    </div>
+    <div class="dialog-story-view__control">
+        <button mat-icon-button (click)="onNoClick()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+</div>

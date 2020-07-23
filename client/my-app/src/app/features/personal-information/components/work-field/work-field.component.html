@@ -1,0 +1,67 @@
+<mat-expansion-panel [(expanded)]="isExpanded" class="mat-about-field">
+    <mat-progress-bar mode="indeterminate" color="accent" *ngIf="loading"></mat-progress-bar>
+    <mat-expansion-panel-header collapsedHeight="85px" expandedHeight="85px">
+        <mat-panel-title>
+            <p>
+                <mat-icon>work</mat-icon>
+            </p>
+        </mat-panel-title>
+        <mat-panel-description>
+            <div>
+                <p>Làm việc tại <a href={{work.link}} target="_blank">{{work.place}}</a></p>
+                <small>{{work.from}} - {{work.to == null ? 'hiện nay' : work.to}}</small>
+            </div>
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <ng-template matExpansionPanelContent>
+        <form [formGroup]="workForm">
+            <div>
+                <mat-form-field class="mat-input-full-width" appearance="legacy">
+                    <mat-label>Làm việc tại</mat-label>
+                    <input matInput formControlName="place">
+                    <mat-error *ngIf="workForm.controls.place.errors?.required">Không được bỏ trống</mat-error>
+
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="mat-input-full-width" appearance="legacy">
+                    <mat-label>Từ: </mat-label>
+                    <input matInput formControlName="from" type="number">
+                    <mat-error *ngIf="workForm.controls.from.errors?.required">Không được bỏ trống</mat-error>
+                    <mat-error *ngIf="workForm.controls.to.errors?.min">Vui lòng nhập đúng năm</mat-error>
+                    <mat-error *ngIf="workForm.controls.to.errors?.max">Vui lòng nhập đúng năm</mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="mat-input-full-width" appearance="legacy">
+                    <mat-label>Đến: </mat-label>
+                    <input matInput formControlName="to" type="number">
+                    <mat-hint>Nếu hiện tại đang làm việc thì để trống</mat-hint>
+                    <mat-error *ngIf="workForm.controls.to.errors?.min">Vui lòng nhập đúng năm</mat-error>
+                    <mat-error *ngIf="workForm.controls.to.errors?.max">Vui lòng nhập đúng năm</mat-error>
+                </mat-form-field>
+            </div>
+            <div style="margin-top: 20px">
+                <mat-slide-toggle color="primary" formControlName="public">Công khai</mat-slide-toggle>
+            </div>
+        </form>
+        <div class="form-button">
+            <button mat-mini-fab color="primary" mat-icon-button matTooltip="Sửa thông tin" matTooltipPosition="above"
+                (click)="onClickEnableForm()" *ngIf="!isEnableForm" [disabled]="loading">
+                <mat-icon>create</mat-icon>
+            </button>
+            <button mat-mini-fab color="primary" mat-icon-button matTooltip="Xác nhận" matTooltipPosition="above"
+                (click)="onClickEdit()" *ngIf="isEnableForm" [disabled]="loading">
+                <mat-icon>check</mat-icon>
+            </button>
+            <button mat-mini-fab color="primary" mat-icon-button matTooltip="Xóa thông tin" matTooltipPosition="above"
+                (click)="onClickRemove()" *ngIf="isEnableForm" [disabled]="loading">
+                <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-mini-fab color="warn" mat-icon-button matTooltip="Đóng form" matTooltipPosition="above"
+                (click)="onClickCancelForm()" *ngIf="isEnableForm" [disabled]="loading">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </ng-template>
+</mat-expansion-panel>

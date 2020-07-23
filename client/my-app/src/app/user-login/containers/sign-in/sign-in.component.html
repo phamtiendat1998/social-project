@@ -1,0 +1,70 @@
+<div class="sign-in">
+    <mat-progress-bar color="accent" mode="indeterminate" *ngIf="statusButton == 1 || statusButton == 3">
+    </mat-progress-bar>
+    <h4>Đăng nhập</h4>
+    <form [formGroup]="signInForm">
+        <mat-form-field appearance="legacy">
+            <mat-label>Email hoặc số điện thoại</mat-label>
+            <mat-error *ngIf="signInForm.controls.emailphone.errors?.required">Không được bỏ trống</mat-error>
+            <mat-error *ngIf="signInForm.controls.emailphone.errors?.rex">Không đúng định dạng</mat-error>
+            <input matInput formControlName="emailphone" (focus)="onFocusFormControl('emailphone')"
+                autocomplete="username">
+        </mat-form-field>
+        <mat-form-field appearance="legacy">
+            <mat-label>Mật khẩu</mat-label>
+            <mat-error *ngIf="signInForm.controls.password.errors?.required">Không được bỏ trống</mat-error>
+            <mat-error *ngIf="signInForm.controls.password.errors?.maxlength">Mật khẩu phải từ 6 đến 16 ký tự
+            </mat-error>
+            <mat-error *ngIf="signInForm.controls.password.errors?.minlength">Mật khẩu phải từ 6 đến 16 ký tự
+            </mat-error>
+
+            <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password"
+                (focus)="onFocusFormControl('password')" autocomplete="current-password">
+            <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hidePassword">
+                <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+        <div class="check-box-wrapper">
+            <mat-checkbox color="primary" formControlName="isKeep">Duy trì phiên đăng nhập</mat-checkbox>
+        </div>
+        <button type="button" mat-flat-button color="primary" (click)='onClickMain()' [disabled]="statusButton == 1"
+            *ngIf="statusButton == 0 || statusButton == 1 || statusButton == 4">
+            <span *ngIf="statusButton !== 4;else icon">{{textButton}}</span>
+            <ng-template #icon>
+                <mat-icon>check_circle</mat-icon>
+            </ng-template>
+        </button>
+    </form>
+    <div class="verify" *ngIf="statusButton == 2 || statusButton == 3 || statusButton == 5">
+        <p>* Tài khoản chưa kích hoạt, mã OTP đã được gửi vào email của bạn</p>
+        <p>* Vui lòng nhập mã OTP</p>
+        <div>
+            <form [formGroup]="verifyForm">
+                <input formControlName="number1" #verifyInput1 class="verify__input" type="n" maxLength="1" size="1"
+                    (keypress)="verifyInput2.focus()" (click)="verifyInput1.value = ''">
+                <input formControlName="number2" #verifyInput2 class="verify__input" type="text" maxLength="1" size="1"
+                    (keypress)="verifyInput3.focus()" (click)="verifyInput2.value = ''">
+                <input formControlName="number3" #verifyInput3 class="verify__input" type="text" maxLength="1" size="1"
+                    (keypress)="verifyInput4.focus()" (click)="verifyInput3.value = ''">
+                <input formControlName="number4" #verifyInput4 class="verify__input" type="text" maxLength="1" size="1"
+                    (keypress)="verifyInput5.focus()" (click)="verifyInput4.value = ''">
+                <input formControlName="number5" #verifyInput5 class="verify__input" type="text" maxLength="1" size="1"
+                    (keypress)="verifyInput6.focus()" (click)="verifyInput5.value = ''">
+                <input formControlName="number6" #verifyInput6 class="verify__input" type="text" maxLength="1" size="1"
+                    (click)="verifyInput6.value = ''">
+            </form>
+            <button type="button" mat-flat-button color="primary" class="verify__button sign-in-button"
+                (click)='onClickVerify()' [disabled]="statusButton == 3">
+                <span *ngIf="statusButton !== 5;else icon">{{textButton}}</span>
+                <ng-template #icon>
+                    <mat-icon>check_circle</mat-icon>
+                </ng-template>
+            </button>
+        </div>
+    </div>
+    <div class="link-box">
+        <p>Chưa có tài khoản ? <a routerLink="/welcome/acc/sign-up">Đăng kí</a></p>
+        <a routerLink="/welcome/acc/forgot-password">Quên mật khẩu ?</a>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="dialog-seen-users-story">
+    <ng-container *ngIf="seenUsers$ | async as seenUsers;else skeleton">
+        <div class="dialog-seen-users-story__item" *ngFor="let seenUser of seenUsers">
+            <div>
+                <img appLazyLoadImage [src]="seenUser.avatar" alt="" *ngIf="seenUser.avatar !==null; else noAvatar">
+                <ng-template #noAvatar>
+                    <img src="../../../../../assets/images/ava.png" alt="">
+                </ng-template>
+                <h6>{{seenUser.fullName}}</h6>
+            </div>
+            <button mat-icon-button color="accent">
+                <mat-icon>visibility</mat-icon>
+            </button>
+        </div>
+    </ng-container>
+    <ng-template #skeleton>
+        <div class="dialog-seen-users-story__item skeleton">
+        </div>
+        <div class="dialog-seen-users-story__item skeleton">
+        </div>
+        <div class="dialog-seen-users-story__item skeleton">
+        </div>
+        <div class="dialog-seen-users-story__item skeleton">
+        </div>
+    </ng-template>
+</div>

@@ -1,0 +1,35 @@
+<div class="profile container">
+    <div class="tab">
+        <div class="tab__cover skeleton">
+            <img [src]="cover" alt="avatar" *ngIf="cover$ | async as cover; else noCover">
+            <ng-template #noCover>
+                <img src="../../../../../assets/images/cover.png" alt="">
+            </ng-template>
+        </div>
+        <div class="tab__avatar skeleton">
+            <img [src]="avatar" alt="avatar" *ngIf="(userInfo$ | async)?.avatar as avatar; else noAvatar">
+            <ng-template #noAvatar>
+                <img src="../../../../../assets/images/ava.png" alt="">
+            </ng-template>
+        </div>
+        <h4 class="tab__name">{{(userInfo$ | async)?.fullName}}</h4>
+        <div class="tab__link">
+            <button mat-button class="tab__item" [routerLink]="['./timeline']" routerLinkActive="active">
+                <p>Dòng thời gian</p>
+            </button>
+            <button mat-button class="tab__item" [routerLink]="['./about']" routerLinkActive="active">
+                <p>Giới thiệu</p>
+            </button>
+            <button mat-button class="tab__item" [routerLink]="['./friend']" routerLinkActive="active">
+                <p>Bạn bè</p>
+            </button>
+            <button mat-button class="tab__item" [routerLink]="['./photo']" routerLinkActive="active">
+                <p>Ảnh</p>
+            </button>
+            <button mat-button class="tab__item" [routerLink]="['./video']" routerLinkActive="active">
+                <p>Video</p>
+            </button>
+        </div>
+    </div>
+    <router-outlet></router-outlet>
+</div>

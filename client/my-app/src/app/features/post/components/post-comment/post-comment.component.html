@@ -1,0 +1,74 @@
+<div class="post-comment" *ngIf="comment$ | async as comment">
+    <div class="post-comment__item">
+        <div class="post-comment__avatar">
+            <img [src]="comment.userInfo.avatar" alt="avatar" *ngIf="comment.userInfo.avatar; else noAvatar">
+            <ng-template #noAvatar>
+                <img src="../../../../../assets/images/ava.png" alt="">
+            </ng-template>
+        </div>
+        <div class="post-comment__content">
+            <div class="post-comment__cmt" *ngIf="!isUpdateComment; else updateCommentTemp">
+                <a [routerLink]="['/home/personal/profile',comment.userInfo.userId]">{{comment.userInfo.fullName}}</a>
+                <p>{{comment.content}}</p>
+                <div class="post-comment__quantity-like"
+                    *ngIf="(quantityInteractiveComment$ | async)?.quantityLike!==0">
+                    <mat-icon>thumb_up</mat-icon>
+                    <p><small>{{(quantityInteractiveComment$ | async)?.quantityLike}}</small></p>
+                </div>
+                <button class="post-comment__menu" color="accent" mat-icon-button [matMenuTriggerFor]="menu"
+                    *ngIf="(userId$ | async) === comment.userInfo.userId">
+                    <mat-icon>more_horiz</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="onUpdateComment()">
+                        <mat-icon>edit</mat-icon>
+                        <span>Chỉnh sửa</span>
+                    </button>
+                    <button mat-menu-item (click)="onClickOpenDialogDeleteComment()">
+                        <mat-icon>delete</mat-icon>
+                        <span>Xóa</span>
+                    </button>
+                </mat-menu>
+            </div>
+            <ng-template #updateCommentTemp>
+                <div class="post-comment__update-cmt">
+                    <app-update-comment-post [commentId]="commentId" [content]="comment.content"
+                        (escEvent)="onCloseUpdateComment()">
+                    </app-update-comment-post>
+                </div>
+            </ng-template>
+            <div class="post-comment__feature" *ngIf="!isUpdateComment">
+                <p (click)="onClickLikeComment()">
+                    <small *ngIf="comment.liked;else liked">Đã thích</small>
+                    <ng-template #liked>
+                        <small>Thích</small>
+                    </ng-template>
+                </p>
+                <div class="dot"></div>
+                <p (click)="onClickOpenReply()"><small>Trả lời</small></p>
+                <div class="dot"></div>
+                <span><small>{{comment.time}}</small></span>
+            </div>
+            <div class="post-comment__input" *ngIf="isOpenReply">
+                <app-create-comment-post [commentId]="comment.id" [commentlv2]="true"
+                    [userName]="comment.userInfo.fullName">
+                </app-create-comment-post>
+            </div>
+            <div class="post-comment__reply">
+                <ng-container *ngIf="!loadingReplyComment;else skeletonReplyPostComment">
+                    <app-reply-comment-post *ngFor="let commentReplyId of commentReplyIds$ | async"
+                        [replyCommentId]="commentReplyId">
+                    </app-reply-comment-post>
+                </ng-container>
+                <ng-template #skeletonReplyPostComment>
+                    <app-skeleton-post-comment [isReplyComment]="true"></app-skeleton-post-comment>
+                </ng-template>
+            </div>
+            <div class="post-comment__quantity-reply" *ngIf="comment.quantityReplyComment > 0 && !isOpenReplyComments"
+                (click)="onClickOpenReplyComments()">
+                <mat-icon>subdirectory_arrow_right</mat-icon>
+                <p>{{(quantityInteractiveComment$ | async)?.quantityReplyComment}} phản hồi</p>
+            </div>
+        </div>
+    </div>
+</div>

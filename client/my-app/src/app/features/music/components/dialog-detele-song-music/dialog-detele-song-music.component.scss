@@ -1,0 +1,11 @@
+.dialog-detele-song-music {
+    padding: 40px;
+    position: relative;
+
+    mat-progress-bar {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        left: 0;
+    }
+}

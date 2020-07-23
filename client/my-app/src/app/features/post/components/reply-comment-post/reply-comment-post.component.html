@@ -1,0 +1,39 @@
+<div class="reply-comment-post" *ngIf="replyComment$ | async as replyComment">
+    <div class="reply-comment-post__avatar">
+        <img [src]="replyComment.userInfo.avatar" alt="avatar" *ngIf="replyComment.userInfo.avatar; else noAvatar">
+        <ng-template #noAvatar>
+            <img src="../../../../../assets/images/ava.png" alt="">
+        </ng-template>
+    </div>
+    <div class="reply-comment-post__content">
+        <div class="reply-comment-post__cmt" *ngIf="!isUpdateReplyComment;else updateReplyCommentTemp">
+            <a
+                [routerLink]="['/home/personal/profile',replyComment.userInfo.userId]">{{replyComment.userInfo.fullName}}</a>
+            <p>{{replyComment.content}}</p>
+            <button class="reply-comment-post__menu" color="accent" mat-icon-button [matMenuTriggerFor]="menu"
+                *ngIf="(userId$ | async) === replyComment.userInfo.userId">
+                <mat-icon>more_horiz</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="onUpdateReplyComment()">
+                    <mat-icon>edit</mat-icon>
+                    <span>Chỉnh sửa</span>
+                </button>
+                <button mat-menu-item (click)="onClickOpenDialogDeleteReplyComment()">
+                    <mat-icon>delete</mat-icon>
+                    <span>Xóa</span>
+                </button>
+            </mat-menu>
+        </div>
+        <ng-template #updateReplyCommentTemp>
+            <div class="reply-comment-post__update-cmt">
+                <app-update-reply-comment-post [replyCommentId]="replyCommentId" [content]="replyComment.content"
+                    (escEvent)="onCloseUpdateReplyComment($event)">
+                </app-update-reply-comment-post>
+            </div>
+        </ng-template>
+        <div class="reply-comment-post__feature" *ngIf="!isUpdateReplyComment">
+            <span><small>{{replyComment.time}}</small></span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="play-list-box">
+    <div class="play-list-box__title">
+        <h6>Playlist</h6>
+        <button mat-icon-button (click)="onCloseBox()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div class="play-list-box__list">
+        <nav mat-tab-nav-bar>
+            <a mat-tab-link *ngFor="let playlist of playlists$ | async" (click)="onOpenTab(playlist.id)"
+                [active]="playlist.id == activePlaylistId">
+                {{playlist.name}}
+            </a>
+        </nav>
+    </div>
+    <div class="play-list-box__songs scroll-bar-custom">
+        <ng-container *ngIf="!loading;else loadingTemp">
+            <ng-container *ngIf="songs;else noSongs">
+                <app-play-list-item-music *ngFor=" let song of songs;index as i" [song]="song" [index]="i"
+                    [inPlayer]="true" [playlistId]="activePlaylistId" (songId)="play($event)">
+                </app-play-list-item-music>
+            </ng-container>
+            <ng-template #noSongs>
+                <p class="null-song">Danh sách trống</p>
+            </ng-template>
+        </ng-container>
+        <ng-template #loadingTemp>
+            <app-skeleton-play-list-item-music></app-skeleton-play-list-item-music>
+        </ng-template>
+    </div>
+</div>

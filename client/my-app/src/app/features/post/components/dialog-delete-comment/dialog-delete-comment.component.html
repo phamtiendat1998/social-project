@@ -1,0 +1,11 @@
+<div class="dialog-delete-comment">
+    <mat-progress-bar mode="indeterminate" color="accent" *ngIf="loading"></mat-progress-bar>
+    <h1 mat-dialog-title>Xóa bình luận?</h1>
+    <div mat-dialog-content>
+        <p>Bạn chắc chắn muốn xóa bình luận này chứ ?</p>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button (click)="onNoClick()">Thôi</button>
+        <button mat-button color="warn" cdkFocusInitial (click)="onDeleteComment()">{{textMainBtn}}</button>
+    </div>
+</div>

@@ -1,0 +1,96 @@
+.post-container {
+    padding-top: 25px;
+    padding-bottom: 10vh;
+
+    .moment {
+        border-radius: 5px;
+        padding-left: 30px;
+        padding-right: 30px;
+        margin-top: 25px;
+        padding-bottom: 30px;
+        background-color: var(--color-background-primary);
+
+        &__title {
+            padding: 30px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            h6 {
+                margin: 0;
+            }
+
+            mat-icon {
+                margin-right: 10px;
+            }
+
+        }
+
+        &__item {
+            display: flex;
+            flex-direction: column;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 30px;
+
+            img {
+                height: 205px;
+            }
+
+            .info {
+                background-color: var(--color-background-third);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 20px;
+
+                &>div {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .avt {
+                    background-image: url('../../../../../assets/images/dat_avatar.jpg');
+                    width: 45px;
+                    height: 45px;
+                    border-radius: 50%;
+                    background-size: cover;
+                    background-position: center center;
+                    margin-right: 10px;
+                }
+
+                .name {
+                    h6{
+                        margin: 0;
+                    }
+                    .count {
+                        display: flex;
+                        color: var(--color-opacity-primary);
+
+                        mat-icon {
+                            transform: scale(.8);
+                        }
+
+                        p {
+                            margin: 0;
+                            transform: scale(.9);
+                        }
+                    }
+                }
+
+                .rank {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 30px;
+                    height: 50px;
+                    background-color: var(--color-top-music-1);
+                    mask: url('../../../../../assets/svg/icon_tag.svg');
+                    mask-repeat: no-repeat;
+                }
+            }
+
+        }
+    }
+}

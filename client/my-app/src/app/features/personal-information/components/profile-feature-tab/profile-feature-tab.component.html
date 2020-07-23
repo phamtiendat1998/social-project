@@ -1,0 +1,56 @@
+<div class="profile-feature-tab">
+    <ng-container *ngIf="isFriend;else nonFriend">
+        <button mat-flat-button [matMenuTriggerFor]="friendMenu">
+            <mat-icon>how_to_reg</mat-icon>
+            <p>Bạn bè</p>
+        </button>
+    </ng-container>
+    <ng-template #nonFriend>
+        <button mat-flat-button (click)="sentRequestFriend()">
+            <mat-icon>person_add</mat-icon>
+            <p>Kết bạn</p>
+        </button>
+    </ng-template>
+    <ng-container *ngIf="isFollow;else nonFollow">
+        <button mat-flat-button [matMenuTriggerFor]="followMenu">
+            <mat-icon>rss_feed</mat-icon>
+            <p>Đã theo dõi</p>
+        </button>
+    </ng-container>
+    <ng-template #nonFollow>
+        <button mat-flat-button (click)="sentFollow()">
+            <mat-icon>rss_feed</mat-icon>
+            <p>Theo dõi</p>
+        </button>
+    </ng-template>
+    <button mat-flat-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_horiz</mat-icon>
+        <p>Tùy chọn</p>
+    </button>
+    <button mat-flat-button>
+        <mat-icon>chat_bubble</mat-icon>
+        <p>Nhắn tin</p>
+    </button>
+</div>
+<mat-menu #menu="matMenu">
+    <button mat-menu-item>
+        <mat-icon color="primary">warning</mat-icon>
+        <span>Báo cáo vi phạm</span>
+    </button>
+    <button mat-menu-item>
+        <mat-icon color="primary">block</mat-icon>
+        <span>Chặn người này</span>
+    </button>
+</mat-menu>
+<mat-menu #friendMenu="matMenu">
+    <button mat-menu-item (click)="removeFriend()">
+        <mat-icon color="primary">close</mat-icon>
+        <span>Hủy kết bạn</span>
+    </button>
+</mat-menu>
+<mat-menu #followMenu="matMenu">
+    <button mat-menu-item (click)="removeFollow()">
+        <mat-icon color="primary">close</mat-icon>
+        <span>Hủy theo dõi</span>
+    </button>
+</mat-menu>

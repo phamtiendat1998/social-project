@@ -1,0 +1,45 @@
+.mucsic-player {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    position: relative;
+
+    .remote {
+        height: 100%;
+
+        button {
+            height: 100%;
+            border-radius: unset;
+            color: var(--color-primary-contrast-500);
+
+            &:focus {
+                outline: none;
+            }
+
+            &.active {
+                background-color: var(--color-active-primary);
+            }
+        }
+    }
+
+    .player {
+        height: 100%;
+        color: var(--color-primary-contrast-500);
+        display: flex;
+        align-items: center;
+        margin-left: 20px;
+
+        mat-slider {
+            width: 300px;
+        }
+
+        &__infosong {
+            width: 300px;
+
+            h6,
+            p {
+                margin-bottom: 0;
+            }
+        }
+    }
+}

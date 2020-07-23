@@ -1,0 +1,30 @@
+<div class="play-list-item-music" [ngClass]="{'active': played$ | async,'inPlayer': inPlayer}">
+    <div>
+        <div class="play-list-item-music__image">
+            <ng-container *ngIf="song.cover === null;else coverTemp">
+                <img src="../../../../../assets/images/music-wallpaper.jpg" alt="cover">
+            </ng-container>
+            <ng-template #coverTemp>
+                <img appLazyLoadImage [src]="song.cover" alt="cover">
+            </ng-template>
+            <div class="play-list-item-music__dish"></div>
+        </div>
+        <div class="play-list-item-music__info">
+            <p>{{song.name}}</p>
+            <p *ngIf="song.userInfo; else ownSong"><small>{{song.userInfo.fullName}}</small></p>
+            <ng-template #ownSong>
+                <p><small>{{userFullname$ | async}}</small></p>
+            </ng-template>
+        </div>
+    </div>
+    <div class="play-list-item-music__button">
+        <p><small>{{song.time}}</small></p>
+        <button mat-icon-button color="accent" matTooltip="Nghe" matTooltipPosition="above" (click)="play()">
+            <mat-icon>play_arrow</mat-icon>
+        </button>
+        <button mat-icon-button color="accent" matTooltip="Xóa bài hát ra khỏi playlist" matTooltipPosition="above"
+            (click)="delete()" *ngIf="!inPlayer">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+</div>

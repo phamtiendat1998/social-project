@@ -1,0 +1,43 @@
+.play-list-box {
+    width: 500px;
+    position: absolute;
+
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 100%;
+    background-color: var(--color-primary-600);
+    z-index: -1;
+    color: var(--color-primary-contrast-600);
+    box-shadow: var(--box-shadow-1);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+
+    &__title {
+        padding-top: 15px;
+        padding-left: 10px;
+        display: flex;
+        justify-content: space-between;
+
+        a {
+            color: var(--color-opacity-primary);
+        }
+    }
+
+    &__list {
+        margin: 0 10px;
+
+        a {
+            color: white;
+        }
+    }
+
+    &__songs {
+        height: 500px;
+        overflow-y: auto;
+        margin: 0 10px;
+
+        .null-song {
+            margin: 20px 0;
+        }
+    }
+}

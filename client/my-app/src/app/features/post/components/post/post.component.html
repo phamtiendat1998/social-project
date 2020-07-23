@@ -1,0 +1,155 @@
+<div class="post">
+    <!-- <ng-container *ngIf="post.Shares !== null">
+        <div class="post__share" *ngFor="let share of post.Shares">
+            <div>
+                <div class="post__avatar" [ngStyle]="{'background-image': 'url('+ share.SharedUser.avatar +')'}"></div>
+                <div class="post__name">
+                    <div class="name">
+                        <a>
+                            {{share.SharedUser.getFullName}}
+                        </a>
+                        <span>đã chia sẻ bài viết này</span>
+                    </div>
+                    <div class="time">
+                        <p>
+                            <small>{{share.getTime}}</small>
+                        </p>
+                        <mat-icon *ngIf="post.Privace === 'public'">public</mat-icon>
+                        <mat-icon *ngIf="post.Privace === 'private'">lock</mat-icon>
+                    </div>
+                </div>
+                <button mat-icon-button class="post__menu" [matMenuTriggerFor]="menuOption">
+                    <mat-icon>more_horiz</mat-icon>
+                </button>
+            </div>
+            <div>
+                <p>{{share.Content}}</p>
+            </div>
+        </div>
+    </ng-container> -->
+    <div class="post__creator">
+        <div class="post__avatar">
+            <img appLazyLoadImage [src]="post.userInfo.avatar" alt="avatar" *ngIf="post.userInfo.avatar; else noAva">
+            <ng-template #noAva>
+                <img src="../../../../../assets/images/ava.png" alt="">
+            </ng-template>
+        </div>
+        <div class="post__name">
+            <div class="name">
+                <a [routerLink]="['/home/personal/profile',post.userInfo.userId]">
+                    {{post.userInfo.fullName}}
+                </a>
+            </div>
+            <div class="time">
+                <p>
+                    <small>{{post.time}}</small>
+                </p>
+                <mat-icon *ngIf="post.privacy === 'public';else private">public</mat-icon>
+                <ng-template #private>
+                    <mat-icon>lock</mat-icon>
+                </ng-template>
+            </div>
+        </div>
+        <button mat-icon-button class="post__menu" [matMenuTriggerFor]="menuOption">
+            <mat-icon>more_horiz</mat-icon>
+        </button>
+        <mat-menu #menuOption="matMenu">
+            <ng-template matMenuContent>
+                <button mat-menu-item (click)="onClickOpenSheetSavePost()">
+                    <mat-icon color='primary'>bookmark</mat-icon>
+                    <span>Lưu bài viết</span>
+                </button>
+                <mat-divider></mat-divider>
+                <button mat-menu-item *ngIf="post.isOwn" (click)="onClickOpenDialogCreatePost()">
+                    <mat-icon color='primary'>create</mat-icon>
+                    <span>Chỉnh sửa bài viết</span>
+                </button>
+                <button mat-menu-item *ngIf="post.isOwn" (click)="onClickOpenDialogDeletePost()">
+                    <mat-icon color='primary'>delete_forever</mat-icon>
+                    <span>Xóa bài viết</span>
+                </button>
+                <button mat-menu-item *ngIf="!post.isOwn">
+                    <mat-icon color='primary'>visibility_off</mat-icon>
+                    <span>Ẩn khỏi dòng thời gian</span>
+                </button>
+                <button mat-menu-item *ngIf="!post.isOwn" (click)="onClickOpenSheetReportPost()">
+                    <mat-icon color='primary'>report_problem</mat-icon>
+                    <span>Báo cáo</span>
+                </button>
+            </ng-template>
+        </mat-menu>
+    </div>
+    <div class="post__content">
+        <p>{{post.content}}</p>
+    </div>
+    <div class="post__media">
+        <div class=" media__item skeleton" *ngFor="let media of post.fourMedias;index as i"
+            [ngClass]="{'media__item--video': media.type === 'video'}" (click)="onClickOpenDialogPostView(i)">
+            <img appLazyLoadImage *ngIf="media.type === 'image'" [src]="media.url">
+            <video *ngIf="media.type === 'video'">
+                <source appLazyLoadImage [src]="media.url" type="video/mp4">
+            </video>
+            <button *ngIf="media.type === 'video'" mat-mini-fab class="time" color="primary">
+                <mat-icon>play_arrow</mat-icon>
+            </button>
+        </div>
+        <div class="media__plus" *ngIf="post.medias?.length > 4" (click)="onClickOpenDialogPostView(4)">
+            <h6>+<span>{{post.medias.length - 4}}</span></h6>
+        </div>
+    </div>
+    <div class="post__interactive-box" [ngClass]="{'active': isOpenComment}">
+        <div class="post__feature">
+            <button mat-icon-button *ngIf="!(quantityInteractivePost$ | async)?.liked;else dislikeTemp"
+                (click)="onClickLikePost()">
+                <mat-icon>thumb_up</mat-icon>
+            </button>
+            <ng-template #dislikeTemp>
+                <button class="active" mat-icon-button (click)="onClickDislikePost()">
+                    <mat-icon>thumb_up</mat-icon>
+                </button>
+            </ng-template>
+            <h6 class="post__quantity-like" (click)="onClickOpenDialogLikedUser()">
+                <small>{{(quantityInteractivePost$ | async)?.quantityLike | quantity}}</small></h6>
+        </div>
+        <div class="post__feature">
+            <button mat-icon-button [ngClass]="{'active': isOpenComment}" (click)="onClickOpenComment()">
+                <mat-icon>comment</mat-icon>
+            </button>
+            <h6><small>{{(quantityInteractivePost$ | async)?.quantityComment | quantity}}</small></h6>
+        </div>
+        <div class="post__feature">
+            <button mat-icon-button [matMenuTriggerFor]="menuShare">
+                <mat-icon>share</mat-icon>
+            </button>
+            <mat-menu #menuShare="matMenu">
+                <ng-template matMenuContent>
+                    <button mat-menu-item>
+                        <mat-icon color="primary">create</mat-icon>
+                        <span>Chia sẻ ngay</span>
+                    </button>
+                    <button mat-menu-item (click)="onClickOpenDialogSharePost()">
+                        <mat-icon color="primary">delete_forever</mat-icon>
+                        <span>Viết bài</span>
+                    </button>
+                </ng-template>
+            </mat-menu>
+            <h6><small>{{(quantityInteractivePost$ | async)?.quantityShare | quantity}}</small></h6>
+        </div>
+    </div>
+    <div class="post__input" *ngIf="isOpenComment">
+        <app-create-comment-post [postId]="post.id" [commentlv1]="true" (addEvent)="onAddComment($event)">
+        </app-create-comment-post>
+    </div>
+    <div class="post__comment" *ngIf="isOpenComment">
+        <ng-container *ngIf="!loadingComment;else skeletonPostComment">
+            <app-post-comment *ngFor="let commentId of commentIds$ | async" [commentId]="commentId"></app-post-comment>
+        </ng-container>
+        <ng-template #skeletonPostComment>
+            <app-skeleton-post-comment></app-skeleton-post-comment>
+            <app-skeleton-post-comment></app-skeleton-post-comment>
+        </ng-template>
+    </div>
+    <div class="post__more" *ngIf="isOpenComment && headerComments?.NextPage" (click)="onClickGetMoreComment()">
+        <p>Xem thêm bình luận</p>
+    </div>
+</div>

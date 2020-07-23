@@ -1,0 +1,59 @@
+<div class="account-setting row">
+    <div class="col-6">
+        <mat-accordion>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Bảo mật
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-slide-toggle color="primary">Bảo mật 2 lớp</mat-slide-toggle>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+    <div class="col-6">
+        <mat-accordion>
+            <mat-expansion-panel>   
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Đổi mật khẩu
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div>
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Mật khẩu hiện tại</mat-label>
+                        <input matInput [type]="hidePassword ? 'password' : 'text'" autocomplete="current-password">
+                        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword"
+                            [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Mật khẩu mới</mat-label>
+                        <input matInput [type]="hidePassword ? 'password' : 'text'" autocomplete="current-password">
+                        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword"
+                            [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Nhập lại mật khẩu mới</mat-label>
+                        <input matInput [type]="hidePassword ? 'password' : 'text'" autocomplete="current-password">
+                        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword"
+                            [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <button mat-button color="warn">Hủy</button>
+                    <button mat-button color="primary">Xác nhận</button>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+</div>

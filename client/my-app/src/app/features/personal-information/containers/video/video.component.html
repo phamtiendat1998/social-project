@@ -1,0 +1,11 @@
+<div class="video">
+    <div class="">
+        <button mat-button [routerLink]="['/home/personal/user/video/all']" routerLinkActive="active">Tất cả video <small>(1500)</small></button>
+        <button mat-button [routerLink]="['/home/personal/user/video/album']" routerLinkActive="active">Album <small>(2)</small></button>
+    </div>
+    <div class="">
+        <button mat-button (click)="onClickOpenDialogUpVideo()">Thêm video</button>
+        <button mat-button (click)="onClickOpenDialogUpAlbum()">Thêm album</button>
+    </div>
+</div>
+<router-outlet></router-outlet>

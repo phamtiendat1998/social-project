@@ -1,0 +1,188 @@
+// .play-list-item-music {
+//     width: 100%;
+//     height: 65px;
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     padding: 10px 10px;
+//     border-radius: 5px;
+//     transition: all 0.2s;
+//     margin: 10px 0;
+//     cursor: pointer;
+
+//     &:hover {
+//         background-color: var(--color-active-primary);
+//     }
+
+//     &>div {
+//         display: flex;
+//         justify-content: space-between;
+//         align-items: center;
+//     }
+
+//     p {
+//         margin: 0;
+//     }
+
+//     img {
+//         width: 50px;
+//         height: 50px;
+//         border-radius: 50%;
+
+//         &.no-cover {
+//             background-color: var(--color-background-third);
+//         }
+//     }
+
+//     .info {
+//         margin-left: 20px;
+//     }
+
+//     button {
+//         margin-left: 10px;
+
+//         &:focus {
+//             outline: none;
+//         }
+//     }
+
+//     &.active {
+//         background-color: var(--color-active-primary);
+
+//         img {
+//             animation: spin 10s linear infinite;
+//         }
+
+//         @keyframes spin {
+//             0% {
+//                 transform: rotate(0deg);
+//             }
+
+//             100% {
+//                 transform: rotate(360deg);
+//             }
+//         }
+//     }
+// }
+
+.play-list-item-music {
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+
+    &.inPlayer {
+        height: 70px;
+        height: 65px;
+        padding: 10px;
+        border-radius: 5px;
+        transition: all 0.2s;
+        margin: 10px 0;
+        cursor: pointer;
+
+        &:hover,
+        &.active {
+            background-color: var(--color-active-primary);
+        }
+
+        p,
+        small,
+        button {
+            color: var(--color-primary-contrast-600);
+        }
+
+    }
+
+    &:not(.inPlayer) {
+        padding: 30px;
+        margin-bottom: 2px;
+        padding-right: 8px;
+        background-color: var(--color-background-primary);
+        color: var(--color-background-contrast-primary);
+        height: 110px;
+
+        p {
+            color: var(--color-background-primary-contrast);
+        }
+
+        small {
+            color: var(--color-opacity-primary);
+        }
+    }
+
+    &.active {
+
+        img {
+            animation: spin 10s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    }
+
+    &>div {
+        display: flex;
+        align-items: center;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    h6 {
+        margin-bottom: 0;
+        margin-right: 10px;
+    }
+
+    &__button {
+        &>* {
+            margin-left: 10px;
+        }
+
+        p {
+            color: var(--color-opacity-primary);
+        }
+    }
+
+    &__image {
+        width: 50px;
+        height: 50px;
+        position: relative;
+        border-radius: 50%;
+        overflow: hidden;
+
+        &.no-cover {
+            background-color: var(--color-background-third);
+        }
+    }
+
+    &__dish {
+        width: 15px;
+        height: 15px;
+        border-radius: 50px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: var(--color-background-primary);
+    }
+
+    &__info {
+        padding-left: 15px;
+
+        p {
+            margin: 0;
+        }
+
+        p:first-child {
+            font-weight: 500;
+        }
+
+    }
+}

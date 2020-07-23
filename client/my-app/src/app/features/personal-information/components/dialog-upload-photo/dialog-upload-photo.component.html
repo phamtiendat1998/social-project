@@ -1,0 +1,26 @@
+<div class="dialog-upload-photo">
+    <div class="file">
+        <div class="file__container"
+            [ngClass]="{'file__container--4x': filePreview.length>3,'file__container--3x': filePreview.length===3,'file__container--2x': filePreview.length===2,'file__container--1x': filePreview.length===1}">
+            <div class="file__item" *ngFor="let file of filePreview; index as i"
+                [ngClass]="{'file__item--4x': filePreview.length>3,'file__item--3x': filePreview.length===3,'file__item--2x': filePreview.length===2,'file__item--1x': filePreview.length===1}">
+                <img *ngIf="file.format==='image'" [src]="file.src" alt="">
+                <video *ngIf="file.format==='video'" [src]="file.src" controls></video>
+                <button mat-icon-button (click)="deleteFilePreview(i)" [disabled]="isWaitingUploadPhoto">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div class="file__add" appDragAndDropImg (fileDropped)="previewPicture($event)"
+            [ngClass]="{'disable': isWaitingUploadPhoto}">
+            <button mat-stroked-button color="primary" (click)="fileInput.click()">
+                <mat-icon>publish</mat-icon>
+            </button>
+            <span>Chọn hoặc kéo thả ảnh vào đây</span>
+        </div>
+        <input #fileInput multiple type="file" class="file__input" (change)="onChangePictureInput($event)">
+    </div>
+    <div class="feature" *ngIf="filePreview.length>0">
+        <button mat-button cdkFocusInitial>Đồng ý</button>
+    </div>
+</div>

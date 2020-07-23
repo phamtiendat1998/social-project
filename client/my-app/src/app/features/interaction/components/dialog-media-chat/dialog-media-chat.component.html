@@ -1,0 +1,31 @@
+<div class="dialog-media-chat">
+    <div class="dialog-media-chat__media">
+        <img *ngIf="mediaShown.Type === 'image';else video" [src]="mediaShown.Url" alt="Ảnh">
+        <ng-template #video>
+            <video controls autoplay>
+                <source [src]="mediaShown.Url" type="video/mp4">
+            </video>
+        </ng-template>
+        <button mat-mini-fab class="dialog-media-chat__control dialog-media-chat__control--btn-left"
+            *ngIf="mediaIndex!==0 && medias.length>1" (click)="onClickPrevMedia()">
+            <mat-icon>navigate_before</mat-icon>
+        </button>
+        <button mat-mini-fab class="dialog-media-chat__control dialog-media-chat__control--btn-right"
+            *ngIf="medias.length>1 && mediaIndex+1!==medias.length" (click)="onClickNextMedia()">
+            <mat-icon>navigate_next</mat-icon>
+        </button>
+    </div>
+    <div class="dialog-media-chat__image">
+        <div class="dialog-media-chat__title">
+            <h6>Kho ảnh/video</h6>
+            <button class="dialog-media-chat__menu" mat-icon-button (click)="onClickCloseDialog()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+        <div class="dialog-media-chat__list  scroll-bar-custom">
+            <div class="dialog-media-chat__item" *ngFor="let media of medias">
+                <img [src]="media.Url" alt="">
+            </div>
+        </div>
+    </div>
+</div>

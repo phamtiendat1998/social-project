@@ -1,0 +1,32 @@
+<div class="user-song-music">
+    <div class="user-song-music__feature">
+        <h5>Nhạc của bạn</h5>
+        <div class="user-song-music__search">
+            <mat-icon>search</mat-icon>
+            <input placeholder="Tìm kiếm bài hát">
+        </div>
+    </div>
+    <button mat-icon-button color="primary" (click)="openDialogUploadSong()" matTooltip="Upload bài hát mới"
+        matTooltipPosition="right">
+        <mat-icon>add</mat-icon>
+    </button>
+    <div class="user-song-music__list">
+        <ng-container *ngIf="userSongs$ | async as userSongs; else skeleton">
+            <ng-container *ngIf="userSongs.length > 0; else noSongs">
+                <app-song-item-music *ngFor="let userSong of userSongs$ | async" [song]="userSong" [own]="true"
+                    (deleteSongId)="openDialogDeleteSong($event)">
+                </app-song-item-music>
+            </ng-container>
+            <ng-template #noSongs>
+                <p>Không có bài hát nào.</p>
+            </ng-template>
+        </ng-container>
+        <ng-template #skeleton>
+            <app-skeleton-song-music></app-skeleton-song-music>
+            <app-skeleton-song-music></app-skeleton-song-music>
+            <app-skeleton-song-music></app-skeleton-song-music>
+            <app-skeleton-song-music></app-skeleton-song-music>
+            <app-skeleton-song-music></app-skeleton-song-music>
+        </ng-template>
+    </div>
+</div>

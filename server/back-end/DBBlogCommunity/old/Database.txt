@@ -1,0 +1,729 @@
+CREATE DATABASE Blog_Community
+GO
+
+USE Blog_Community
+GO
+
+CREATE TABLE [dbo].[USERACCOUNT](
+	[IdUser] [nvarchar](128)  PRIMARY KEY,
+	[Username] [nvarchar](50) NOT NULL,
+	[PasswordHash] [nvarchar](max) NOT NULL,
+	[PasswordSalt] [nvarchar](max) NOT NULL,
+	[DateOfBirth] [date] NULL,
+	[LastUpdatedTS] [datetime] NULL,
+	[CreatedTS] [datetime] NOT NULL,
+	[StatusAccount] [tinyint] NULL,
+	[Email] [nvarchar](256) NULL,
+	[EmailConfirmed] [bit] NULL,
+	[PhoneNumber] [varchar](50) NULL,
+	[PhoneNumberConfirmed] [bit] NULL,
+	[TwoFactorEnabled] [bit] NULL,
+	[AccessFailedCount] [int] NULL,
+)
+
+GO
+
+CREATE TABLE [dbo].[USERTOKEN](
+	[IdToken]  [nvarchar](128) PRIMARY KEY,
+	[IdUser] [nvarchar](128) NOT NULL,
+	[ContentToken] [nvarchar](max) NOT NULL,
+	[CreatedTS] [datetime] NULL,
+
+	CONSTRAINT FK_USERTOKEN_IdUser_USERACCOUNT 
+	FOREIGN KEY (IdUser)
+	REFERENCES dbo.USERACCOUNT(IdUser)
+)
+
+GO
+
+
+CREATE TABLE [dbo].[USERADDRESS](
+	[IdUserAddress]  [nvarchar](128) PRIMARY KEY,
+	[IdUser] [nvarchar](128) NOT NULL,
+	[City] [nvarchar](50) NULL,
+	[Province] [nvarchar](50) NULL,
+	[DetailAddress] [nvarchar](max) NULL,
+	[Country] [nvarchar](50) NULL,
+
+	CONSTRAINT FK_USERADDRESS_IdUser_USERACCOUNT 
+	FOREIGN KEY (IdUser)
+	REFERENCES dbo.USERACCOUNT(IdUser)
+)
+
+GO
+
+CREATE TABLE [dbo].[USERCONTACT](
+	[IdUserContact] [nvarchar](128) PRIMARY KEY,
+	[IdUser] [nvarchar](128) NOT NULL,
+	[PhoneNumber] [varchar](max) NULL,
+	[Email] [nvarchar](max) NULL,
+
+	CONSTRAINT FK_USERCONTACT_IdUser_USERACCOUNT 
+	FOREIGN KEY (IdUser)
+	REFERENCES dbo.USERACCOUNT(IdUser)
+)
+
+GO
+
+CREATE TABLE [dbo].[USERINFO](
+	[IdInfo] [nvarchar](128) PRIMARY KEY,
+	[IdUser] [nvarchar](128) NOT NULL,
+	[FirstName] [nvarchar](100) NOT NULL,
+	[LastName] [nvarchar](100) NOT NULL,
+	[Gender] [bit] NULL,
+	[DateOfBirth] [date] NULL,
+	[LastUpdatedTS] [datetime] NULL,
+	[CreatedTS] [datetime] NOT NULL,
+
+	CONSTRAINT FK_USERINFO_IdUser_USERACCOUNT 
+	FOREIGN KEY (IdUser)
+	REFERENCES dbo.USERACCOUNT(IdUser)
+)
+
+GO
+
+CREATE TABLE [dbo].[USERRELATIONSHIP]
+(
+	[IdUserRelationship]  [nvarchar](128) PRIMARY KEY,
+	[IdInfo] [nvarchar](128) NOT NULL,
+	[StatusRelationship] [TINYINT],
+	[CreatedDate] [DATE],
+
+	CONSTRAINT FK_USERRELATIONSHIP_IdInfo_USERINFO 
+	FOREIGN KEY (IdInfo)
+	REFERENCES dbo.USERINFO(IdInfo)
+)
+
+GO
+
+
+CREATE TABLE [dbo].[USERINTRO](
+	[IdUserIntro]  [nvarchar](128) PRIMARY KEY,
+	[IdUser] [nvarchar](128) NOT NULL,
+	[IntroContent] [nvarchar](max) NULL,
+	[WorkingAt] [nvarchar](max) NULL,
+	[WorkedAt] [nvarchar](max) NULL,
+	[Studying] [nvarchar](max) NULL,
+	[LearnedAt] [nvarchar](max) NULL,
+	[Hobby] [nvarchar](max) NULL,
+
+	CONSTRAINT FK_USERINTRO_IdUser_USERACCOUNT 
+	FOREIGN KEY (IdUser)
+	REFERENCES dbo.USERACCOUNT(IdUser)
+)
+
+GO
+
+
+
+CREATE TABLE [dbo].[USERMEDIA](
+	[IdMedia]  [nvarchar](128) PRIMARY KEY,
+	[IdUser] [nvarchar](128) NOT NULL,
+
+	CONSTRAINT FK_USERMEDIA_IdMedia_USERACCOUNT 
+	FOREIGN KEY (IdUser)
+	REFERENCES dbo.USERACCOUNT(IdUser)
+)
+
+GO
+
+CREATE TABLE [dbo].[ALBUMIMAGES](
+	[IdAlbumImage]  [nvarchar](128) PRIMARY KEY,
+	[IdMedia]  [nvarchar](128) NOT NULL,
+	[AlbumName] [nvarchar](100) NULL,
+	[CreatedTS] [datetime] NULL,
+	[Quantity] [int] NULL,
+	[ContentAlbum] [nvarchar](100) NULL,
+	[UpdatedTS] [datetime] NULL,
+
+	CONSTRAINT FK_ALBUMIMAGES_IdMedia_USERMEDIA 
+	FOREIGN KEY (IdMedia)
+	REFERENCES dbo.USERMEDIA(IdMedia)
+)
+
+GO
+CREATE TABLE [dbo].[ALBUMMUSIC](
+	[IdAlbumMusic] [nvarchar](128) PRIMARY KEY,
+	[IdMedia] [nvarchar](128) NOT NULL,
+	[AlbumMusicName] [nvarchar](100) NULL,
+	[CreatedTS] [datetime] NULL,
+	[Quantity] [int] NULL,
+	[ContentAlbumMusic] [nvarchar](100) NULL,
+
+	CONSTRAINT FK_ALBUMMUSIC_IdMedia_USERMEDIA  
+	FOREIGN KEY (IdMedia)
+	REFERENCES dbo.USERMEDIA(IdMedia)
+)
+
+GO
+
+CREATE TABLE [dbo].[ALBUMVIDEOS](
+	[IdAlbumVideo] [nvarchar](128) PRIMARY KEY,
+	[IdMedia]  [nvarchar](128) NOT NULL,
+	[AlbumVideoName] [nvarchar](100) NULL,
+	[CreatedTS] [datetime] NULL,
+	[Quantity] [int] NULL,
+	[ContentAlbumVideo] [nvarchar](100) NULL,
+
+	CONSTRAINT FK_ALBUMVIDEOS_IdMedia_USERMEDIA  
+	FOREIGN KEY (IdMedia)
+	REFERENCES dbo.USERMEDIA(IdMedia)
+)
+GO
+
+
+
+CREATE TABLE [dbo].[VIDEOS](
+	[IdVideo] [nvarchar](128) PRIMARY KEY,
+	[IdAlbumVideo]  [nvarchar](128) NOT NULL,
+	[ContentVideo] [nvarchar](max) NULL,
+	[LinkUrl] [nvarchar](max) NULL,
+	[CreatedTS] [datetime] NULL,
+	[UpdatedTS] [datetime] NULL,
+
+	CONSTRAINT FK_VIDEOS_IdAlbumVideo_ALBUMVIDEOS  
+	FOREIGN KEY (IdAlbumVideo)
+	REFERENCES dbo.ALBUMVIDEOS(IdAlbumVideo)
+)
+
+GO
+
+CREATE TABLE [dbo].[IMAGES](
+	[IdImage] [nvarchar](128) PRIMARY KEY,
+	[IdAlbumImage] [nvarchar](128) NOT NULL,
+	[ContentImage] [nvarchar](max) NULL,
+	[LinkUrl] [nvarchar](max) NULL,
+	[CreatedTS] [datetime] NULL,
+	[UpdatedTS] [datetime] NULL,
+
+	CONSTRAINT FK_IMAGES_IdAlbumImage_ALBUMIMAGES  
+	FOREIGN KEY (IdAlbumImage)
+	REFERENCES dbo.ALBUMIMAGES(IdAlbumImage)
+)
+
+GO
+
+CREATE TABLE [dbo].[MUSICS](
+	[IdMusic] [nvarchar](128) PRIMARY KEY,
+	[IdAlbumMusic] [nvarchar](128) NOT NULL,
+	[ContentMusic] [nvarchar](max) NULL,
+	[LinkUrl] [nvarchar](max) NULL,
+	[CreatedTS] [datetime] NULL,
+	[UpdatedTS] [datetime] NULL,
+
+	CONSTRAINT FK_MUSICS_IdAlbumMusic_ALBUMMUSICS 
+	FOREIGN KEY (IdAlbumMusic)
+	REFERENCES dbo.ALBUMMUSIC(IdAlbumMusic)
+)
+
+GO
+
+CREATE TABLE CATEGORY
+(
+	IdCategory INT IDENTITY(1,1) PRIMARY KEY,
+	NameCategory NVARCHAR(100),
+	IntroCategory NVARCHAR(MAX),
+	CoverCategoryUrl NVARCHAR(MAX)
+)
+
+GO
+
+CREATE TABLE NEWFEEDPOST
+(
+	IdPost NVARCHAR(128) PRIMARY KEY,
+	IdUser NVARCHAR(128) NOT NULL,
+	IdCategory INT NOT NULL,
+	Content NVARCHAR(MAX),
+	CreatedTS DATETIME,
+	UploadedTS DATETIME,
+	Location NVARCHAR(200),
+	TimeStampSort DATETIME,
+	Images NVARCHAR(MAX),
+
+	CONSTRAINT FK_CATEGORY_IdCategory_NEWFEEDPOST 
+	FOREIGN KEY (IdCategory)
+	REFERENCES dbo.CATEGORY(IdCategory) ,
+
+	CONSTRAINT FK_USERACCOUNT_IdUser_NEWFEEDPOST 
+	FOREIGN KEY (IdUser)
+	REFERENCES dbo.USERACCOUNT(IdUser)
+
+)
+
+GO
+
+CREATE TABLE COMMENT
+(
+	IdComment NVARCHAR(128) PRIMARY KEY,
+	IdPost NVARCHAR(128) NOT NULL,
+	IdUser NVARCHAR(128) NOT NULL,
+	Content NVARCHAR(MAX),
+	CreatedTS DATETIME,
+	UpdatedTS DATETIME,
+
+	CONSTRAINT FK_COMMENT_IdPost_NEWFEEDPOST
+	FOREIGN KEY (IdPost)
+	REFERENCES dbo.NEWFEEDPOST(IdPost),
+
+	CONSTRAINT FK_COMMENT_IdPost_USERACCOUNT
+	FOREIGN KEY (IdUser)
+	REFERENCES dbo.USERACCOUNT(IdUser),
+)
+
+GO
+
+CREATE TABLE IMAGEPOST
+(
+	IdImage NVARCHAR(128) PRIMARY KEY,
+	IdPost NVARCHAR(128) NOT NULL,
+	ImagesUrl NVARCHAR(MAX),
+
+	CONSTRAINT FK_IMAGEPOST_IdPost_NEWFEEDPOST
+	FOREIGN KEY (IdPost)
+	REFERENCES dbo.NEWFEEDPOST(IdPost) 
+)
+
+GO
+
+CREATE TABLE LIKEPOST
+(
+	IdPost NVARCHAR(128),
+	IdUser NVARCHAR(128),
+	Status TINYINT,
+	PRIMARY KEY (IdPost,IdUser),
+
+	CONSTRAINT FK_UserAccount_IdUser_USERACCOUNT
+	FOREIGN KEY (IdUser)
+	REFERENCES dbo.USERACCOUNT(IdUser)
+)
+GO
+
+CREATE TABLE NOTIFYTYPE
+(
+	IdNotifyType INT IDENTITY(1,1) PRIMARY KEY,
+	Value TINYINT,
+	Discription NVARCHAR(MAX),
+)
+GO
+
+CREATE TABLE NOTIFYSETTING
+(
+	IdNotifySetting INT IDENTITY(1,1) PRIMARY KEY,
+	Name NVARCHAR(50),
+	Descriptions NVARCHAR(MAX),
+	StatusNotify TINYINT,
+)
+GO
+
+
+CREATE TABLE USERHASNOTIFY
+(
+	IdNotify NVARCHAR(128) PRIMARY KEY,
+	IdNotifyType INT,
+	SeenTime DATETIME,
+	CreatedTS DATETIME,
+	Content NVARCHAR(200),
+	IdPost NVARCHAR(128),
+	IdNotifySetting INT,
+
+	CONSTRAINT FK_USERHASNOTIFY_IdNotifyType_NOTIFY 
+	FOREIGN KEY (IdNotifyType)
+	REFERENCES dbo.NOTIFYTYPE(IdNotifyType),
+
+	CONSTRAINT FK_USERHASNOTIFY_IdPost_NEWFEEDPOST
+	FOREIGN KEY (IdPost)
+	REFERENCES dbo.NEWFEEDPOST(IdPost),
+
+	CONSTRAINT FK_USERHASNOTIFY_IdNotifySetting_NOTIFYSETTING
+	FOREIGN KEY (IdNotifySetting)
+	REFERENCES dbo.NOTIFYSETTING(IdNotifySetting)
+
+
+)
+GO
+
+
+CREATE TABLE FRIENDS
+(
+	IdUser NVARCHAR(128),
+	IdUserFriend NVARCHAR(128),
+	CreateTS DATETIME2,
+	Status TINYINT,
+
+	PRIMARY KEY(IdUser, IdUserFriend),
+
+	CONSTRAINT FK_FRIENDS_IdUser_USERACCOUNT
+	FOREIGN KEY (IdUser)
+	REFERENCES dbo.USERACCOUNT(IdUser),
+
+	CONSTRAINT FK_FRIENDS_IdUserFriend_USERACCOUNT
+	FOREIGN KEY (IdUserFriend)
+	REFERENCES dbo.USERACCOUNT(IdUser),
+
+)
+GO
+
+CREATE TABLE REQUESTFRIENDS
+(
+	IdUser NVARCHAR(128),
+	IdUserRequest NVARCHAR(128),
+	CreateTS DATETIME2
+
+	PRIMARY KEY(IdUser, IdUserRequest),
+
+	CONSTRAINT FK_REQUESTFRIENDS_IdUser_USERACCOUNT
+	FOREIGN KEY (IdUser)
+	REFERENCES dbo.USERACCOUNT(IdUser),
+
+	CONSTRAINT FK_REQUESTFRIENDS_IdUserRequest_USERACCOUNT
+	FOREIGN KEY (IdUserRequest)
+	REFERENCES dbo.USERACCOUNT(IdUser),
+)
+
+
+GO
+
+CREATE TABLE FOLLOWS
+(
+	IdUser NVARCHAR(128),
+	IdUserRequest NVARCHAR(128),
+	CreateTS DATETIME2
+
+	PRIMARY KEY(IdUser, IdUserRequest),
+
+	CONSTRAINT FK_FOLLOWS_IdUser_USERACCOUNT
+	FOREIGN KEY (IdUser)
+	REFERENCES dbo.USERACCOUNT(IdUser),
+
+	CONSTRAINT FK_FOLLOWS_IdUserRequest_USERACCOUNT
+	FOREIGN KEY (IdUserRequest)
+	REFERENCES dbo.USERACCOUNT(IdUser),
+)
+
+
+GO
+
+CREATE TABLE USERSEXCLUDE
+(
+	IdUser NVARCHAR(128),
+	IdUserExclude NVARCHAR(128),
+	Status TINYINT,
+
+	PRIMARY KEY(IdUser, IdUserExclude),
+
+	CONSTRAINT FK_USERACCOUNT_IdUser_USERSEXCLUDE 
+	FOREIGN KEY (IdUser)
+	REFERENCES dbo.USERACCOUNT(IdUser),
+
+	CONSTRAINT FK_USERACCOUNT_IdUserExclude_USERSEXCLUDE 
+	FOREIGN KEY (IdUserExclude)
+	REFERENCES dbo.USERACCOUNT(IdUser)
+)
+
+GO
+
+USE Blog_Community
+GO
+
+
+ALTER TABLE dbo.NEWFEEDPOST
+ADD Emotion TINYINT
+GO
+
+ALTER TABLE dbo.USERINFO
+ADD Avatar NVARCHAR(256)
+GO
+
+ALTER TABLE dbo.USERINFO
+ADD Cover NVARCHAR(256)
+GO
+
+ALTER TABLE dbo.ALBUMMUSIC
+ADD Cover NVARCHAR(MAX)
+GO
+
+ALTER TABLE dbo.ALBUMIMAGES 
+ADD Cover NVARCHAR(MAX)
+GO
+
+ALTER TABLE dbo.ALBUMVIDEOS
+ADD Cover NVARCHAR(MAX)
+GO
+
+ALTER TABLE dbo.ALBUMMUSIC
+ADD UpdatedTS DATETIME2
+GO
+
+
+ALTER TABLE dbo.ALBUMVIDEOS
+ADD UpdatedTS DATETIME2
+GO
+
+
+ALTER TABLE dbo.NEWFEEDPOST
+ADD SharePost NVARCHAR(128)
+GO
+
+
+CREATE TABLE REPLYCOMMENT
+(
+	IdReply NVARCHAR(128) PRIMARY KEY,
+	IdComment NVARCHAR(128),
+	IdUser NVARCHAR(128),
+	Content NVARCHAR(MAX),
+	CreatedTS DATETIME2,
+	UpdatedTS DATETIME2,
+
+	CONSTRAINT FK_COMMENT_IdUser_REPLY
+	FOREIGN KEY (IdComment)
+	REFERENCES dbo.COMMENT(IdComment),
+
+	CONSTRAINT FK_REPLY_IdUser_USERACCOUNT
+	FOREIGN KEY (IdUser)
+	REFERENCES dbo.USERACCOUNT(IdUser),
+)
+GO
+
+ALTER TABLE dbo.COMMENT
+ADD Images NVARCHAR(MAX)
+
+GO
+
+ALTER TABLE dbo.REPLYCOMMENT
+ADD Images NVARCHAR(MAX)
+
+GO
+
+ALTER TABLE dbo.MUSICS
+ADD MusicName NVARCHAR(256), 
+	Singer NVARCHAR(100)
+
+GO
+
+ALTER TABLE dbo.VIDEOS
+ADD VideoName NVARCHAR(256)
+
+GO
+
+ALTER TABLE dbo.MUSICS
+ADD Cover NVARCHAR(MAX)
+
+GO
+
+ALTER TABLE dbo.VIDEOS
+ADD Cover NVARCHAR(MAX)
+
+GO
+
+ALTER TABLE dbo.MUSICS
+ADD Time CHAR(20)
+
+GO
+
+ALTER TABLE dbo.VIDEOS
+ADD Time CHAR(20) 
+
+GO
+
+CREATE TABLE STATUSSOCIAL
+(
+	IdStatusSocial TINYINT IDENTITY(1,1) PRIMARY KEY,
+	Description VARCHAR(50)
+)
+
+GO
+
+INSERT INTO dbo.STATUSSOCIAL
+        ( Description )
+VALUES  ( 'Public'  -- Description - varchar(50)
+          )
+GO
+
+INSERT INTO dbo.STATUSSOCIAL
+        ( Description )
+VALUES  ( 'Private'  -- Description - varchar(50)
+          )
+GO
+
+
+ALTER TABLE dbo.MUSICS
+ADD Status TINYINT DEFAULT(1)
+GO
+
+ALTER TABLE dbo.VIDEOS
+ADD Status TINYINT DEFAULT(1)
+GO
+
+ALTER TABLE dbo.IMAGES
+ADD Status TINYINT DEFAULT(1)
+GO
+
+ALTER TABLE dbo.ALBUMIMAGES 
+ADD Status TINYINT DEFAULT(1)
+GO
+
+ALTER TABLE dbo.ALBUMMUSIC 
+ADD Status TINYINT DEFAULT(1)
+GO
+
+ALTER TABLE dbo.ALBUMVIDEOS
+ADD Status TINYINT DEFAULT(1)
+GO
+
+ALTER TABLE dbo.NEWFEEDPOST
+ADD Status TINYINT DEFAULT(1)
+GO
+
+
+
+ALTER TABLE dbo.MUSICS
+ADD CONSTRAINT FK_Music_Status_StatusSocial 
+FOREIGN KEY (Status) REFERENCES dbo.STATUSSOCIAL(IdStatusSocial)
+GO
+
+
+ALTER TABLE dbo.VIDEOS
+ADD CONSTRAINT FK_Video_Status_StatusSocial 
+FOREIGN KEY (Status) REFERENCES dbo.STATUSSOCIAL(IdStatusSocial)
+GO
+
+ALTER TABLE dbo.IMAGES
+ADD CONSTRAINT FK_Image_Status_StatusSocial 
+FOREIGN KEY (Status) REFERENCES dbo.STATUSSOCIAL(IdStatusSocial)
+GO
+
+ALTER TABLE dbo.ALBUMIMAGES
+ADD CONSTRAINT FK_AlbumImage_Status_StatusSocial 
+FOREIGN KEY (Status) REFERENCES dbo.STATUSSOCIAL(IdStatusSocial)
+GO
+
+ALTER TABLE dbo.ALBUMMUSIC
+ADD CONSTRAINT FK_AlbumMusic_Status_StatusSocial 
+FOREIGN KEY (Status) REFERENCES dbo.STATUSSOCIAL(IdStatusSocial)
+GO
+
+ALTER TABLE dbo.ALBUMVIDEOS
+ADD CONSTRAINT FK_AlbumVideo_Status_StatusSocial 
+FOREIGN KEY (Status) REFERENCES dbo.STATUSSOCIAL(IdStatusSocial)
+GO
+
+ALTER TABLE dbo.NEWFEEDPOST
+ADD CONSTRAINT FK_NewFeedPost_Status_StatusSocial 
+FOREIGN KEY (Status) REFERENCES dbo.STATUSSOCIAL(IdStatusSocial)
+GO
+
+ALTER TABLE dbo.USERADDRESS
+ADD Status TINYINT DEFAULT(1)
+GO
+
+ALTER TABLE dbo.USERADDRESS
+ADD CONSTRAINT FK_UserAddress_Status_StatusSocial 
+FOREIGN KEY (Status) REFERENCES dbo.STATUSSOCIAL(IdStatusSocial)
+GO
+
+ALTER TABLE dbo.USERINFO
+ADD Status TINYINT DEFAULT(1)
+GO
+
+ALTER TABLE dbo.USERINTRO
+ADD Status TINYINT DEFAULT(1)
+GO
+
+ALTER TABLE dbo.USERINFO
+ADD CONSTRAINT FK_UserInfo_Status_StatusSocial 
+FOREIGN KEY (Status) REFERENCES dbo.STATUSSOCIAL(IdStatusSocial)
+GO
+
+ALTER TABLE dbo.USERINTRO
+ADD CONSTRAINT FK_UserIntro_Status_StatusSocial 
+FOREIGN KEY (Status) REFERENCES dbo.STATUSSOCIAL(IdStatusSocial)
+GO
+
+
+INSERT INTO dbo.CATEGORY
+        ( NameCategory ,
+          IntroCategory ,
+          CoverCategoryUrl
+        )
+VALUES  ( N'Status' , -- NameCategory - nvarchar(100)
+          N'' , -- IntroCategory - nvarchar(max)
+          N''  -- CoverCategoryUrl - nvarchar(max)
+        )
+GO
+
+CREATE TABLE MUSICLISTENS
+(
+	IdMusic NVARCHAR(128),
+	CreatedTS DATETIME2,
+
+	PRIMARY KEY(IdMusic, CreatedTS),
+
+	CONSTRAINT FK_MusicListens_IdMusic_Music
+	FOREIGN KEY (IdMusic)
+	REFERENCES dbo.MUSICS(IdMusic),
+)
+
+GO
+
+CREATE TABLE VIDEOVIEWS
+(
+	IdVideo NVARCHAR(128),
+	CreatedTS DATETIME2,
+
+	PRIMARY KEY(IdVideo, CreatedTS),
+
+	CONSTRAINT FK_MusicListens_IdMusic_Video
+	FOREIGN KEY (IdVideo)
+	REFERENCES dbo.VIDEOS(IdVideo),
+)
+
+GO
+
+CREATE TABLE LIKECOMMENT
+(
+	IdComment NVARCHAR(128),
+	IdUser NVARCHAR(128),
+	Status TINYINT,
+
+	PRIMARY KEY(IdComment, IdUser),
+
+	CONSTRAINT FK_LikeComment_IdComment_Comment
+	FOREIGN KEY (IdComment)
+	REFERENCES dbo.COMMENT(IdComment),
+
+	CONSTRAINT FK_LikeComment_IdUser_UserAccount
+	FOREIGN KEY (IdUser)
+	REFERENCES dbo.USERACCOUNT(IdUser),
+)
+
+GO
+
+CREATE TABLE LIKEREPLYCOMMENT
+(
+	IdReply NVARCHAR(128),
+	IdUser NVARCHAR(128),
+	Status TINYINT,
+
+	PRIMARY KEY(IdReply, IdUser),
+
+	CONSTRAINT FK_LikeReplyComment_IdComment_ReplyComment
+	FOREIGN KEY (IdReply)
+	REFERENCES dbo.REPLYCOMMENT(IdReply),
+
+	CONSTRAINT FK_LikeReplyComment_IdUser_UserAccount
+	FOREIGN KEY (IdUser)
+	REFERENCES dbo.USERACCOUNT(IdUser),
+)
+
+GO
+
+
+
+
+
+
+
+
+
+
+

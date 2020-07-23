@@ -1,0 +1,46 @@
+.friend-online {
+    &__title {
+        margin-bottom: 25px;
+    }
+
+    &__item {
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding-right: 15px;
+        margin-bottom: 25px;
+        cursor: pointer;
+        transition: all 0.3s;
+
+        &:hover {
+            p {
+                color: var(--color-primary-600);
+            }
+        }
+    }
+
+    &__avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-image: url('../../../../../assets/images/duy.jpg');
+        background-size: cover;
+        background-position: center center;
+        margin-right: 10px;
+    }
+
+    &__name {
+        font-weight: 500;
+    }
+
+    &__dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: green;
+    }
+}

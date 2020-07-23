@@ -1,0 +1,39 @@
+<div class="album-item-music">
+    <div class="album-item-music__option" *ngIf="isOwn">
+        <button mat-icon-button color="accent" [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="onClickOpenDialogRemoveAlbum()">
+                <mat-icon>delete</mat-icon>
+                <span>Xóa album</span>
+            </button>
+        </mat-menu>
+    </div>
+    <div class="album-item-music__image" [routerLink]="['/home/music/own-detail', album.id]">
+        <img appLazyLoadImage [src]="album.cover" alt="cover" *ngIf="album.cover !== null;else noImageTemp">
+        <ng-template #noImageTemp>
+            <img src="../../../../../assets/images/music-wallpaper.jpg" alt="">
+        </ng-template>
+    </div>
+    <div class="album-item-music__content">
+        <div class="album-item-music__text">
+            <p>{{album.name | content: 8}}</p>
+            <p><small>{{album.quantitySong}} bài hát</small></p>
+        </div>
+        <div class="album-item-music__button" *ngIf="album.quantitySong !== 0">
+            <button mat-icon-button matTooltip="Nghe" matTooltipPosition="above" (click)="onPlayAlbum()">
+                <mat-icon>play_arrow</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="Thêm vào playlist" matTooltipPosition="above"
+                (click)="addAlbumIntoPlaylist()" *ngIf="(isAdded$ | async) === false;else addedTemp">
+                <mat-icon>add</mat-icon>
+            </button>
+            <ng-template #addedTemp>
+                <button mat-icon-button matTooltip="Đã thêm vào playlist" matTooltipPosition="above">
+                    <mat-icon>check</mat-icon>
+                </button>
+            </ng-template>
+        </div>
+    </div>
+</div>

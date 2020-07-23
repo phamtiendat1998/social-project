@@ -1,0 +1,20 @@
+<div class="row profile-mutual-friend" *ngIf="(mutualFriends$ | async) as mutualFriends; else skeleton">
+    <ng-container *ngIf="mutualFriends.length>0;else noUser">
+        <div class="col-6" *ngFor="let mutualFriend of mutualFriends">
+            <app-friend-field [user]="mutualFriend" option="mutualFriend" [userId]="userId"></app-friend-field>
+        </div>
+    </ng-container>
+    <ng-template #noUser>
+        <p>Không có bạn chung</p>
+    </ng-template>
+</div>
+<ng-template #skeleton>
+    <div class="row">
+        <div class="col-6">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+        <div class="col-6">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+    </div>
+</ng-template>

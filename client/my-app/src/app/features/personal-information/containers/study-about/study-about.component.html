@@ -1,0 +1,77 @@
+<div class="row study-about">
+    <ng-container *ngIf="studies; else skeleton">
+        <div class="col-4" *ngFor="let study of studies">
+            <app-study-field [study]="study" (delete)="onRemoveStudy($event)"></app-study-field>
+        </div>
+        <div class="col-4">
+            <mat-expansion-panel class="mat-about-field" [(expanded)]="isExpanded">
+                <mat-progress-bar mode="indeterminate" color="accent" *ngIf="loadingAdd"></mat-progress-bar>
+                <mat-expansion-panel-header collapsedHeight="85px" expandedHeight="85px">
+                    <mat-panel-title>
+                        <p>
+                            <mat-icon>add</mat-icon>
+                        </p>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        <div>
+                            <p>Thêm thông tin</p>
+                        </div>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <ng-template matExpansionPanelContent>
+                    <form [formGroup]="studyForm">
+                        <div>
+                            <mat-form-field class="mat-input-full-width" appearance="legacy">
+                                <mat-label>Học tại</mat-label>
+                                <input matInput formControlName="at">
+                                <mat-error *ngIf="studyForm.controls.at.errors?.required">Không được bỏ trống
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field class="mat-input-full-width" appearance="legacy">
+                                <mat-label>Từ: </mat-label>
+                                <input matInput formControlName="from" type="number">
+                                <mat-error *ngIf="studyForm.controls.from.errors?.required">Không được bỏ trống
+                                </mat-error>
+                                <mat-error *ngIf="studyForm.controls.from.errors?.min">Vui lòng nhập đúng năm
+                                </mat-error>
+                                <mat-error *ngIf="studyForm.controls.from.errors?.max">Vui lòng nhập đúng năm
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field class="mat-input-full-width" appearance="legacy">
+                                <mat-label>Đến: </mat-label>
+                                <input matInput formControlName="to" type="number">
+                                <mat-hint>Nếu hiện tại đang học tập thì để trống</mat-hint>
+                                <mat-error *ngIf="studyForm.controls.to.errors?.min">Vui lòng nhập đúng năm</mat-error>
+                                <mat-error *ngIf="studyForm.controls.to.errors?.max">Vui lòng nhập đúng năm</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div style="margin: 20px 0">
+                            <mat-slide-toggle color="primary" formControlName="public">Công khai</mat-slide-toggle>
+                        </div>
+                    </form>
+                    <mat-action-row>
+                        <button mat-button color="warn" (click)="onClickCancelForm()"
+                            [disabled]="loadingAdd">Hủy</button>
+                        <button mat-button color="primary" [disabled]="loadingAdd || studyForm.invalid"
+                            (click)="onAddStudy()">{{textAddBtn}}</button>
+                    </mat-action-row>
+                </ng-template>
+            </mat-expansion-panel>
+        </div>
+    </ng-container>
+    <ng-template #skeleton>
+        <div class="col-4">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+        <div class="col-4">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+        <div class="col-4">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+    </ng-template>
+</div>

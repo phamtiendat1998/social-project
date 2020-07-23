@@ -1,0 +1,20 @@
+.profile-photos {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    button {
+        transition: all 0.4s;
+        margin-right: 50px;
+        margin-bottom: 25px;
+
+        &:focus {
+            outline: none;
+        }
+
+        &.active {
+            background-color: var(--color-primary-500);
+            color: var(--color-primary-contrast-500);
+        }
+    }
+}

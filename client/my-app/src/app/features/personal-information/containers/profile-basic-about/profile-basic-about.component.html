@@ -1,0 +1,19 @@
+<div class="row profile-basic-about" *ngIf="abouts$ | async as abouts;else skeleton">
+    <div class="col-4" *ngFor="let about of abouts">
+        <app-about-field [aboutField]="about">
+        </app-about-field>
+    </div>
+</div>
+<ng-template #skeleton>
+    <div class="row">
+        <div class="col-4">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+        <div class="col-4">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+        <div class="col-4">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,18 @@
+<div class="top-ten-song-music">
+    <div class="top-ten-song-music__feature">
+        <h5>Top 10 bài hát</h5>
+    </div>
+    <div class="top-ten-song-music__list">
+        <ng-container *ngIf="loaded$ | async; else skeleton">
+            <app-top-song-item-music *ngFor="let song of topSong$ | async;index as i" [song]="song" [index]="i"
+                [noBorder]="true">
+            </app-top-song-item-music>
+        </ng-container>
+        <ng-template #skeleton>
+            <app-skeleton-song-music></app-skeleton-song-music>
+            <app-skeleton-song-music></app-skeleton-song-music>
+            <app-skeleton-song-music></app-skeleton-song-music>
+            <app-skeleton-song-music></app-skeleton-song-music>
+        </ng-template>
+    </div>
+</div>

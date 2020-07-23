@@ -1,0 +1,20 @@
+<div class="row block-friend" *ngIf="(blocks$ | async) as blocks; else skeleton">
+    <ng-container *ngIf="blocks.length>0;else noUser">
+        <div class="col-6" *ngFor="let block of blocks">
+            <app-friend-field [user]="block" option="blocked" [userId]="userId"></app-friend-field>
+        </div>
+    </ng-container>
+    <ng-template #noUser>
+        <p>Không có người dùng nào bị chặn.</p>
+    </ng-template>
+</div>
+<ng-template #skeleton>
+    <div class="row">
+        <div class="col-6">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+        <div class="col-6">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+    </div>
+</ng-template>

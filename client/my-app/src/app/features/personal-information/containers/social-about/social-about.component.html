@@ -1,0 +1,37 @@
+<div class="row field">
+    <div class="col-4">
+        <app-link-field [link]="linkUser"></app-link-field>
+    </div>
+    <div class="col-4">
+        <mat-expansion-panel class="mat-about-field" [(expanded)]="isExpanded">
+            <mat-expansion-panel-header collapsedHeight="85px" expandedHeight="70px">
+                <mat-panel-title>
+                    <p>
+                        <mat-icon>add</mat-icon>
+                    </p>
+                </mat-panel-title>
+                <mat-panel-description>
+                    <div>
+                        <p>Thêm liên kết</p>
+                    </div>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <form [formGroup]="socialForm">
+                <div>
+                    <mat-form-field class="mat-input-full-width" appearance="legacy">
+                        <mat-label>Liên kết:</mat-label>
+                        <input matInput formControlName="link">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-slide-toggle color="primary" formControlName="public">Công khai</mat-slide-toggle>
+                </div>
+            </form>
+            <mat-action-row>
+                <button mat-button color="warn" (click)="onClickCancelForm()">Hủy</button>
+                <button mat-button color="primary">Lưu</button>
+            </mat-action-row>
+        </mat-expansion-panel>
+    </div>
+    <div class="col-4"></div>
+</div>

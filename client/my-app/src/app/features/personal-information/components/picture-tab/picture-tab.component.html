@@ -1,0 +1,26 @@
+<div class="picture-tab">
+    <h6 class="mb-3">Ảnh</h6>
+    <div class="picture-tab__container">
+        <ng-container *ngIf="photos$ | async as photos; else skeleton">
+            <ng-container *ngIf="photos.length>0;else noImage">
+                <div class="picture-tab__item" *ngFor="let photo of photos">
+                    <img appLazyLoadImage [src]="photo.url" alt="Ảnh">
+                </div>
+            </ng-container>
+            <ng-template #noImage>
+                <p>Chưa có ảnh nào.</p>
+            </ng-template>
+        </ng-container>
+        <ng-template #skeleton>
+            <div class="picture-tab__item skeleton"></div>
+            <div class="picture-tab__item skeleton"></div>
+            <div class="picture-tab__item skeleton"></div>
+            <div class="picture-tab__item skeleton"></div>
+            <div class="picture-tab__item skeleton"></div>
+            <div class="picture-tab__item skeleton"></div>
+            <div class="picture-tab__item skeleton"></div>
+            <div class="picture-tab__item skeleton"></div>
+            <div class="picture-tab__item skeleton"></div>
+        </ng-template>
+    </div>
+</div>

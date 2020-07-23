@@ -1,0 +1,33 @@
+a{
+    text-decoration: none;
+}
+.album-photo {
+    &__item {
+        height: 250px;
+        color: #fff;
+        border-radius: 20px;
+        padding: 20px;
+        background-size: cover;
+        background-position: center center;
+        position: relative;
+
+        &.skeleton {
+            height: 250px;
+            border-radius: 20px;
+        }
+
+        button {
+            position: absolute;
+            right: 15px;
+
+            &.menu {
+                top: 15px;
+            }
+
+            &.privacy {
+                bottom: 15px;
+
+            }
+        }
+    }
+}

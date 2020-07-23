@@ -1,0 +1,19 @@
+.profile-about {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    color: var(--color-background-primary-contrast);
+
+    button {
+        transition: all 0.4s;
+
+        &:focus {
+            outline: none;
+        }
+
+        &.active {
+            background-color: var(--color-primary-500);
+            color: var(--color-primary-contrast-500);
+        }
+    }
+}

@@ -1,0 +1,36 @@
+.profile-feature-tab {
+    height: 85px;
+    border-radius: 5px;
+    margin-bottom: 25px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 5px;
+
+    button {
+        background-color: var(--color-background-primary);
+
+        p {
+            margin: 0;
+            margin-left: 10px;
+            color: var(--color-opacity-primary);
+        }
+
+        mat-icon {
+            color: var(--color-primary-500);
+        }
+
+        &:last-child {
+            grid-column: 1 / span 3;
+        }
+
+        &.active {
+            background-color: var(--color-primary-500) !important;
+
+            p,
+            mat-icon {
+                color: var(--color-primary-contrast-500);
+            }
+
+        }
+    }
+}

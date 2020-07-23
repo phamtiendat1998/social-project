@@ -1,0 +1,218 @@
+.post-comment {
+    width: 100%;
+    padding: 0 20px;
+    padding-top: 0;
+
+    .dot {
+        width: 3px;
+        height: 3px;
+        background-color: var(--color-opacity-primary);
+        margin: 3px 8px 0;
+    }
+
+    &__item {
+        display: grid;
+        grid-template-columns: 50px auto;
+        margin-bottom: 20px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        a {
+            font-weight: 500;
+            color: var(--color-primary-600);
+            text-decoration: none;
+            margin-right: 5px;
+        }
+
+        p {
+            margin: 0;
+        }
+    }
+
+    &__avatar {
+        background-position: center center;
+        background-size: cover;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+
+        img {
+            border-radius: 50%;
+        }
+    }
+
+    &__cmt {
+        padding: 5px 10px;
+        border-radius: 5px;
+        background-color: var(--color-background-third);
+        position: relative;
+
+        &:hover {
+            .post-comment__menu {
+                opacity: 1;
+            }
+        }
+
+        h6 {
+            color: var(--color-primary-600);
+        }
+
+    }
+
+    &__quantity-like {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: var(--box-shadow-1);
+        border-radius: 5px;
+        position: absolute;
+        bottom: -15px;
+        right: 10px;
+        background-color: white;
+        padding: 0 5px;
+
+        mat-icon {
+            color: var(--color-primary-500);
+            font-size: 15px;
+            margin-right: 5px;
+            width: unset;
+            height: unset;
+        }
+
+        p {
+            color: var(--color-primary-500);
+        }
+    }
+
+    &__feature {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding-left: 10px;
+        font-weight: 500;
+        margin-bottom: 10px;
+
+        p {
+            color: var(--color-primary-500);
+            cursor: pointer;
+        }
+
+        span {
+            color: var(--color-opacity-primary);
+        }
+    }
+
+    &__quantity-reply {
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        color: var(--color-primary-600);
+        cursor: pointer;
+        margin-bottom: 10px;
+
+        mat-icon {
+            font-size: 20px;
+            width: unset;
+            height: unset;
+        }
+    }
+
+    &__post {
+        width: calc(100% - 45px);
+        display: flex;
+        align-items: center;
+        margin-left: 45px;
+        position: relative;
+        padding: 15px 0 0 20px;
+
+        &--avt {
+            background-image: url(../../../../../assets/images/nguyen.jpg);
+            background-position: center center;
+            background-size: cover;
+            box-shadow: var(--box-shadow-1);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+        }
+
+        &--content {
+            display: flex;
+            align-items: center;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: var(--color-background-third);
+
+            h6 {
+                color: var(--color-primary-600);
+            }
+
+        }
+
+        &--like {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: var(--box-shadow-2);
+            border-radius: 5px;
+            position: absolute;
+            top: 80%;
+            right: 25%;
+            background-color: var(--color-background-primary);
+            padding: 0 5px;
+
+            mat-icon {
+                color: var(--color-primary-500);
+                font-size: 15px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding-right: 2px;
+                width: unset;
+                height: unset;
+            }
+
+            p {
+                color: var(--color-primary-500);
+            }
+        }
+
+        &--interacte {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            bottom: -25px;
+            left: 75px;
+
+            p {
+                color: var(--color-primary-500);
+            }
+
+            span {
+                color: var(--color-opacity-primary);
+            }
+
+
+        }
+    }
+
+    &__more {
+        padding: 40px 20px 20px 20px;
+        color: var(--color-primary-500);
+    }
+
+    &__menu {
+        position: absolute;
+        top: 0;
+        right: 0;
+        opacity: 0;
+        transition: all 0.3s;
+
+        &[aria-expanded="true"] {
+            opacity: 1;
+        }
+    }
+}

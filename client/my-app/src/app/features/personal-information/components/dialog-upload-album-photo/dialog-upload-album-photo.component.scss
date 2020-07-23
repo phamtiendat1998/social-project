@@ -1,0 +1,83 @@
+.dialog-upload-album-photo {
+    padding: 20px;
+
+    .file {
+        &__container {
+            width: 100%;
+            display: grid;
+            grid-gap: 1px;
+            grid-template-columns: auto auto;
+        }
+
+        &__item {
+            position: relative;
+            overflow: hidden;
+            height: 270px;
+
+            &:only-child {
+                height: 540px !important;
+            }
+
+            &:nth-child(odd):last-child {
+                grid-column: 1 / span 2;
+                height: 270px;
+            }
+
+            &:hover {
+                button {
+                    opacity: 1;
+                }
+            }
+
+            img,
+            video {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            button {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                color: white;
+                opacity: 0;
+                transition: all 0.3s;
+            }
+        }
+
+        &__input {
+            display: none;
+        }
+
+        &__add {
+            height: 175px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--color-background-third);
+
+            &.disable {
+                opacity: 0.5;
+                pointer-events: none;
+            }
+
+            button {
+                margin-right: 10px;
+            }
+
+            span {
+                font-weight: 500;
+            }
+        }
+    }
+    .feature{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 20px;
+        button{
+            margin-left: 20px;
+        }
+    }
+}

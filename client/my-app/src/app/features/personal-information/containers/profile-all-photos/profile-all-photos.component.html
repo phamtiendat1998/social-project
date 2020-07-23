@@ -1,0 +1,33 @@
+<div class="profile-all-photos" *ngIf="photos.length!==0; else skeleton">
+    <div class="profile-all-photos__item" *ngFor="let photo of photos">
+        <img [src]="photo.Source" alt="Ảnh" />
+        <div class="photo-info">
+            <div>
+                <button mat-button>
+                    <mat-icon>thumb_up</mat-icon>
+                    <small>{{photo.MediaInfo.QuantityLike | quantity}}</small>
+                </button>
+                <button mat-button>
+                    <mat-icon>chat_bubble</mat-icon>
+                    <small>{{photo.MediaInfo.QuantityComment | quantity}}</small>
+                </button>
+                <button mat-button>
+                    <mat-icon>remove_red_eye</mat-icon>
+                    <small>{{photo.MediaInfo.QuantityShare | quantity}}</small>
+                </button>
+            </div>
+            <div>
+                <p>{{photo.MediaInfo.getTime}}</p>
+                <h6>{{photo.MediaInfo.Content | content: 15}}</h6>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #skeleton>
+    <div class="profile-all-photos">
+        <div class="profile-all-photos__item skeleton"></div>
+        <div class="profile-all-photos__item skeleton"></div>
+        <div class="profile-all-photos__item skeleton"></div>
+        <div class="profile-all-photos__item skeleton"></div>
+    </div>
+</ng-template>

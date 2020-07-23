@@ -1,0 +1,28 @@
+<div class="dialog-create-story">
+    <mat-progress-bar mode="indeterminate" color="accent" *ngIf="uploading"></mat-progress-bar>
+    <div class="title">
+        <h6>Tin của bạn</h6>
+    </div>
+    <div class="file">
+        <div class="file__container">
+            <app-story-view *ngIf="storyPreview; else addfile" [stories]="[storyPreview]" [preview]="true"
+                [owned]="true">
+            </app-story-view>
+        </div>
+        <ng-template #addfile>
+            <div class="file__add" appDragAndDropImg (fileDropped)="previewStory($event)"
+                [ngClass]="{'disable': uploading}">
+                <button mat-stroked-button color="primary" (click)="fileInput.click()">
+                    <mat-icon>publish</mat-icon>
+                </button>
+                <p>Chọn hoặc kéo thả ảnh/video vào đây</p>
+            </div>
+        </ng-template>
+        <input #fileInput type="file" class="file__input" (change)="onChangeFileInput($event)">
+    </div>
+    <div class="share">
+        <button mat-flat-button cdkFocusInitial color="primary" [disabled]="!storyPreview || uploading"
+            (click)="onUpload()">Chia
+            sẻ</button>
+    </div>
+</div>

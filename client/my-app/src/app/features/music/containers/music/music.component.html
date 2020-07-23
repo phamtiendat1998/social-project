@@ -1,0 +1,67 @@
+<div class="music">
+    <div class="music__left">
+        <div class="music__search">
+            <mat-icon>search</mat-icon>
+            <input type="text" placeholder="Tìm kiếm">
+        </div>
+        <div class="music__tab">
+            <p class="title">NHẠC</p>
+            <a [routerLink]="['/home/music/trend']" routerLinkActive="active">
+                <div class="music__item">
+                    <mat-icon>bar_chart</mat-icon>
+                    <p>Thịnh hành</p>
+                </div>
+            </a>
+            <a [routerLink]="['/home/music/song']" routerLinkActive="active">
+                <div class="music__item">
+                    <mat-icon>music_note</mat-icon>
+                    <p>Bài hát của bạn</p>
+                </div>
+            </a>
+            <a [routerLink]="['/home/music/album']" routerLinkActive="active">
+                <div class="music__item">
+                    <mat-icon>library_music</mat-icon>
+                    <p>Album của bạn</p>
+                </div>
+            </a>
+            <p class="title">KHÁM PHÁ</p>
+            <a [routerLink]="['/home/music/top-song']" routerLinkActive="active">
+                <div class="music__item">
+                    <mat-icon>bar_chart</mat-icon>
+                    <p>Top 10 Bài hát</p>
+                </div>
+            </a>
+            <a [routerLink]="['/home/music/top-album']" routerLinkActive="active">
+                <div class="music__item">
+                    <mat-icon>bar_chart</mat-icon>
+                    <p>Top 10 Album</p>
+                </div>
+            </a>
+            <p class="title">DANH SÁCH PHÁT</p>
+            <a [routerLink]="['/home/music/playing-song']" routerLinkActive="active">
+                <div class="music__item">
+                    <mat-icon>queue_music</mat-icon>
+                    <p>Bài hát</p>
+                </div>
+            </a>
+            <a [routerLink]="['/home/music/playing-album']" routerLinkActive="active">
+                <div class="music__item">
+                    <mat-icon>queue_music</mat-icon>
+                    <p>Album</p>
+                </div>
+            </a>
+            <a [routerLink]="['/home/music/listen']" routerLinkActive="active">
+                <div class="music__item">
+                    <mat-icon>favorite</mat-icon>
+                    <p>Danh sách được nghe nhiều</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="music__right scroll-bar-custom ">
+        <div class="music__slider">
+            <img appLazyLoadImage src="../../../../../assets/music/simon-noh-0rmby-3OTeI-unsplash.jpg" alt="">
+        </div>
+        <router-outlet></router-outlet>
+    </div>
+</div>

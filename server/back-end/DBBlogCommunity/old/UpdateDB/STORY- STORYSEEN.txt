@@ -1,0 +1,28 @@
+
+CREATE TABLE [dbo].[USERSTORIES](
+	[IdStory]  [nvarchar](128) PRIMARY KEY,
+	[IdUser] [nvarchar](128) NOT NULL,
+	[Content] [nvarchar](max) NOT NULL,
+	[CreatedTS] [datetime] NULL,
+
+	CONSTRAINT FK_USERSTORIES_IdUser_USERACCOUNT 
+	FOREIGN KEY (IdUser)
+	REFERENCES dbo.USERACCOUNT(IdUser)
+)
+
+GO
+
+
+CREATE TABLE [dbo].[STORYSEEN](
+	[IdStory]  [nvarchar](128) NOT NULL,
+	[IdUser] [nvarchar](128) NOT NULL,	
+
+	PRIMARY KEY(IdUser, IdStory),
+	CONSTRAINT FK_STORYSEEN_IdStory_USERSTORIES
+	FOREIGN KEY (IdStory)
+	REFERENCES dbo.USERSTORIES(IdStory)
+)
+
+GO
+
+

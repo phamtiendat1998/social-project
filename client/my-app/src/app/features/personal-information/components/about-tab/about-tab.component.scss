@@ -1,0 +1,32 @@
+.about-tab {
+    padding: 10px 20px;
+    background-color: var(--color-background-primary);
+    border-radius: 5px;
+    margin-bottom: 25px;
+
+    &__item {
+        display: flex;
+        align-items: center;
+        &.skeleton{
+            height: 30px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+    }
+
+    h6 {
+        font-weight: bold;
+        color: var(--color-primary-500);
+    }
+
+    p {
+        margin-left: 10px;
+        margin-bottom: 0;
+    }
+
+    a {
+        color: var(--color-primary-500);
+        font-weight: 500;
+        text-decoration: none;
+    }
+}

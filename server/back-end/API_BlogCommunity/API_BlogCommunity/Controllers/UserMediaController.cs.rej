@@ -1,0 +1,9 @@
+diff a/back-end/API_BlogCommunity/API_BlogCommunity/Controllers/UserMediaController.cs b/back-end/API_BlogCommunity/API_BlogCommunity/Controllers/UserMediaController.cs	(rejected hunks)
+@@ -570,6 +570,7 @@
+             return new JsonResult { Data = dc.ChartOnMusicTopTen() };
+         }
+ 
++        [Route("api/usermedia/getchartalbummusictopten")]
+         [HttpGet]
+         public JsonResult GetChartAlbumMusicTopTen()
+         {

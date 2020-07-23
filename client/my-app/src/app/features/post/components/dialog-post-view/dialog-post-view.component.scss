@@ -1,0 +1,133 @@
+.dialog-post-view {
+    display: grid;
+    grid-template-columns: auto 450px;
+
+    &__media {
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        position: relative;
+
+        img,
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__control {
+        position: absolute;
+
+        &--btn-left {
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+        }
+
+        &--btn-right {
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+        }
+
+        &--index {
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+        }
+    }
+
+    &__post {
+        padding: 20px 0;
+        position: relative;
+        height: 100%;
+        overflow-y: auto;
+    }
+
+    &__menu {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        z-index: 10;
+        color: var(--color-opacity-primary);
+    }
+
+    &__creator {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        position: relative;
+        padding: 0 20px;
+    }
+
+    &__avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+
+        img {
+            border-radius: 50%;
+        }
+    }
+
+    &__name {
+        padding-left: 10px;
+
+        .name {
+            a {
+                text-decoration: none;
+                color: var(--color-primary-600);
+                font-weight: bold;
+            }
+        }
+
+        .time {
+            display: flex;
+            align-items: center;
+            color: var(--color-opacity-primary);
+
+            mat-icon {
+                font-size: 15px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+
+    &__content {
+        padding: 15px 20px;
+    }
+
+    &__interactive-box {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background-color: var(--color-background-third);
+        margin-bottom: 20px;
+    }
+
+    &__feature {
+        width: 50px;
+        height: 25px;
+        padding: 0 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--color-opacity-primary);
+
+        button {
+            &.active {
+                color: var(--color-primary-600);
+            }
+        }
+    }
+
+    &__input {
+        padding: 0 20px;
+    }
+}

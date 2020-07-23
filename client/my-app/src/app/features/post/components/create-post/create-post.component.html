@@ -1,0 +1,22 @@
+<div class="create-post">
+    <div class="create-post__content">
+        <div class="create-post__avatar skeleton">
+            <img [src]="userAvatar" alt="avatar" *ngIf="userAvatar$ | async as userAvatar; else noAvatar">
+            <ng-template #noAvatar>
+                <img src="../../../../../assets/images/ava.png" alt="">
+            </ng-template>
+        </div>
+        <p (click)="onClickOpenDialogCreatePost()">
+            <span *ngIf="ownOption">Bạn đang nghĩ gì?</span>
+            <span *ngIf="!ownOption">Viết gì đó cho người này...</span>
+        </p>
+    </div>
+    <div class="create-post__feature">
+        <button mat-icon-button>
+            <mat-icon>perm_media</mat-icon>
+        </button>
+        <button mat-icon-button>
+            <mat-icon>local_offer</mat-icon>
+        </button>
+    </div>
+</div>

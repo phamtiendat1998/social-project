@@ -1,0 +1,29 @@
+<div class="player-album-music">
+    <div class="player-album-music__feature">
+        <h5>Album đang phát trong playlist</h5>
+        <div class="player-album-music__search">
+            <mat-icon>search</mat-icon>
+            <input placeholder="Tìm kiếm album">
+        </div>
+    </div>
+    <div class="player-album-music__button">
+        <button mat-icon-button color="primary" matTooltip="Xóa tất cả album" matTooltipPosition="right"
+            (click)="deleteAll()">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+    <div class="player-album-music__list">
+        <ng-container *ngIf="albums$ | async as albums; else skeleton">
+            <ng-container *ngIf="albums.length>0;else noAlbum">
+                <app-play-list-album-item-music *ngFor="let album of albums" [album]="album">
+                </app-play-list-album-item-music>
+            </ng-container>
+            <ng-template #noAlbum>
+                <p>Không có album nào trong danh sách.</p>
+            </ng-template>
+        </ng-container>
+        <ng-template #skeleton>
+            <app-skeleton-album-music></app-skeleton-album-music>
+        </ng-template>
+    </div>
+</div>

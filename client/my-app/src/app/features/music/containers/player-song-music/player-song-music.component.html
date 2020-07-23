@@ -1,0 +1,37 @@
+<div class="player-song-music">
+    <div class="player-song-music__feature">
+        <h5>Nhạc đang phát trong playlist</h5>
+        <div class="player-song-music__search">
+            <mat-icon>search</mat-icon>
+            <input placeholder="Tìm kiếm bài hát">
+        </div>
+    </div>
+    <div class="player-song-music__button">
+        <button mat-icon-button color="primary" matTooltip="Nghe tất cả" matTooltipPosition="right" (click)="playAll()">
+            <mat-icon>playlist_play</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" matTooltip="Xóa tất cả bài hát" matTooltipPosition="right"
+            (click)="deleteAll()">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+    <div class="player-song-music__list">
+        <ng-container *ngIf="songs$ | async as songs; else skeleton">
+            <ng-container *ngIf="songs.length>0;else noSong">
+                <app-play-list-item-music *ngFor=" let song of songs;index as i" [song]="song" [index]="i"
+                    [playlistId]="activePlaylistId" (songId)="play($event)">
+                </app-play-list-item-music>
+            </ng-container>
+            <ng-template #noSong>
+                <p>Không có bài hát nào trong danh sách.</p>
+            </ng-template>
+        </ng-container>
+        <ng-template #skeleton>
+            <app-skeleton-song-music></app-skeleton-song-music>
+            <app-skeleton-song-music></app-skeleton-song-music>
+            <app-skeleton-song-music></app-skeleton-song-music>
+            <app-skeleton-song-music></app-skeleton-song-music>
+            <app-skeleton-song-music></app-skeleton-song-music>
+        </ng-template>
+    </div>
+</div>

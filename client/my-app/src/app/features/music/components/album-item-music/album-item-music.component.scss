@@ -1,0 +1,49 @@
+.album-item-music {
+    width: 100%;
+    background-color: var(--color-background-primary);
+    color: var(--color-background-contrast-primary);
+    padding-bottom: 5px;
+    position: relative;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    &__option {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    &__image {
+        width: 100%;
+        height: 192px;
+        cursor: pointer;
+        box-shadow: var(--box-shadow-2);
+
+    }
+
+    &__content {
+        padding: 12px;
+        color: var(--color-opacity-primary);
+        display: flex;
+        justify-content: space-between;
+
+        p {
+            margin-top: 10px;
+            font-weight: 500;
+        }
+    }
+
+    &__text {
+
+        p {
+            margin-top: 10px;
+            margin: 0;
+            font-weight: 500;
+            color: var(--color-background-primary-contrast);
+        }
+
+        small {
+            color: var(--color-opacity-primary);
+        }
+    }
+}

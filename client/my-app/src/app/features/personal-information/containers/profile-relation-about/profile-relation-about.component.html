@@ -1,0 +1,19 @@
+<div class="row profile-relation-about" *ngIf="profileAboutFields.length!==0;else skeleton">
+    <div class="col-4" *ngFor="let about of profileAboutFields">
+        <!-- <app-about-field [type]="about.Type" [detail]="about.Detail" [time]="about.Time">
+        </app-about-field> -->
+    </div>
+</div>
+<ng-template #skeleton>
+    <div class="row">
+        <div class="col-4">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+        <div class="col-4">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+        <div class="col-4">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+    </div>
+</ng-template>

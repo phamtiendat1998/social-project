@@ -1,0 +1,44 @@
+<div class="dialog-upload-song-music">
+    <mat-progress-bar mode="indeterminate" color="accent" *ngIf="loading"></mat-progress-bar>
+    <div class="dialog-upload-song-music__add" appDragAndDropFile (fileDropped)="previewSong($event)"
+        *ngIf="songPreview.url === null;else uploadedSrcTemp">
+        <button mat-stroked-button color="primary" (click)="fileInput.click()">
+            <mat-icon>publish</mat-icon>
+        </button>
+        <span>Hoặc kéo thả bài hát vào đây</span>
+        <input #fileInput type="file" class="dialog-upload-song-music__input dialog-upload-song-music__input--song"
+            (change)="onChangeSongInput($event)">
+    </div>
+    <ng-template #uploadedSrcTemp>
+        <div class="dialog-upload-song-music__preview">
+            <div class="dialog-upload-song-music__item-song">
+                <div class="image">
+                    <img src="../../../../../assets/images/no-image-song.png" alt=""
+                        *ngIf="songPreview.cover === null;else uploadedImgTemp">
+                    <ng-template #uploadedImgTemp>
+                        <img appLazyLoadImage [src]="songPreview.cover" alt="">
+                    </ng-template>
+                    <button mat-mini-fab color="primary" (click)="fileInputImg.click()">
+                        <mat-icon>add_photo_alternate</mat-icon>
+                    </button>
+                    <input #fileInputImg type="file"
+                        class="dialog-upload-song-music__input dialog-upload-song-music__input--song-img"
+                        (change)="onChangeSongImgInput($event)">
+                    <audio class="dialog-upload-song-music__input dialog-upload-song-music__input--duration-song"
+                        [src]="songPreview.url | safeUrl" (canplaythrough)='getDurationSong($event)'></audio>
+                </div>
+                <div class="info">
+                    <mat-form-field class="mat-input-full-width">
+                        <mat-label>Tên bài hát</mat-label>
+                        <input matInput [formControl]="songNameControl">
+                        <mat-error *ngIf="songNameControl.errors?.required">Không được bỏ trống
+                        </mat-error>
+                    </mat-form-field>
+                    <button mat-button color="warn" [disabled]="loading" (click)="onNoClick()">Hủy</button>
+                    <button mat-button color="primary" [disabled]="songNameControl.invalid || loading"
+                        (click)="uploadSong()">{{textMainBtn}}</button>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</div>

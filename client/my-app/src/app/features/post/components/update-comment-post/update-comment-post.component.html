@@ -1,0 +1,8 @@
+<div class="update-comment-post">
+    <mat-form-field class="mat-input-full-width" appearance="fill">
+        <mat-label>Thay đổi bình luận của bạn</mat-label>
+        <textarea matInput rows="1" cdkTextareaAutosize [formControl]="contentCtl" (keydown.enter)="onEnter()"
+            (keydown.esc)="onEsc()"></textarea>
+        <mat-hint>Nhấn esc để thoát, enter để thay đổi bình luận</mat-hint>
+    </mat-form-field>
+</div>

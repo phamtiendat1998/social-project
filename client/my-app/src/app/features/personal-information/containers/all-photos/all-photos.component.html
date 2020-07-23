@@ -1,0 +1,38 @@
+<div class="all-photos" *ngIf="photos$ | async as photos; else skeleton">
+    <div class="all-photos__item" *ngFor="let photo of photos">
+        <img appLazyLoadImage [src]="photo.url" alt="Ảnh" />
+        <div class="photo-info">
+            <div>
+                <button mat-button>
+                    <mat-icon>thumb_up</mat-icon>
+                    <small>{{photo.quatityLikePost | quantity}}</small>
+                </button>
+                <button mat-button>
+                    <mat-icon>chat_bubble</mat-icon>
+                    <small>{{photo.quantityCommentPost | quantity}}</small>
+                </button>
+                <button mat-button [matMenuTriggerFor]="menu">
+                    <mat-icon>more_horiz</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="onClickOpenDialogDeletePhoto()">
+                        <mat-icon>delete</mat-icon>
+                        <span>Xóa ảnh</span>
+                    </button>
+                </mat-menu>
+            </div>
+            <div>
+                <p>{{photo.timePost}}</p>
+                <h6>{{photo.contentPost | content: 15}}</h6>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #skeleton>
+    <div class="all-photos">
+        <div class="all-photos__item skeleton"></div>
+        <div class="all-photos__item skeleton"></div>
+        <div class="all-photos__item skeleton"></div>
+        <div class="all-photos__item skeleton"></div>
+    </div>
+</ng-template>

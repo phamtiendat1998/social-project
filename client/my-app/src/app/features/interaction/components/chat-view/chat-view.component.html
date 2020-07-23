@@ -1,0 +1,158 @@
+<div class="chat-view">
+    <div class="chat-view__title">
+        <div>
+            <div class="chat-view__avatar">
+                <img src="../../../../../assets/images/duy.jpg" alt="">
+            </div>
+            <div [ngSwitch]="titleState">
+                <mat-form-field *ngSwitchCase="'search'" appearance="legacy" floatLabel="never">
+                    <input matInput placeholder="Tìm kiếm tin nhắn">
+                </mat-form-field>
+                <mat-form-field *ngSwitchCase="'rename'" appearance="legacy" floatLabel="never">
+                    <input matInput placeholder="Tên cuộc trò chuyện" value="Bùi Sĩ Nguyên">
+                </mat-form-field>
+                <h6 *ngSwitchDefault>Bùi Sĩ Nguyên</h6>
+            </div>
+        </div>
+        <div>
+            <div [ngSwitch]="titleState">
+                <button mat-icon-button *ngSwitchCase="'search'" (click)="onBackDefault()">
+                    <mat-icon>close</mat-icon>
+                </button>
+                <div *ngSwitchCase="'rename'">
+                    <button mat-icon-button>
+                        <mat-icon>check</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="onBackDefault()">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
+                <p *ngSwitchDefault>Đang hoạt động</p>
+            </div>
+            <button mat-icon-button color="accent" [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+                <button mat-menu-item (click)="onOpenSearch()">
+                    <mat-icon>search</mat-icon>
+                    <span>Tìm kiếm tin nhắn</span>
+                </button>
+                <button mat-menu-item (click)="onOpenRename()">
+                    <mat-icon>font_download</mat-icon>
+                    <span>Đặt tên cuộc trò chuyện</span>
+                </button>
+                <button mat-menu-item (click)="onOpenDialogMedia()">
+                    <mat-icon>perm_media</mat-icon>
+                    <span>Kho ảnh/video</span>
+                </button>
+                <button mat-menu-item (click)="onOpenDialogMember()">
+                    <mat-icon>group</mat-icon>
+                    <span>Thành viên</span>
+                </button>
+                <button mat-menu-item (click)="onOpenDialogDelete()">
+                    <mat-icon>delete</mat-icon>
+                    <span>Xóa cuộc trò chuyện</span>
+                </button>
+            </mat-menu>
+        </div>
+    </div>
+    <div class="chat-view__content scroll-bar-custom">
+        <div class="chat-view__text chat-view__text--own">
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum vel et eligendi aperiam perferendis
+                enim
+                nam nisi adipisci, odio culpa!
+            </p>
+        </div>
+        <div class="chat-view__text chat-view__text--user">
+            <div></div>
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum vel et eligendi aperiam perferendis
+                enim
+                nam nisi adipisci, odio culpa!
+            </p>
+        </div>
+        <div class="chat-view__text chat-view__text--own">
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum vel et eligendi aperiam perferendis
+                enim
+                nam nisi adipisci, odio culpa!
+            </p>
+        </div>
+        <div class="chat-view__text chat-view__text--own">
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum vel et eligendi aperiam perferendis
+                enim
+                nam nisi adipisci, odio culpa!
+            </p>
+        </div>
+        <div class="chat-view__text chat-view__text--user">
+            <div></div>
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum vel et eligendi aperiam perferendis
+                enim
+                nam nisi adipisci, odio culpa!
+            </p>
+        </div>
+        <div class="chat-view__text chat-view__text--own">
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum vel et eligendi aperiam perferendis
+                enim
+                nam nisi adipisci, odio culpa!
+            </p>
+        </div>
+        <div class="chat-view__text chat-view__text--own">
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum vel et eligendi aperiam perferendis
+                enim
+                nam nisi adipisci, odio culpa!
+            </p>
+        </div>
+        <div class="chat-view__text chat-view__text--user">
+            <div></div>
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum vel et eligendi aperiam perferendis
+                enim
+                nam nisi adipisci, odio culpa!
+            </p>
+        </div>
+        <div class="chat-view__text chat-view__text--own">
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum vel et eligendi aperiam perferendis
+                enim
+                nam nisi adipisci, odio culpa!
+            </p>
+        </div>
+        <div class="chat-view__text chat-view__text--own">
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum vel et eligendi aperiam perferendis
+                enim
+                nam nisi adipisci, odio culpa!
+            </p>
+        </div>
+        <div class="chat-view__text chat-view__text--user">
+            <div></div>
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum vel et eligendi aperiam perferendis
+                enim
+                nam nisi adipisci, odio culpa!
+            </p>
+        </div>
+        <div class="chat-view__text chat-view__text--own">
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum vel et eligendi aperiam perferendis
+                enim
+                nam nisi adipisci, odio culpa!
+            </p>
+        </div>
+    </div>
+    <div class="chat-view__feature">
+        <button mat-icon-button color="primary">
+            <mat-icon>insert_photo</mat-icon>
+        </button>
+        <textarea placeholder="Nhập tin nhắn của bạn..." rows="2" cdkTextareaAutosize></textarea>
+        <button mat-icon-button color="primary">
+            <mat-icon>send</mat-icon>
+        </button>
+    </div>
+</div>

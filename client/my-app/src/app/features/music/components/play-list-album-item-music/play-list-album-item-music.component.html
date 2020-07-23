@@ -1,0 +1,22 @@
+<div class="play-list-album-item-music">
+    <div class="play-list-album-item-music__image" [routerLink]="['/home/music/detail', album.id]">
+        <img src="../../../../../assets/images/music-wallpaper.jpg" alt=""
+            *ngIf="album.cover === null;else noCoverTemp">
+        <ng-template #noCoverTemp>
+            <img [src]="album.cover" alt="" appLazyLoadImage>
+        </ng-template>
+    </div>
+    <div class="play-list-album-item-music__content">
+        <div class="play-list-album-item-music__text">
+            <p>{{album.name | content: 7}}</p>
+        </div>
+        <div>
+            <button mat-icon-button matTooltip="Nghe" matTooltipPosition="above" (click)="onPlay()">
+                <mat-icon>play_arrow</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="Xóa khỏi playlist" matTooltipPosition="above" (click)="onDelete()">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>

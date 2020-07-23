@@ -1,0 +1,61 @@
+<div class="story-view" [ngClass]="{'story-view--full': !preview,'story-view--small': preview}"
+    *ngIf="!loading;else loadingTemp">
+    <ng-container *ngIf="storySelected">
+        <img class="story-view__bg-blur" [src]="storySelected.backGround" alt="">
+        <div class="story-view__bg-dark"></div>
+        <div class="story-view__media" [ngClass]="{'story-view__media--preview': preview}">
+            <img *ngIf="storySelected.type==='image'" [src]="storySelected.url" alt="">
+            <video autoplay *ngIf="storySelected.type==='video'">
+                <source [src]=" storySelected.url" type="video/mp4">
+            </video>
+        </div>
+    </ng-container>
+    <div class="story-view__control" [ngClass]="{'story-view__control--preview': preview}">
+        <div class="story-view__timer">
+            <div *ngFor="let story of stories;index as i ">
+                <div *ngIf="i===storyMediaSelectedIndex" [ngStyle]="{width: storyMediaPercentTimer+'%'}"></div>
+                <div *ngIf="storyMediaSelectedIndex>i" [ngStyle]="{width: '100%'}"></div>
+            </div>
+        </div>
+        <div class="story-view__time" *ngIf="!preview">
+            <p>{{storySelected?.time}}</p>
+        </div>
+        <button mat-icon-button (click)="onTogglePlay()">
+            <mat-icon *ngIf="!autoPlay;else pause">play_arrow</mat-icon>
+            <ng-template #pause>
+                <mat-icon>pause</mat-icon>
+            </ng-template>
+        </button>
+        <button mat-icon-button (click)="onToggleMute()">
+            <mat-icon *ngIf="!mute;else volumeOff">volume_up</mat-icon>
+            <ng-template #volumeOff>
+                <mat-icon>volume_off</mat-icon>
+            </ng-template>
+        </button>
+        <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="!preview">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" xPosition="before">
+            <button mat-menu-item *ngIf="owned; else report" (click)="onClickOpenDialogDeleteStory()">Xóa tin</button>
+            <ng-template #report>
+                <button mat-menu-item>Báo cáo tin</button>
+            </ng-template>
+        </mat-menu>
+    </div>
+    <div matRipple [matRippleCentered]="false" *ngIf="!preview" class="story-view__slide story-view__slide--prev"
+        (click)="onPrevMedia()">
+        <mat-icon>navigate_before</mat-icon>
+    </div>
+    <div matRipple [matRippleCentered]="false" *ngIf="!preview" class="story-view__slide story-view__slide--next"
+        (click)="onNextMedia()">
+        <mat-icon>navigate_next</mat-icon>
+    </div>
+    <button matRipple class="story-view__quantity-seen" *ngIf="owned && !preview"
+        (click)="onClickOpenDialogSeenUsersStory()" [disabled]="quantitySeen==0">
+        <h6>{{quantitySeen}}</h6>
+        <mat-icon>visibility</mat-icon>
+    </button>
+</div>
+<ng-template #loadingTemp>
+    <div class="story-view story-view--full skeleton"></div>
+</ng-template>

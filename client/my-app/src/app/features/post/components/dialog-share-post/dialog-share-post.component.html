@@ -1,0 +1,56 @@
+<div class="dialog-share-post">
+    <mat-progress-bar mode="indeterminate" color="accent" *ngIf="isWaitingSharePost"></mat-progress-bar>
+    <form [formGroup]="sharePostForm">
+        <div class="status">
+            <div class="status__content">
+                <div class="status__avt"></div>
+                <p>Nguyễn Hữu Nghĩa Hiệp</p>
+            </div>
+            <mat-form-field class="mat-input-full-width" floatLabel="never">
+                <mat-label>Bạn muốn chia sẻ điều gì với bài viết này...</mat-label>
+                <textarea formControlName="content" matInput cdkTextareaAutosize rows="5" cdkFocusInitial></textarea>
+            </mat-form-field>
+        </div>
+        <div class="post">
+            <div class="post__creator">
+                <div class="post__avatar" [ngStyle]="{'background-image': 'url('+ data.UserPost.avatar +')'}"></div>
+                <div class="post__name">
+                    <div class="name">
+                        <a [href]="data.UserPost.link">
+                            {{data.UserPost.getFullName}}
+                        </a>
+                    </div>
+                    <div class="time">
+                        <p>
+                            <small>{{data.getTime}}</small>
+                        </p>
+                        <mat-icon>public</mat-icon>
+                    </div>
+                </div>
+            </div>
+            <div class="post__content">
+                <p>{{data.Content}}</p>
+            </div>
+            <div class="post__media">
+                <div class=" media__item" *ngFor="let media of data.fourMedia;index as i"
+                    [ngClass]="{'media__item--video': media.Type === 'video'}">
+                    <img *ngIf="media.Type === 'image'" [src]="media.Url" [alt]="'Ảnh' +i+1">
+                    <video *ngIf="media.Type === 'video'" controls>
+                        <source [src]="media.Url" type="video/mp4">
+                    </video>
+                    <button *ngIf="media.Type === 'video'" mat-mini-fab class="time" color="primary">
+                        <mat-icon>play_arrow</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="feature">
+            <div>
+                <mat-slide-toggle color="primary" formControlName="privacy">Công khai</mat-slide-toggle>
+            </div>
+            <button mat-raised-button color='primary' [disabled]="isWaitingSharePost" (click)="onSubmitSharePostForm()">
+                <span>Chia sẻ</span>
+            </button>
+        </div>
+    </form>
+</div>

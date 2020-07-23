@@ -1,0 +1,66 @@
+<div class="detail-album-music">
+    <div class="detail-album-music__feature">
+        <h5>Album {{album.name}}</h5>
+        <div class="detail-album-music__search">
+            <mat-icon>search</mat-icon>
+            <input placeholder="Tìm kiếm bài hát">
+        </div>
+    </div>
+    <div class="detail-album-music__content">
+        <div class="left">
+            <div class="left__background" *ngIf="album.cover !== null;else noCoverBg"
+                [ngStyle]="{'background-image': 'url('+album.cover+')'}"></div>
+            <ng-template #noCoverBg>
+                <div class="left__background left__background--default"></div>
+            </ng-template>
+            <div class="left__detail">
+                <img *ngIf="album.cover !== null;else noCover" [src]="album.cover" alt="">
+                <ng-template #noCover>
+                    <img src="../../../../../assets/images/music-wallpaper.jpg" alt="">
+                </ng-template>
+                <div class="left__title">
+                    <h4>{{album.name}}</h4>
+                    <p><small>{{album.quantitySong}} bài hát</small></p>
+                    <p><small>{{album.quantityTime}}</small></p>
+                    <div class="feature" *ngIf="album.quantitySong !== 0">
+                        <button mat-icon-button matTooltip="Nghe" matTooltipPosition="above" (click)="onPlayAlbum()">
+                            <mat-icon>play_arrow</mat-icon>
+                        </button>
+                        <button mat-icon-button matTooltip="Thêm vào playlist" matTooltipPosition="above"
+                            (click)="addAlbumIntoPlaylist()" *ngIf="(isAdded$ | async) === false;else addedTemp">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                        <ng-template #addedTemp>
+                            <button mat-icon-button matTooltip="Đã thêm vào playlist" matTooltipPosition="above">
+                                <mat-icon>check</mat-icon>
+                            </button>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+            <div class="left__content">
+                <p *ngIf="album.content">
+                    {{album.content}}
+                </p>
+            </div>
+        </div>
+        <div class="right">
+            <ng-container *ngIf="songs; else skeleton">
+                <ng-container *ngIf="songs.length>0;else noSong">
+                    <app-song-item-music *ngFor="let song of songs" [song]="song">
+                    </app-song-item-music>
+                </ng-container>
+                <ng-template #noSong>
+                    <p style="padding:0 20px;">Không có bài hát nào trong album.</p>
+                </ng-template>
+            </ng-container>
+            <ng-template #skeleton>
+                <app-skeleton-song-music></app-skeleton-song-music>
+                <app-skeleton-song-music></app-skeleton-song-music>
+                <app-skeleton-song-music></app-skeleton-song-music>
+                <app-skeleton-song-music></app-skeleton-song-music>
+                <app-skeleton-song-music></app-skeleton-song-music>
+            </ng-template>
+        </div>
+    </div>
+</div>

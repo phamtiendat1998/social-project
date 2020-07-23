@@ -1,0 +1,24 @@
+<div class="row field" *ngIf="basicAbout$ | async as basicAbout;else skeleton">
+    <div class="col-4">
+        <app-name-field [name]="basicAbout.nameField"></app-name-field>
+    </div>
+    <div class="col-4">
+        <app-birth-day-field [birthday]="basicAbout.birthDay"></app-birth-day-field>
+    </div>
+    <div class="col-4">
+        <app-gender-field [gender]="basicAbout.gender"></app-gender-field>
+    </div>
+</div>
+<ng-template #skeleton>
+    <div class="row">
+        <div class="col-4">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+        <div class="col-4">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+        <div class="col-4">
+            <div class="about-field-skeleton skeleton"></div>
+        </div>
+    </div>
+</ng-template>

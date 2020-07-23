@@ -1,0 +1,105 @@
+.dialog-upload-avatar {
+    position: relative;
+    padding-top: 20px;
+
+    mat-progress-bar {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+    }
+
+    h5 {
+        text-align: center;
+        color: var(--color-primary-500);
+        margin-bottom: 20px;
+    }
+
+    .pick-image {
+        background-color: var(--color-background-primary);
+
+        .dropzone {
+            width: 100%;
+            background-color: var(--color-background-secondary);
+            padding: 100px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            &__icon {
+                color: var(--color-primary-500);
+
+                mat-icon {
+                    transform: scale(1.5);
+                }
+            }
+
+            p {
+                pointer-events: none;
+                text-align: center;
+                font-weight: bold;
+            }
+        }
+
+        .add-input {
+            display: none;
+        }
+
+        .album {
+            padding: 10px 20px;
+
+            &__title {
+                color: var(--color-background-primary-contrast);
+                margin-bottom: 10px;
+                margin-top: 40px;
+            }
+
+            &__item {
+                width: 140px;
+                height: 140px;
+                border-radius: 5px;
+                background-size: cover;
+                background-position: center center;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .edit-image {
+        &__cropper {
+            height: 0;
+
+            &.active {
+                height: 500px;
+                margin-bottom: 20px;
+            }
+        }
+
+        &__cropper,
+        &__feature {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &__content {
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            margin: 20px 5px;
+        }
+
+        image-cropper {
+            padding: 0;
+
+            div {
+                display: none;
+            }
+        }
+    }
+}

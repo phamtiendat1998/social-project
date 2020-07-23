@@ -1,0 +1,43 @@
+.interactive {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    position: relative;
+
+    &__btn {
+        height: 100%;
+        border-radius: unset;
+        color: var(--color-primary-contrast-500);
+        margin: 0 10px;
+
+        &:focus {
+            outline: none;
+        }
+
+        &.new {
+
+            &::before {
+                content: '';
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background-color: var(--color-warn-700);
+                position: absolute;
+                top: 15%;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        &.active {
+            background-color: rgb(227, 241, 250, 0.25); // var(--color-mat-hover) opacity 0.25;
+        }
+    }
+
+    &__box {
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

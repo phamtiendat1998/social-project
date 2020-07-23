@@ -1,0 +1,36 @@
+<mat-expansion-panel [(expanded)]="isExpanded" class="mat-about-field">
+    <mat-expansion-panel-header collapsedHeight="85px" expandedHeight="70px">
+        <mat-panel-title>
+            <p>
+                <mat-icon>public</mat-icon>
+            </p>
+        </mat-panel-title>
+        <mat-panel-description>
+            <div>
+                <p><a href={{link.link}}>{{link.link}}</a></p>
+            </div>
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <form [formGroup]="linkForm">
+        <div>
+            <mat-form-field class="mat-input-full-width" appearance="legacy">
+                <mat-label>Liên kết:</mat-label>
+                <input matInput formControlName="link">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-slide-toggle color="primary" formControlName="public">Công khai</mat-slide-toggle>
+        </div>
+    </form>
+    <div class="form-button">
+        <button mat-mini-fab color="primary" aria-label="Edit" (click)="onClickEnableForm()" *ngIf="!isEnableForm">
+            <mat-icon>create</mat-icon>
+        </button>
+        <button mat-mini-fab color="primary" aria-label="Edit" (click)="onClickSaveForm()" *ngIf="isEnableForm">
+            <mat-icon>check</mat-icon>
+        </button>
+        <button mat-mini-fab color="warn" aria-label="Cancel" (click)="onClickCancelForm()" *ngIf="isEnableForm">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+</mat-expansion-panel>

@@ -1,0 +1,43 @@
+<mat-expansion-panel [(expanded)]="isExpanded" class="mat-about-field">
+    <mat-progress-bar mode="indeterminate" color="accent" *ngIf="loading"></mat-progress-bar>
+    <mat-expansion-panel-header collapsedHeight="85px" expandedHeight="85px">
+        <mat-panel-title>
+            <p>
+                <mat-icon>text_fields</mat-icon>
+            </p>
+        </mat-panel-title>
+        <mat-panel-description>
+            <div>
+                <p><a href="">{{name.fullName}}</a></p>
+            </div>
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <form [formGroup]="nameForm">
+        <div>
+            <mat-form-field class="mat-input-full-width" appearance="legacy">
+                <mat-label>Họ: </mat-label>
+                <input matInput formControlName="firstName">
+                <mat-error *ngIf="nameForm.controls.firstName.errors?.required">Không được bỏ trống</mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="mat-input-full-width" appearance="legacy">
+                <mat-label>Tên: </mat-label>
+                <input matInput formControlName="lastName">
+                <mat-error *ngIf="nameForm.controls.lastName.errors?.required">Không được bỏ trống</mat-error>
+            </mat-form-field>
+        </div>
+        <p><small>*Thông tin này luôn được công khai</small></p>
+    </form>
+    <div class="form-button">
+        <button mat-mini-fab color="primary" aria-label="Edit" (click)="onClickEnableForm()" *ngIf="!isEnableForm">
+            <mat-icon>create</mat-icon>
+        </button>
+        <button mat-mini-fab color="primary" aria-label="Edit" (click)="onUpdateName()" *ngIf="isEnableForm" [disabled]="loading">
+            <mat-icon>check</mat-icon>
+        </button>
+        <button mat-mini-fab color="warn" aria-label="Cancel" (click)="onClickCancelForm()" *ngIf="isEnableForm" [disabled]="loading">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+</mat-expansion-panel>

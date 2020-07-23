@@ -1,0 +1,34 @@
+.setting {
+
+    &__link {
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: var(--color-background-primary);
+        border-radius: 5px;
+    }
+
+    &__item {
+        height: 100%;
+        border-radius: unset;
+
+        &:focus {
+            outline: none;
+        }
+
+        p {
+            line-height: 45px;
+            margin-bottom: 0;
+            color: var(--color-opacity-primary);
+        }
+
+        &.active {
+            p {
+                color: var(--color-background-primary-contrast);
+            }
+
+            border-bottom: 2.5px solid var(--color-primary-500);
+        }
+    }
+}

@@ -1,0 +1,37 @@
+<div class="interactive-numbers-tab">
+    <ng-container>
+        <div class="interactive-numbers-tab__item">
+            <h6>{{0 | quantity}}</h6>
+            <p>Ảnh</p>
+        </div>
+        <div class="interactive-numbers-tab__item">
+            <h6>{{0 | quantity}}</h6>
+            <p>Video</p>
+        </div>
+        <!-- Quantity Friend -->
+        <div class="interactive-numbers-tab__item"
+            *ngIf="quantityFriend$ | async as quantityFriend; else quantityFriendSkeleton">
+            <h6>{{quantityFriend | quantity}}</h6>
+            <p>Bạn bè</p>
+        </div>
+        <ng-template #quantityFriendSkeleton>
+            <div class="interactive-numbers-tab__item">
+                <h6>0</h6>
+                <p>Bạn bè</p>
+            </div>
+        </ng-template>
+        <!-- Quantity Follow -->
+        <div class="interactive-numbers-tab__item"
+            *ngIf="quantityFollower$ | async as quantityFollower; else quantityFollowerSkeleton">
+            <h6>{{quantityFollower | quantity}}</h6>
+            <p>Theo dõi</p>
+        </div>
+        <ng-template #quantityFollowerSkeleton>
+            <div class="interactive-numbers-tab__item">
+                <h6>0</h6>
+                <p>Theo dõi</p>
+            </div>
+        </ng-template>
+    </ng-container>
+
+</div>
