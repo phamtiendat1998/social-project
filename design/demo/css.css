@@ -1,0 +1,67 @@
+#flower {
+    animation: flower 2s infinite linear;
+    transform-origin: bottom;
+    transform-box: fill-box;
+}
+
+@keyframes flower {
+    0% {
+        transform: rotateZ(0);
+    }
+
+    50% {
+        transform: rotateZ(10deg);
+    }
+
+    100% {
+        transform: rotateZ(0);
+
+    }
+}
+
+#circle-social {
+    animation: circle-social 6s infinite linear;
+    transform-origin: center;
+    transform-box: fill-box;
+
+}
+
+@keyframes circle-social {
+    0% {
+        transform: rotateZ(0);
+    }
+
+    50% {
+        transform: rotateZ(20deg);
+    }
+
+    100% {
+        transform: rotateZ(0);
+    }
+}
+
+#icon-social-1 {
+    animation: icon-social 3s infinite;
+}
+
+#icon-social-2 {
+    animation: icon-social 3s infinite 1s;
+}
+
+#icon-social-3 {
+    animation: icon-social 3s infinite 2s;
+}
+
+@keyframes icon-social {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(20px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <linearGradient id="linear-gradient" x1="1" y1="0.01" x2="0" y2="1.019" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#39d7d2"/>
+      <stop offset="1" stop-color="#9192e4"/>
+    </linearGradient>
+    <clipPath id="clip-Web_1920_6">
+      <rect width="1920" height="1080"/>
+    </clipPath>
+  </defs>
+  <g id="Web_1920_6" data-name="Web 1920 – 6" clip-path="url(#clip-Web_1920_6)">
+    <rect width="1920" height="1080" fill="#fff"/>
+    <g id="bgd_l" transform="translate(49.305)">
+      <rect id="Rectangle_1" data-name="Rectangle 1" width="1920" height="1080" transform="translate(-49.305)" fill="url(#linear-gradient)"/>
+    </g>
+    <path id="Path_2" data-name="Path 2" d="M-15.674,816.575,174.717,147.926s88.181-5.492,93.488,90.173c2.294,42.089,4.517,220.455,84.595,259.33,86.406,41.948,167.378-66.982,216.684-51.513,48.824,19,45.5,104.742,67.024,164.258C669.526,701.463,743.5,702.433,797.8,673.35c147.336-78.918,169.476,29.023,229.876,190.037,125.706,277.736,493.133,339.634,493.133,339.634l332.735,68.223-21.31,74.317" transform="translate(-209.695 291.232) rotate(-16)" fill="#fff"/>
+  </g>
+</svg>

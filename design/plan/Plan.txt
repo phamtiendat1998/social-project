@@ -1,0 +1,39 @@
+**ADMIN
+- Số lượng user mới trong ngày, tháng
+- Số lượng bài viết mới trong ngày
+- Số lượng bài nhạc đăng trong ngày
+- Danh sách bài viết sai phạm: 
+	- Api để báo cáo bài viết cho user
+	- Api danh sách bài viết báo cáo cho admin
+- Danh sách user bị báo cáo
+	- Api để báo cáo cho user
+	- Api thống kê user bị báo cáo cho admin
+/********************************************************
+**USER
+* Api tìm kiếm:
+	- Nhập vào keyword,
+	- Tìm kiếm theo content của bài viết, tên user
+	- Api : Bài viết , Ảnh, Video, User
+* Api bookmark:
+	- Người dùng được phép tạo bookmark
+	- Mỗi bookmark lưu nhiều bài viết
+	- Api: 
+		+ Tạo bookmark
+		+ Lấy danh sách bookmark
+		+ Lấy bài viết được lưu trong bookmark
+* Api người dùng thường xuyên liên hệ:
+	- Người dùng được thêm bạn bè thành người dùng thường xuyên liên hệ
+	- Biết được user trong danh sách đó có online hay k
+	- Api :
+		+ Lấy danh sách user thường xuyên liên hệ
+		+ Add user vào danh sách thường xuyên liên hệ
+* Trang cá nhân:
+	- Api :
+		+ Lấy số lượng ảnh, video, bài viết, follow (1 lần lấy)
+		+ Lấy mới nhất 6 ảnh
+		+ Lấy 4 bài hát của user đó đăng
+		+ Lấy thông tin phần giới thiệu : Tên, Sinh nhật, Study, Work, Live, Relationship, Sdt, Link
+		+ Thêm thông tin: chỉ thêm những field này (Công việc, Học vấn, Nơi sinh sống, Liên kết)
+		+ Sửa thông tin
+* Sinh nhật
+	Get sinh nhật của bạn bè trong ngày hôm nay
